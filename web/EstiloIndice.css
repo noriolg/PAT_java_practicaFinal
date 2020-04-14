@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("Fondo.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+}
+.barra-menu{
+    background: gray;
+    text-align: center;
+}
+.barra-menu ul{
+    display: inline-flex;
+    list-style: none;
+    color: white;
+}
+.barra-menu ul li{
+    width: 120px;
+    margin: 15px;
+    padding: 15px;
+}
+.barra-menu ul li a{
+    text-decoration: none;
+    color: white;
+}
+.activo, .barra-menu ul li:hover{
+    background: gainsboro;
+    border-radius: 3px;
+}
+.barra-menu .fas{
+    margin-right: 8px;
+}
+.menu-inferior{
+    display: none;
+}
+.barra-menu ul li:hover .menu-inferior {
+    display: block;
+    position: absolute;
+    background: gray;
+    margin-top: 15px;
+    margin-left: -15px;
+}
+.barra-menu ul li:hover .menu-inferior ul{
+    display: block;
+    margin: 10px;
+}
+.barra-menu ul li:hover .menu-inferior ul li{
+    width: 150px;
+    padding: 10px;
+    border-bottom: 1px dotted white;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+.barra-menu ul li:hover .menu-inferior ul li:last-child{
+    border-bottom: none;
+}
+.barra-menu ul li:hover .menu-inferior ul li a:hover{
+    color: gainsboro;
+}
