@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 body{
-    background-image: url("Fondo.jpg");
-    background-size: contain;
+    background-image: url("../images/Fondo.jpg");
+    background-size: 20%, 20%;
     background-position: center;
     background-repeat: no-repeat;
     font-family: sans-serif;
@@ -13,16 +13,20 @@ body{
 .barra-menu{
     background: gray;
     text-align: center;
+    background-color: red;
 }
 .barra-menu ul{
     display: inline-flex;
     list-style: none;
     color: white;
+    background-color: blue;
 }
 .barra-menu ul li{
-    width: 120px;
+    width: 10%;
+    /*width: 120px;*/
     margin: 15px;
     padding: 15px;
+    background-color: green;
 }
 .barra-menu ul li a{
     text-decoration: none;
