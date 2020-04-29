@@ -23,6 +23,33 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>icaro</servlet-name>
+        <jsp-file>/icaro.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>icaro</servlet-name>
+        <url-pattern>/icaro</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>metodo</servlet-name>
+        <jsp-file>/metodo.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>metodo</servlet-name>
+        <url-pattern>/metodo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>nosotros</servlet-name>
+        <jsp-file>/nosotros.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>nosotros</servlet-name>
+        <url-pattern>/nosotros</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>footer</servlet-name>
         <jsp-file>/footer.jsp</jsp-file>
     </servlet>

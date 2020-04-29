@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 body{
-    background-image: url("../images/Fondo.jpg");
-    background-size: 40%, 40%;
-    background-position: center;
-    background-repeat: no-repeat;
     font-family: sans-serif;
     font-size: 25px;
 }
@@ -21,7 +17,6 @@ body{
     width: 90%;
     list-style: none;
     color: white;
-    /*background-color: blue;*/
 }
 .barra-menu ul li{
     width: 13%;
@@ -34,7 +29,6 @@ body{
     padding-bottom: 5px;
     padding-right: 1px;
     padding-left: 1px;
-    /*background-color: green;*/
 }
 .barra-menu ul li a{
     /*width: 10%;*/
@@ -57,15 +51,14 @@ body{
     position: absolute;
     width: 300px;
     background: gray;
-    margin-top: 15px;
+    margin-top: 5px;
     margin-left: 1px;
     border-radius: 6px;
-
+    z-index: 2;
 }
 .barra-menu ul li:hover .menu-inferior ul{
     display: block;
     margin: 10px;
-    /*background-color: blue;*/
 }
 .barra-menu ul li:hover .menu-inferior ul li{
     width: auto;

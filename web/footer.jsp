@@ -16,7 +16,7 @@
   <body>
     <div class="pie-pagina">
       <div class = "division-pie" id = "division-izq">
-        By: Carlos de los Santos y Nicolás Oriol
+        Próximamente
       </div>
 
       <div class = "division-pie" id = "division-dcha">

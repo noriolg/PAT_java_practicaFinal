@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ayamo
-  Date: 03/04/2020
-  Time: 12:56
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -18,13 +12,13 @@
   <body>
     <div class="barra-menu">
       <ul>
-        <li class="menu"><a href="#"><i class="fas fa-home"></i>Inicio</a></li>
+        <li class="menu"><a href="index.jsp"><i class="fas fa-home"></i>Inicio</a></li>
         <li class="menu" ><a href="#"><i class="fas fa-user"></i>Quiénes Somos</a>
           <div class="menu-inferior">
             <ul>
-              <li><a href="#">Misión</a></li>
-              <li><a href="#">Visión</a></li>
-              <li><a href="#">Valores</a></li>
+              <li><a href="nosotros">Nosotros</a></li>
+              <li><a href="metodo">Método</a></li>
+              <li><a href="icaro">Ícaro</a></li>
             </ul>
           </div>
         </li>
@@ -41,8 +35,8 @@
         <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Acceso</a>
           <div class="menu-inferior">
             <ul>
-              <li><a href="#">Iniciar Sesión</a></li>
-              <li><a href="#">Registro</a></li>
+              <li><a href="#">Iniciar sesión</a></li>
+              <li><a href="#">Registrarse</a></li>
             </ul>
           </div>
         </li>
