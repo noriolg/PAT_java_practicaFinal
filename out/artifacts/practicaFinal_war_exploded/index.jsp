@@ -5,7 +5,17 @@
 </head>
 
 <body>
-<jsp:include page="/cabecera" />
-Test
+<div class="header">
+    <jsp:include page="/cabecera" />
+</div>
+
+<div class = "contenido">
+
+</div>
+
+<div class = "footer">
+    <jsp:include page="/footer" />
+</div>
+
 </body>
 </html>

@@ -5,30 +5,39 @@
 }
 body{
     background-image: url("../images/Fondo.jpg");
-    background-size: 20%, 20%;
+    background-size: 40%, 40%;
     background-position: center;
     background-repeat: no-repeat;
     font-family: sans-serif;
+    font-size: 25px;
 }
 .barra-menu{
     background: gray;
     text-align: center;
-    background-color: red;
+    /*background-color: red;*/
 }
 .barra-menu ul{
     display: inline-flex;
+    width: 90%;
     list-style: none;
     color: white;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 .barra-menu ul li{
-    width: 10%;
+    width: 13%;
     /*width: 120px;*/
-    margin: 15px;
-    padding: 15px;
-    background-color: green;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 1px;
+    padding-left: 1px;
+    /*background-color: green;*/
 }
 .barra-menu ul li a{
+    /*width: 10%;*/
     text-decoration: none;
     color: white;
 }
@@ -42,19 +51,24 @@ body{
 .menu-inferior{
     display: none;
 }
+
 .barra-menu ul li:hover .menu-inferior {
     display: block;
     position: absolute;
+    width: 300px;
     background: gray;
     margin-top: 15px;
-    margin-left: -15px;
+    margin-left: 1px;
+    border-radius: 6px;
+
 }
 .barra-menu ul li:hover .menu-inferior ul{
     display: block;
     margin: 10px;
+    /*background-color: blue;*/
 }
 .barra-menu ul li:hover .menu-inferior ul li{
-    width: 150px;
+    width: auto;
     padding: 10px;
     border-bottom: 1px dotted white;
     background: transparent;
