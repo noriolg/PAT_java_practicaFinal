@@ -1,0 +1,72 @@
+body{
+    background: url("../images/icaro.jpg");
+    background-size:contain;
+    align-items: center;
+    background-repeat:no-repeat ;
+    background-position: center center;
+    font-family: Arial;
+}
+.contenido{
+    max-width: 40%;
+    border-radius: 20px;
+    margin: auto;
+    background: rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    padding: 1%;
+    color: white;
+    margin-top:5px ;
+    margin-bottom: 5px;
+}
+h2{
+    text-align: center;
+}
+input[type=text], input[type=password], input[type=email], input[type=number] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 4px;
+    background: rgba(0,0,0,0.10);
+    outline: none;
+    border: none;
+    border-bottom: 1px dotted gray;
+    color: white;
+    border-radius: 5px;
+    margin: 5px;
+    font-weight: bold;
+}
+input[type=submit]{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 0;
+    margin-top: 15px;
+    outline: none;
+    border:none;
+    background: gainsboro;
+    opacity: 0.7;
+    border-radius: 20px;
+    font-size: 20px;
+    color: white;
+}
+#cursos{
+    font-family: Arial;
+    margin-right: 10%;
+    margin-left: 5%;
+    width: 35%;
+    font-size: 15px;
+    border: 1px solid #CCC;
+    height: 7.5%;
+    background: gainsboro;
+}
+#etapa{
+    font-family: Arial;
+    width: 35%;
+    font-size: 15px;
+    border: 1px solid #CCC;
+    height: 7.5%;
+    margin-left: 10%;
+    background: gainsboro;
+}
+#mensaje{
+    color: red;
+    text-align: center;
+    font-size: 12px;
+}

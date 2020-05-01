@@ -35,8 +35,8 @@
         <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Acceso</a>
           <div class="menu-inferior">
             <ul>
-              <li><a href="#">Iniciar sesión</a></li>
-              <li><a href="#">Registrarse</a></li>
+              <li><a href="acceso">Iniciar sesión</a></li>
+              <li><a href="registro">Registrarse</a></li>
             </ul>
           </div>
         </li>

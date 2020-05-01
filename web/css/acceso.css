@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.ola{
+    position: fixed;
+    height: 100%;
+    left: 0;
+    bottom:0;
+    z-index: -1;
+}
+.contenido{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+
+}
+.imagen{
+    display: flex;
+    justify-content: flex-end;
+    align-items:center;
+
+}
+.imagen img{
+    width: 500px;
+
+}
+.contenedor-acceso{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+form{
+    width: 360px;
+}
+.perfil{
+    width: 100px;
+
+}
+form h2{
+    font-size: 2.9rem;
+    text-transform: uppercase;
+    margin: 15px 0;
+}
+.olvido{
+    font-size: 12px;
+}
+.contrasena{
+    margin-top: 3%;
+    border: none;
+    border-bottom: 3px solid gray;
+    margin-bottom: 3%;
+    height: 20%;
+    font-size: 15px;
+}
+.usuario{
+    margin-bottom: 3%;
+    border: none;
+    border-bottom: 3px solid gray;
+    height: 20%;
+    font-size: 15px;
+
+}
+.submitacceso{
+    background-color: dimgrey;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+#mensaje{
+    color: red;
+}
