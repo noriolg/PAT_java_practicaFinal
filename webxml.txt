@@ -1,22 +1,9 @@
-    <context-param>
-        <param-name>host</param-name>
-        <param-value>smtp.gmail.com</param-value>
-    </context-param>
+<welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
-    <context-param>
-        <param-name>port</param-name>
-        <param-value>587</param-value>
-    </context-param>
+    <!--  Servlets -->
 
-    <context-param>
-        <param-name>user</param-name>
-        <param-value></param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>pass</param-name>
-        <param-value></param-value>
-    </context-param>
     <!--  Filters -->
 
     <!--  JSP files -->
@@ -80,21 +67,4 @@
     <servlet-mapping>
         <servlet-name>registro</servlet-name>
         <url-pattern>/registro</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>contacto</servlet-name>
-        <jsp-file>/contacto.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>contacto</servlet-name>
-        <url-pattern>/contacto</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Mail</servlet-name>
-        <servlet-class>servlets.Mail</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Mail</servlet-name>
-        <url-pattern>/Mail</url-pattern>
     </servlet-mapping>

@@ -1,16 +1,15 @@
 body{
-    background: url("../images/registro.svg");
+    background: url("../images/icaro.jpg");
     background-size:contain;
     align-items: center;
     background-repeat:no-repeat ;
-    background-size: 50% 50%;
-    background-position:left;
+    background-position: center center;
     font-family: Arial;
 }
 .contenido{
-    margin-left: 50%;
     max-width: 40%;
     border-radius: 20px;
+    margin: auto;
     background: rgba(0,0,0,0.6);
     box-sizing: border-box;
     padding: 1%;
@@ -70,7 +69,4 @@ input[type=submit]{
     color: red;
     text-align: center;
     font-size: 12px;
-}
-::placeholder{
-    color: white;!important;
 }
