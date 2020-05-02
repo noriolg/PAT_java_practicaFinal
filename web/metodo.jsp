@@ -16,9 +16,8 @@
 
 
 <div class = "contenido" id = "metodo">
-    <img src="./images/metodo.jpg" alt="imagen_metodo">
+
     <div class = "texto">
-        <h3 style="color:#757575;">Nuestro método</h3><br>
         Tenemos amplia experiencia escogiendo los profesores que más se adapten a tu situación. Buscamos
         un profesor que <b>cuadre con los requisitos</b> que nos pidas para que vaya a dar clases a tu casa.
         Estas características pueden ser horarios, cercanía, carrera del profesor, colegio... <br>
