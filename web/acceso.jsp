@@ -11,6 +11,7 @@
     <title>Acceso</title>
     <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >
     <link rel="stylesheet" type="text/css" href="css/acceso.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <script defer src="js/acceso.js" type="text/javascript"></script>
 </head>
@@ -18,14 +19,16 @@
     <div class="header">
         <jsp:include page="/cabecera" />
     </div>
+    <img class="ola" src="images/wave.png">
     <div class="contenido">
-        <img class="ola" src="images/wave.png">
         <div class="imagen">
             <img src="images/profesor.svg">
         </div>
         <div class="contenedor-acceso">
             <form method="post" action="/icaro">
-                <img class="perfil" src="images/perfil.svg">
+                <div class="contenedor-perfil">
+                    <img class="perfil" src="images/perfil.svg">
+                </div>
                 <div id="mensaje">
 
                 </div>
@@ -35,7 +38,8 @@
                     <br>
                     <input class="contrasena" name="contrasena" id="contrasena" type="password" placeholder="Contraseña">
                     <br>
-                    <input type="submit" class="submitacceso"  id="submitacceso" value="Acceder">
+                </div>
+                <input type="submit" class="submitacceso"  id="submitacceso" value="Acceder">
             </form>
         </div>
     </div>
