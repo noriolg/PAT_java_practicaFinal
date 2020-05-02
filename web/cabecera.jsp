@@ -40,7 +40,7 @@
             </ul>
           </div>
         </li>
-        <li class="menu"><a href="#"><i class="fas fa-phone"></i>Contacto</a></li>
+        <li class="menu"><a href="contacto"><i class="fas fa-phone"></i>Contacto</a></li>
       </ul>
     </div>
   </body>

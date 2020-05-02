@@ -17,13 +17,12 @@ html, body{
     z-index: -1;
 }
 .contenido{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-gap: 7rem;
     padding: 0 2rem;
-
 }
 .imagen{
     display: flex;
@@ -32,7 +31,8 @@ html, body{
 
 }
 .imagen img{
-    width: 500px;
+    width: 100%;
+    margin-bottom: 8%;
 
 }
 .contenedor-acceso{
@@ -42,43 +42,46 @@ html, body{
     text-align: center;
 }
 form{
-    width: 360px;
+    width: 80%;
 }
-.perfil{
-    width: 100px;
+.contendor-perfil{
+    height: 100px;
+    width:  100px;
 
 }
+.perfil{
+    width: 25%;
+    height: auto
+}
 form h2{
-    font-size: 2.9rem;
+    font-size: 100%;
     text-transform: uppercase;
     margin: 15px 0;
 }
-.olvido{
-    font-size: 12px;
-}
+
 .contrasena{
     margin-top: 3%;
     border: none;
     border-bottom: 3px solid gray;
     margin-bottom: 3%;
     height: 20%;
-    font-size: 15px;
+    font-size: 70%;
 }
 .usuario{
     margin-bottom: 3%;
     border: none;
     border-bottom: 3px solid gray;
     height: 20%;
-    font-size: 15px;
+    font-size: 70%;
 
 }
 .submitacceso{
     background-color: dimgrey;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 3.5% 12%;
     text-decoration: none;
-    margin: 4px 2px;
+    margin: 2% 4%;
     cursor: pointer;
     border-radius: 30px;
 }
