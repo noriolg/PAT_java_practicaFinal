@@ -6,12 +6,13 @@
     bottom: 0;
     left: 0;
     padding: 1rem;
+    margin-top : 6px;
 
     float: left;
     text-align: center;
     background: gray;
 
-    font-size: 15px;
+    font-size: 13px;
     font-family: sans-serif;
     color: white;
 }

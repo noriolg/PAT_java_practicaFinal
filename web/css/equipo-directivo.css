@@ -1,0 +1,42 @@
+body{
+    /*background: url("../images/equipo.png");*/
+    background-size:contain;
+    align-items: center;
+    background-repeat:no-repeat ;
+    background-size: 20% 40%;
+    background-position:center bottom ;
+    font-family: 'Poppins', sans-serif;
+    min-width: 1000px;
+}
+
+.contenido{
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.bloque-persona{
+    width: 25%;
+    margin-left: 3%;
+    margin-right: 3%;
+    height: 60%;
+    float: left;
+    text-align: center;
+    font-size: 12px;
+}
+
+.bloque-persona#izquierda{
+    margin-left: 7% !important;
+}
+.bloque-persona#derecha{
+    margin-right: 6% !important;
+}
+
+.texto{
+    margin-top : 3px;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: justify;
+    background-color: #e6e6e6;
+    margin-bottom: 45px;
+}

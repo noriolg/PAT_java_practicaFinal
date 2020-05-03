@@ -112,11 +112,11 @@ public class Registro extends HttpServlet{
         HttpSession sesion = request.getSession();
         if (booleanExitoso){
             sesion.setAttribute("mensajeacceso", "Registrado correctamente");
-            request.getRequestDispatcher("/acceso.jsp").forward(request, response);
+            request.getRequestDispatcher("/acceso").forward(request, response);
         }
         else{
             sesion.setAttribute("mensajeacceso", "Nombre de usuario ya existe");
-            request.getRequestDispatcher("/registro.jsp").forward(request, response);
+            request.getRequestDispatcher("/registro").forward(request, response);
         }
     }
 

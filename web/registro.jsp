@@ -10,6 +10,7 @@
 <head>
     <title>Registro</title>
     <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/registro.css">
     <script defer src="js/registro.js" type="text/javascript"></script>
 </head>
@@ -19,7 +20,6 @@
     </div>
     <div class="contenido">
         <h2>Registrarse</h2>
-        <div id="mensaje"></div>
         <form method="post" action="Registro" >
             <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="formulario">
             <input id="apellidos" name="apellidos" type="text" placeholder="Apellidos"class="formulario">
@@ -40,9 +40,12 @@
         </form>
         <div class = "mensaje-notificacion" id = mensaje-notificacion-acceso>
             <c:if test="${not empty acceso}">
+                <br>
                 ${mensajeacceso}
             </c:if>
         </div>
+        <br>
+        <div id="mensaje"></div>
     </div>
     <div class="footer">
         <jsp:include page="/footer" />

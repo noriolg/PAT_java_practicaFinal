@@ -101,6 +101,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>equipo</servlet-name>
+        <jsp-file>/equipo.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>equipo</servlet-name>
+        <url-pattern>/equipo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>footer</servlet-name>
         <jsp-file>/footer.jsp</jsp-file>
     </servlet>
@@ -144,6 +153,15 @@
     <servlet-mapping>
         <servlet-name>registro</servlet-name>
         <url-pattern>/registro</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>zona-clases</servlet-name>
+        <jsp-file>/zona-clases.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>zona-clases</servlet-name>
+        <url-pattern>/zona-clases</url-pattern>
     </servlet-mapping>
 
 </web-app>

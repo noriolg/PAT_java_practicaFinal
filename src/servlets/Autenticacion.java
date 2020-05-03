@@ -34,15 +34,17 @@ public class Autenticacion extends HttpServlet{
 
                 sesion.setAttribute("user", user);
                 sesion.setAttribute("acceso", true);
-                sesion.setAttribute("mensajeacceso", "");
+                request.setAttribute("mensajeacceso", "");
+                //sesion.setAttribute("mensajeacceso", "");
                 //response.sendRedirect("GestorClases");
-                request.getRequestDispatcher("/zona-clases.jsp").forward(request, response);
+                request.getRequestDispatcher("/zona-clases").forward(request, response);
             }
             else
             {
                 sesion.setAttribute("acceso", false);
-                sesion.setAttribute("mensajeacceso", "Usuario o contrasena incorrectos");
-                request.getRequestDispatcher("/acceso.jsp").forward(request, response);
+                request.setAttribute("mensajeacceso", "Usuario o contrasena incorrectos");
+                //sesion.setAttribute("mensajeacceso", "Usuario o contrasena incorrectos");
+                request.getRequestDispatcher("/acceso").forward(request, response);
                 //response.sendRedirect("error.html");
             }
         }

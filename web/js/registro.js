@@ -3,18 +3,23 @@ var selectcurso=document.getElementById("cursos");
 var submit=document.getElementById("submit");
 var contador=0;
 var flag=0;
-var mensaje=document.getElementById("mensaje");
+var mensaje = document.getElementById("mensaje");
 var formulario=null;
+var mensaje_notificacion = document.getElementById("mensaje-notificacion-acceso");
 
 submit.addEventListener('click', function (e) {
     if(formulario==null)
     {
         e.preventDefault();
+        // Se muestra el mensaje de aviso de rellenado erróneo
         mensaje.textContent="Debe rellenar todos los campos";
         mensaje.style.opacity=1;
         if(flag==0) {
             tiempofundido = setInterval(Opacidad, 50);
         }
+        // Se elimina un posible mensaje anterior que hubiera
+        mensaje_notificacion.innerHTML = "";
+
     }else{
         formulario.forEach(function (elem) {
             if(elem.value.length==0 ){

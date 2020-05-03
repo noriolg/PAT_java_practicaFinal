@@ -10,6 +10,7 @@
   <head>
     <title>Academia Icaro</title>
     <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script defer src="https://kit.fontawesome.com/0393c6f460.js" crossorigin="anonymous"></script>
   </head>
 

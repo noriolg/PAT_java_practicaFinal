@@ -35,17 +35,19 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     font-weight: bold;
 }
 input[type=submit]{
-    width: 100%;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
     box-sizing: border-box;
     padding: 5px 0;
     margin-top: 15px;
     outline: none;
     border:none;
-    background: gainsboro;
+    background:ghostwhite;
     opacity: 0.7;
     border-radius: 20px;
     font-size: 20px;
-    color: white;
+    color: black;
 }
 #cursos{
     font-family: Arial;
@@ -67,10 +69,15 @@ input[type=submit]{
     background: gainsboro;
 }
 #mensaje{
-    color: red;
     text-align: center;
-    font-size: 12px;
+    font-size: 19px;
 }
+
+.mensaje-notificacion{
+    text-align: center;
+    font-size: 19px;
+}
+
 ::placeholder{
     color: white;!important;
 }
