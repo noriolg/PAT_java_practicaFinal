@@ -1,6 +1,6 @@
-/**
-package servlets;
+/*
 
+package servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -17,7 +17,7 @@ import negocio.OperacionClases;
 
 // Todas las llamadas desde y hacia zona-clases.jsp son gestionadas por este controlador y repartidas
 // entre distintas clases ejecutoras
-public class GestorGeneralClases extends HttpServlet {
+public class GestorClases extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -27,6 +27,8 @@ public class GestorGeneralClases extends HttpServlet {
 
         // Objeto encargado de la lógica de las distintas acciones
         OperacionClases operacionClases = new OperacionClases();
+
+        // Se determina el tipo de usuario
 
         try{
             // Se coge el nombre de la acción a realizar
@@ -92,11 +94,6 @@ public class GestorGeneralClases extends HttpServlet {
     }
 
 
-    /**
-     private void gestionarFinCompra(HttpServletRequest request, OperacionComercial operacionComercial){
-     //operacionComercial(request).vaciar();
-     }**/
-    /*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -109,7 +106,7 @@ public class GestorGeneralClases extends HttpServlet {
         processRequest(request, response);
     }
 }
-**/
+
 
 /**
  *              opcionEscogida es una string con caracteres raros

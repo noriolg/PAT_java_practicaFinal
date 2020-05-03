@@ -2,8 +2,9 @@
 <html>
 <head>
     <title>Método</title>
-    <link rel="stylesheet" type="text/css" href="css/quienes-somos.css">
     <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/quienes-somos.css">
 </head>
 
 <body>

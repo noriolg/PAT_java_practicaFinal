@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.sql.PreparedStatement;
 
+import Util.Constantes;
+import dominio.Alumno;
 import dominio.Usuario;
 
 public class UsuarioDAO {
@@ -84,13 +86,45 @@ public class UsuarioDAO {
 
     }
 
+    public boolean esAlumno(Usuario usuario) throws ClassNotFoundException, SQLException, Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        System.out.println(usuario.getUsuario());
+        System.out.println(usuario.getContrasena());
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM usuarios WHERE  usuario = ? AND contrasena = ? ");
+        ps.setString(1, usuario.getUsuario());
+        ps.setString(2, usuario.getContrasena());
+        ResultSet rs = ps.executeQuery();
+
+        int userType = -1;
+        int numeroResultados = 0;
+        while(rs.next()){
+            userType = Integer.parseInt(rs.getString(3));
+            numeroResultados ++;
+        }
+        // Si se ha obtenido más de un resultado es que hay un error en la tabla
+        if(numeroResultados != 1 || userType == -1){
+            con.close();
+            throw new Exception("Error de integridad de la base de datos. UsuarioDAO 97");
+        }
+        else{
+            if(userType == Constantes.ALUMNO){
+                // Si es alumno, se devuelve true
+                con.close();
+                return true;
+            }else{
+                // Si no es alumno, se devuelve false
+                con.close();
+                return false;
+            }
+        }
+    }
 
     // Cierra la conexión iniciada por la instancia de VehiculoDAO
     public void close() throws SQLException, ClassNotFoundException
     {
         con.close();
     }
-
 
 }
 

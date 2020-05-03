@@ -7,6 +7,8 @@ var mensaje=document.getElementById("mensaje");
 var selectcurso=document.getElementById("cursos");
 var formulario=null;
 
+var mensaje_notificacion = document.getElementById("mensaje-notificacion-acceso");
+
 selectcurso.addEventListener('click', function () {
     formulario=document.querySelectorAll('.formulario');
 })
@@ -14,6 +16,7 @@ selectcurso.addEventListener('click', function () {
 submit.addEventListener('click', function (e) {
     if(formulario==null)
     {
+        // Se muestra el mensaje de aviso de rellenado erróneo
         e.preventDefault();
         mensaje.textContent="Debe rellenar todos los campos";
         mensaje.style.opacity=1;
@@ -29,6 +32,8 @@ submit.addEventListener('click', function (e) {
                 if(flag==0) {
                     tiempofundido = setInterval(Opacidad, 50);
                 }
+                // Se elimina un posible mensaje anterior que hubiera
+                mensaje_notificacion.innerHTML = "";
 
             }
         })
