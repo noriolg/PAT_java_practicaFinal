@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Nosotros</title>
+    <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >
     <link rel="stylesheet" type="text/css" href="css/quienes-somos.css">
 </head>
 

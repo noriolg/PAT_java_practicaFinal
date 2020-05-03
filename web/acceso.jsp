@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: carsa
-  Date: 30/04/2020
-  Time: 10:15
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Acceso</title>
@@ -25,12 +20,9 @@
             <img src="images/profesor.svg">
         </div>
         <div class="contenedor-acceso">
-            <form method="post" action="/icaro">
+            <form method="post" action="Autenticacion">
                 <div class="contenedor-perfil">
                     <img class="perfil" src="images/perfil.svg">
-                </div>
-                <div id="mensaje">
-
                 </div>
                 <h2>Bienvenido</h2>
                 <div class="contenido-input uno">
@@ -38,6 +30,15 @@
                     <br>
                     <input class="contrasena" name="contrasena" id="contrasena" type="password" placeholder="Contraseña">
                     <br>
+                </div>
+                <div class = "mensaje-notificacion" id = mensaje-notificacion-acceso>
+                    <c:if test="${not empty acceso}">
+                        ${mensajeacceso}
+                    </c:if>
+                </div>
+
+                <div id="mensaje">
+
                 </div>
                 <input type="submit" class="submitacceso"  id="submitacceso" value="Acceder">
             </form>

@@ -18,8 +18,8 @@ public class Autenticacion extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        String user =request.getParameter("form_acceso_usuario_name");
-        String password =request.getParameter("form_acceso_contrasena_name");
+        String user =request.getParameter("usuario"); //name
+        String password =request.getParameter("contrasena");
 
         Usuario usuario = new Usuario(user, password);
 
@@ -27,22 +27,28 @@ public class Autenticacion extends HttpServlet{
         {
             UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
             boolean existe = usuarioDAO.usuarioExiste(usuario);
+            HttpSession sesion = request.getSession();
 
             if(existe)
             {
-                HttpSession sesion = request.getSession();
+
                 sesion.setAttribute("user", user);
-                response.sendRedirect("GestorGeneralClases");
-                //request.getRequestDispatcher("/zonacompra.jsp").forward(request, response);
+                sesion.setAttribute("acceso", true);
+                sesion.setAttribute("mensajeacceso", "");
+                //response.sendRedirect("GestorClases");
+                request.getRequestDispatcher("/zona-clases.jsp").forward(request, response);
             }
             else
             {
-                request.getRequestDispatcher("/acceso_no_satisfactorio.jsp").forward(request, response);
+                sesion.setAttribute("acceso", false);
+                sesion.setAttribute("mensajeacceso", "Usuario o contrasena incorrectos");
+                request.getRequestDispatcher("/acceso.jsp").forward(request, response);
                 //response.sendRedirect("error.html");
             }
         }
         catch(Exception e)
         {
+            System.out.println("Error en Autenticacion 51");
             e.printStackTrace();;
         }
 

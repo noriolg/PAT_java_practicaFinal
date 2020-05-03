@@ -85,6 +85,11 @@ form h2{
     cursor: pointer;
     border-radius: 30px;
 }
+
+.mensaje-notificacion{
+    color: red;
+}
+
 #mensaje{
     color: red;
 }

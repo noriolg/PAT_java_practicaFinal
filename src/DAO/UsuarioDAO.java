@@ -38,15 +38,10 @@ public class UsuarioDAO {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/practicas", USER, PASSWORD);
-            PreparedStatement ps = con.prepareStatement("INSERT INTO usuarios (nombre, apellidos, codigo, user,  password, etapa, curso)  VALUES (?, ?, ?, ?, ?,?,?)");
-            ps.setString(1, usuario.getNombre());
-            ps.setString(2, usuario.getApellidos());
-            ps.setInt(3, usuario.getCodigoPostal());
-            ps.setString(4, usuario.getUsuario());
-            ps.setString(5, usuario.getContrasena());
-            ps.setString(6, usuario.getEtapa());
-            ps.setInt(7, usuario.getCurso());
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO usuarios (usuario, contrasena)  VALUES (?, ?)");
+            ps.setString(1, usuario.getUsuario());
+            ps.setString(2, usuario.getContrasena());
             int i = ps.executeUpdate();
 
             con.close();
@@ -73,8 +68,8 @@ public class UsuarioDAO {
 
     public boolean usuarioExiste(Usuario usuario) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/practicas", USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM usuarios WHERE  user = ? AND password = ? ");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM usuarios WHERE  usuario = ? AND contrasena = ? ");
         ps.setString(1, usuario.getUsuario());
         ps.setString(2, usuario.getContrasena());
         ResultSet rs = ps.executeQuery();

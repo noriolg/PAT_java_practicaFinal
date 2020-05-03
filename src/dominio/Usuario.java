@@ -1,43 +1,13 @@
 package dominio;
 
 public class Usuario {
-    private String nombre;
-    private String apellidos;
-    private int codigoPostal;
-
     private String usuario;
     private String contrasena;
-    private String etapa;
-    private int curso;
+    private int flagProfesor;
 
-
-    // Constructor general
-    public Usuario(String nombre, String apellidos, int codigoPostal, String usuario, String contrasena, String etapa, int curso ){
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.codigoPostal = codigoPostal;
+    public Usuario(String usuario, String contrasena){
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.etapa = etapa;
-        this.curso = curso;
-    }
-
-    // Constructor para comprobar si existe
-    public Usuario(String user, String password){
-        this.setUsuario(user);
-        this.setContrasena(password);
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public int getCodigoPostal() {
-        return codigoPostal;
     }
 
     public String getUsuario() {
@@ -48,24 +18,8 @@ public class Usuario {
         return contrasena;
     }
 
-    public String getEtapa() {
-        return etapa;
-    }
-
-    public int getCurso() {
-        return curso;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public void setCodigoPostal(int codigoPostal) {
-        this.codigoPostal = codigoPostal;
+    public int getFlagProfesor() {
+        return flagProfesor;
     }
 
     public void setUsuario(String usuario) {
@@ -76,12 +30,14 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public void setEtapa(String etapa) {
-        this.etapa = etapa;
+    public void ascenderAProfesor(){
+        this.flagProfesor = 1;
     }
 
-    public void setCurso(int curso) {
-        this.curso = curso;
+    public void descenderAAlumno(){
+        this.flagProfesor = 0;
     }
+
+
 
 }

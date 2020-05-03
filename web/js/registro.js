@@ -29,6 +29,7 @@ submit.addEventListener('click', function (e) {
         })
     }
 })
+
 etapa.addEventListener('change',function (e) {
     formulario=document.querySelectorAll('.formulario');
     VaciarLista();
@@ -65,7 +66,8 @@ function GenerarOpciones(n) {
             option.disabled;
 
         }else{
-            option.text = String(i-1)+"º";
+            //option.text = String(i-1)+"º"; si no daba errores al meter en la BD
+            option.text = String(i-1);
         }
         option.classList.add('curso');
         selectcurso.add(option);

@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Zona Clases</title>
+    <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >
 </head>
 <body>
 Test
