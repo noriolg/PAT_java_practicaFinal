@@ -3,23 +3,23 @@ var selectcurso=document.getElementById("cursos");
 var submit=document.getElementById("submit");
 var contador=0;
 var flag=0;
-var mensaje = document.getElementById("mensaje");
+var mensaje=document.getElementById("mensaje");
+var selectcurso=document.getElementById("cursos");
 var formulario=null;
-var mensaje_notificacion = document.getElementById("mensaje-notificacion-acceso");
+
+selectcurso.addEventListener('click', function () {
+    formulario=document.querySelectorAll('.formulario');
+})
 
 submit.addEventListener('click', function (e) {
     if(formulario==null)
     {
         e.preventDefault();
-        // Se muestra el mensaje de aviso de rellenado erróneo
         mensaje.textContent="Debe rellenar todos los campos";
         mensaje.style.opacity=1;
         if(flag==0) {
             tiempofundido = setInterval(Opacidad, 50);
         }
-        // Se elimina un posible mensaje anterior que hubiera
-        mensaje_notificacion.innerHTML = "";
-
     }else{
         formulario.forEach(function (elem) {
             if(elem.value.length==0 ){
@@ -36,7 +36,6 @@ submit.addEventListener('click', function (e) {
 })
 
 etapa.addEventListener('change',function (e) {
-    formulario=document.querySelectorAll('.formulario');
     VaciarLista();
     if(etapa.value=="Primaria"){
         GenerarOpciones(6);
@@ -44,10 +43,11 @@ etapa.addEventListener('change',function (e) {
         GenerarOpciones(4);
     }else if(etapa.value=="Bachillerato"){
         GenerarOpciones(2);
-    }else{
+    }else if(etapa.value=="Universidad"){
         var option = document.createElement("option");
         option.text="No aplica";
-        option.disabled;
+    }else {
+
     }
 
 

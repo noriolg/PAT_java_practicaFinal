@@ -4,7 +4,6 @@ var contrasena=document.getElementById("contrasena");
 var contador=0;
 var flag=0;
 var mensaje=document.getElementById("mensaje");
-var mensajeacceso = document.getElementById("mensaje-notificacion-acceso")
 
 submit.addEventListener("click",function (e) {
     if(usuario.value.length==0||contrasena.value.length==0)
@@ -16,7 +15,6 @@ submit.addEventListener("click",function (e) {
             tiempofundido = setInterval(Opacidad, 50);
         }
     }
-    mensaje.textContent="";
 })
 function Opacidad() {
     flag=1;

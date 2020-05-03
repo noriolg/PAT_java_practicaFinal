@@ -75,7 +75,7 @@ form h2{
     font-size: 70%;
 
 }
-.submitacceso{
+#submitacceso{
     background-color: dimgrey;
     border: none;
     color: white;
@@ -85,11 +85,9 @@ form h2{
     cursor: pointer;
     border-radius: 30px;
 }
-
-.mensaje-notificacion{
-    color: grey;
+#submitacceso:hover{
+    background: #CCCCCC;
 }
-
 #mensaje{
     color: red;
 }
