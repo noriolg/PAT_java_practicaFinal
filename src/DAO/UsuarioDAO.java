@@ -17,6 +17,12 @@ public class UsuarioDAO {
     private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
+    private UsuarioDAO() throws ClassNotFoundException, SQLException
+    {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+    }
+
     public static UsuarioDAO getInstance() throws SQLException, ClassNotFoundException
     {
         if(usuarioDAO!=null)
@@ -102,6 +108,7 @@ public class UsuarioDAO {
             userType = Integer.parseInt(rs.getString(3));
             numeroResultados ++;
         }
+        rs.close();
         // Si se ha obtenido más de un resultado es que hay un error en la tabla
         if(numeroResultados != 1 || userType == -1){
             con.close();

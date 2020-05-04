@@ -1,4 +1,6 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix ="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -32,14 +34,60 @@
           </div>
         </li>
         <li class="menu"><a href="clases"><i class="fas fa-language"></i>Clases</a></li>
-        <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Acceso</a>
-          <div class="menu-inferior">
-            <ul>
-              <li><a href="acceso">Iniciar sesión</a></li>
-              <li><a href="registro">Registrarse</a></li>
-            </ul>
-          </div>
-        </li>
+        <c:choose>
+          <c:when test="${usertype == null}">
+            <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Acceso</a>
+              <div class="menu-inferior">
+                <ul>
+                  <li><a href="acceso">Iniciar sesión</a></li>
+                  <li><a href="registro">Registrarse</a></li>
+                </ul>
+              </div>
+            </li>
+          </c:when>
+
+          <c:otherwise>
+            <c:choose>
+              <c:when test = "${usertype == 0}">
+                <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Alumno</a>
+                  <div class="menu-inferior">
+                    <ul>
+                      <li><a href="#">Mis clases</a></li>
+                      <li><a href="#">Mi perfil</a></li>
+                      <li><a href="CierreSesion">Cerrar sesión</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </c:when>
+
+              <c:when test = "${usertype == 1}">
+                <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Profesor</a>
+                  <div class="menu-inferior">
+                    <ul>
+                      <li><a href="#">Mis clases</a></li>
+                      <li><a href="#">Mi perfil</a></li>
+                      <li><a href="CierreSesion">Cerrar sesión</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </c:when>
+
+              <c:otherwise>
+                <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Administrador</a>
+                  <div class="menu-inferior">
+                    <ul>
+                      <li><a href="#">Añadir profesor</a></li>
+                      <li><a href="#">Añadir clase</a></li>
+                      <li><a href="CierreSesion">Cerrar sesión</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </c:otherwise>
+            </c:choose>
+
+          </c:otherwise>
+        </c:choose>
+
         <li class="menu"><a href="contacto"><i class="fas fa-phone"></i>Contacto</a></li>
       </ul>
     </div>

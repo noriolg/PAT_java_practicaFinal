@@ -31,9 +31,6 @@
                 Es el mayor de cinco hermanos, le encanta el baloncesto, la vela y la programación.
                 Montó este proyecto en noviembre de 2018 con la idea de tener la experiencia de montar una
                 pequeña empresa y gestionar un equipo.<br><br>
-                La idea a largo plazo es tratar de hacer la organización
-                de una manera cada vez más estructurada y seria. Pudiendo así ayudar a más gente e incluir a más profesores
-                en el proyecto.
             </div>
 
 
@@ -42,16 +39,13 @@
             <img src="./images/miriam.jpg" alt="imagen_miriam" width="auto" height="35%" >
             <div class = "texto">
                 <h3 style="color:#757575; text-align: center;">Miriam Medina Ocaña</h3><br>
-                Estudiante de Universidad Pontificia Comillas (Ingeniería de Telecomunicaciones y Business Analytics) y
-                antiguo alumno del Colegio Nuestra Señora del Recuerdo. <br><br>
-                Tiene varios años de experiencia dando clases de apoyo en las distintas etapas educativas tanto
-                particulares como grupales.<br><br>
-                Es el mayor de cinco hermanos, le encanta el baloncesto, la vela y la programación.
-                Montó este proyecto en noviembre de 2018 con la idea de tener la experiencia de montar una
-                pequeña empresa y gestionar un equipo.<br><br>
-                La idea a largo plazo es tratar de hacer la organización
-                de una manera cada vez más estructurada y seria. Pudiendo así ayudar a más gente e incluir a más profesores
-                en el proyecto.
+                Estudiante en la Universidad Pontificia Comillas (Ingeniería Industrial y ADE) y antigua alumna del
+                Colegio Nuestra Señora de la Presentación de Granada.<br><br>
+                Tanto en sus tres años en Madrid, como en su etapa escolar en Granada, ha ayudado a niños de
+                todas las edades voluntaria y profesionalmente, disfrutando mucho de ello.
+                Además, le encanta hacer deporte y viajar.<br><br>
+                Se unió al equipo este año, ayudando en la gestión y selección del profesorado, motivada por las
+                ganas de aprender sobre gestión de empresas y hacer cosas nuevas.
             </div>
 
         </div>
@@ -67,9 +61,6 @@
                 Es el mayor de cinco hermanos, le encanta el baloncesto, la vela y la programación.
                 Montó este proyecto en noviembre de 2018 con la idea de tener la experiencia de montar una
                 pequeña empresa y gestionar un equipo.<br><br>
-                La idea a largo plazo es tratar de hacer la organización
-                de una manera cada vez más estructurada y seria. Pudiendo así ayudar a más gente e incluir a más profesores
-                en el proyecto.
             </div>
         </div>
     </div>

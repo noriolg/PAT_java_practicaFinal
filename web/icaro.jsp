@@ -18,7 +18,7 @@
 
 
 <div class = "contenido" id = "icaro">
-    <img src="./images/icaro.jpg" alt="imagen_icaro">
+    <img src="./images/icaro.jpg" alt="imagen_icaro" width="auto" height="75%" style>
     <div class = "texto" id = "texto-icaro">
         <h3 style="color:#757575;">La academia</h3><br>
         La academia se creó en <b>noviembre de 2018</b> . Algunos de nuestros profesores llevan dando clase desde antes

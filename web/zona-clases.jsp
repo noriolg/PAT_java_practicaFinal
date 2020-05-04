@@ -11,6 +11,9 @@
     </div>
 
     <div class="contenido">
+        Hola<br>
+
+        ${usertype}
     </div>
 
     <div class="footer">

@@ -18,7 +18,7 @@
 
 
 <div class = "contenido" id = "metodo">
-    <img src="./images/metodo.jpg" alt="imagen_metodo">
+    <img src="./images/metodo.jpg" alt="imagen_metodo" width="auto" height="75%">
     <div class = "texto">
         <h3 style="color:#757575;">Nuestro método</h3><br>
         Tenemos amplia experiencia escogiendo los profesores que más se adapten a tu situación. Buscamos

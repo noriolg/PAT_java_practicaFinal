@@ -11,22 +11,28 @@ import dominio.Usuario;
 
 public class AlumnoDAO {
 
-    private static AlumnoDAO usuarioDAO;
+    private static AlumnoDAO alumnoDAO;
     private Connection con;
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
+    private AlumnoDAO() throws ClassNotFoundException, SQLException
+    {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+    }
+
     public static AlumnoDAO getInstance() throws SQLException, ClassNotFoundException
     {
-        if(usuarioDAO!=null)
+        if(alumnoDAO!=null)
         {
-            if(!usuarioDAO.isActiva())
-                usuarioDAO = new AlumnoDAO();
+            if(!alumnoDAO.isActiva())
+                alumnoDAO = new AlumnoDAO();
         }
         else
-            usuarioDAO = new AlumnoDAO();
-        return usuarioDAO;
+            alumnoDAO = new AlumnoDAO();
+        return alumnoDAO;
     }
 
     private boolean isActiva() throws SQLException
@@ -119,6 +125,7 @@ public class AlumnoDAO {
             userType = Integer.parseInt(rs.getString(10));
             numeroResultados ++;
         }
+        rs.close();
 
         // Si se ha obtenido más de un resultado es que hay un error en la tabla
         if(numeroResultados != 1 || userType == -1){

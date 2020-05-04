@@ -18,7 +18,7 @@
 
 
 <div class = "contenido" id = "nosotros">
-    <img src="./images/nosotros.jpg" alt="imagen_nosotros">
+    <img src="./images/nosotros.jpg" alt="imagen_nosotros" width="auto" height="75%" >
     <div class = "texto">
         <h3 style="color:#757575;">Nosotros</h3><br>
         Somos un grupo de alumnos universitarios de distintas carreras. Tenemos niveles de experiencia de
