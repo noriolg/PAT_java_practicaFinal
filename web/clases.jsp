@@ -27,7 +27,9 @@
                     <a href="#"><img class="card-img-top" src="images/primaria.svg" alt=""></a>
                     <div class="primaria" class="card-body">
                         <h4 class="card-title">
-                            <a href="#">Primaria</a>
+                            <form method="post" action="GestorClasesProducto">
+                                <input name="submit"  id="Prim" class="submit btn btn-primary" type="submit" value="Primaria">
+                            </form>
                         </h4>
                     </div>
                 </div>
@@ -37,7 +39,9 @@
                     <a href="#"><img class="card-img-top" src="images/ESO.svg" alt=""></a>
                     <div class="ESO" class="card-body">
                         <h4  class="card-title">
-                            <a href="#">ESO</a>
+                            <form method="post" action="GestorClasesProducto">
+                                <input name="submit"  id="ESO" class="Secundaria btn btn-primary" type="submit" value="Secundaria">
+                            </form>
                         </h4>
                     </div>
                 </div>
@@ -47,7 +51,9 @@
                     <a href="#"><img class="card-img-top" src="images/Bachillerato.svg" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">Bachillerato</a>
+                            <form method="post" action="GestorClasesProducto">
+                                <input name="submit"  id="Bach" class="Bachillerato btn btn-primary"type="submit" value="Bachillerato">
+                            </form>
                         </h4>
                     </div>
                 </div>
@@ -57,7 +63,9 @@
                     <a href="#"><img class="card-img-top" src="images/Universidad.svg" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">Universidad</a>
+                            <form method="post" action="GestorClasesProducto">
+                                <input name="submit"  id="Uni" class="Universidad btn btn-primary" type="submit" value="Universidad">
+                            </form>
                         </h4>
                     </div>
                 </div>

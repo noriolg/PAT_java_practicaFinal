@@ -14,7 +14,7 @@ public class AlumnoDAO {
     private static AlumnoDAO alumnoDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "icai";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private AlumnoDAO() throws ClassNotFoundException, SQLException

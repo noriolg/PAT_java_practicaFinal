@@ -37,13 +37,13 @@ body{
 }
 .activo, .barra-menu ul li:hover{
     background: gainsboro;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 .barra-menu .fas{
     margin-right: 8px;
 }
 #quienes-somos{
- font-size: 14px !important;
+    font-size: 12px !important;
 }
 .menu-inferior{
     display: none;
@@ -76,4 +76,41 @@ body{
 }
 .barra-menu ul li:hover .menu-inferior ul li a:hover{
     color: gainsboro;
+}
+
+.barra-menu ul li:hover .menu-inferior ul li:hover{
+    color: gainsboro;
+}
+#numero{
+    margin-right: 3%;
+    display: inline;
+}
+
+.barra-menu ul li:hover .cesta{
+    display: block;
+    position: absolute;
+    width: 200px;
+    background: gray;
+    margin-top: 5px;
+    margin-left: 1px;
+    margin-right: 10px;
+    border-radius: 6px;
+    z-index: 2;
+}
+.barra-menu ul li:hover .cesta ul{
+    display: block;
+    margin: 5px;
+}
+.barra-menu ul li:hover .cesta ul li{
+    width: auto;
+    padding: 0px;
+    border-bottom: 1px dotted white;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+.submit{
+    float: right;
+    margin-top:1%;
+    margin-bottom: 1%;
 }

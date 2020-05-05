@@ -27,6 +27,11 @@ public class Alumno {
         this.clase = clase;
     }
 
+    public Alumno(String usuario, String contrasena) {
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+    }
+
     public Alumno(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String etapa, int curso){
         this.usuario = usuario;
         this.contrasena = contrasena;

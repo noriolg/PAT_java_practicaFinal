@@ -1,34 +1,55 @@
 .col-lg-4{
     margin-left: 10%;
     margin-right: 5%;
+    width: 20%;
+    height: 15%;
 }
 .card-title{
     text-align: center;!important;
+    align-items: center;
     text-decoration: none;!important;
     color: gainsboro;!important;
 }
-.card-img-top{
-    size:700px 400px;
-}
-.container{
+.contenido{
+    align-items: center;
+    position: center;
+    padding-top:0;
+    margin-left: 25%;
+    width: 50%;
     margin-top: 10px;
     color: gainsboro;!important;
     margin-bottom: 4%;
 }
-.ESO{
-    margin-top: 10px;
-}
+
 .primaria{
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .abajo{
-    margin-bottom: 3%;
-    width: 31%;
-    margin-left: 11%;
+    margin-bottom: 2%;
+    width: 30%;
+    height: 15%;
+    margin-left: 11.6%;
     margin-right: 5%;
 }
 .abajo1{
-    margin-bottom: 3%;
-    width: 31%;
-    margin-left: 13%;
+    margin-bottom: 2%;
+    width: 30%;
+    height: 15%;
+    margin-left: 13.6%;
+}
+.submit{
+    margin-right: 25%;
+}
+.Secundaria{
+    margin-right: 10%;
+    margin-left: 7.5%;
+    margin-bottom: 0;
+}
+.Bachillerato{
+    margin-right: 20%;
+    margin-left: 8%;
+}
+.Universidad{
+    margin-right: 15%;
+    margin-left: 8%;
 }

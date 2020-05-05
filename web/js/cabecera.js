@@ -1,4 +1,5 @@
-
+var numero=document.getElementById("numero");
+var numeroelem=document.querySelectorAll('.numero-elem');
 var array=document.querySelectorAll('.menu');
 var navbar = document.getElementById("barra-menu");
 var sticky = navbar.offsetTop;
@@ -12,3 +13,4 @@ array.forEach(function (elem) {
     })
 
 })
+numero.textContent=numeroelem.length;

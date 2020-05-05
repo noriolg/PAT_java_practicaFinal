@@ -84,12 +84,28 @@
                 </li>
               </c:otherwise>
             </c:choose>
-
           </c:otherwise>
         </c:choose>
 
         <li class="menu"><a href="contacto"><i class="fas fa-phone"></i>Contacto</a></li>
-      </ul>
+        <li class="menu"><a href="#"><i class="fas fa-shopping-basket"></i><p id="numero">0</p></a>
+          <div class="menu-inferior cesta">
+            <c:choose>
+              <c:when test="${empty sessionScope.carrito}">
+                <ul></ul>
+              </c:when>
+              <c:otherwise>
+                <ul>
+                  <c:forEach var="entry" items="${sessionScope.carrito.carrito}" >
+                  <li class="numero-elem"><c:out value="${entry.asignatura}"/>&nbsp;<c:out value="${entry.curso}"/>º
+                    &nbsp; de &nbsp; <c:out value="${entry.etapa}"/></li>
+                  </c:forEach>
+                  <form method="post" action="">
+                    <input id="submit" class="submit btn btn-primary" type="submit" value="Solicitar Clase">
+                  </form>
+                </ul>
+              </c:otherwise>
+            </c:choose>
     </div>
   </body>
 </html>

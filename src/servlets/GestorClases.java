@@ -1,6 +1,5 @@
-/*
+/*package servlets;
 
-package servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -51,7 +50,7 @@ public class GestorClases extends HttpServlet {
             }else
             {
                 // Si la opción es null, significa que viene de index. Se crea un atributo de sesion llamado carrito
-                request.getSession().setAttribute("carrito", new Carrito( new HashMap<String,Integer>() ) );
+                // request.getSession().setAttribute("carrito", new Carrito( new HashMap<String,Integer>() ) );
             }
 
 
@@ -66,7 +65,7 @@ public class GestorClases extends HttpServlet {
     }
 
 
-    private void gestionarCompra(HttpServletRequest request, OperacionComercial operacionComercial){
+    /*private void gestionarCompra(HttpServletRequest request, OperacionComercial operacionComercial){
 
         // Por ahora este, se quieren añadir simplemente en un hasmap. Cuando se quieran añadir en un
         // objeto carrito, se usará la opción de obtener el id
