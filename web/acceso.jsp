@@ -32,7 +32,7 @@
                     <br>
                 </div>
                 <div class = "mensaje-notificacion" id = mensaje-notificacion-acceso>
-                    <c:if test="${not empty acceso}">
+                    <c:if test="${not empty mensajeacceso}">
                         ${mensajeacceso}
                     </c:if>
                 </div>

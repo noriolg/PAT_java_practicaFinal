@@ -76,8 +76,8 @@
                 <li class="menu"><a href="#"><i class="fas fa-sign-in-alt"></i>Administrador</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="#">Añadir profesor</a></li>
-                      <li><a href="#">Añadir clase</a></li>
+                      <li><a href="log-acciones">Registro</a></li>
+                      <li><a href="#">Añadir</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
                   </div>
@@ -106,6 +106,9 @@
                 </ul>
               </c:otherwise>
             </c:choose>
-    </div>
-  </body>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
 </html>

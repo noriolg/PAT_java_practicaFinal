@@ -32,6 +32,7 @@
         <servlet-name>Autenticacion</servlet-name>
         <url-pattern>/Autenticacion</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>CierreSesion</servlet-name>
         <servlet-class>servlets.CierreSesion</servlet-class>
@@ -40,14 +41,8 @@
         <servlet-name>CierreSesion</servlet-name>
         <url-pattern>/CierreSesion</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>GestorClases</servlet-name>
-        <servlet-class>servlets.GestorClases</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GestorClases</servlet-name>
-        <url-pattern>/GestorClases</url-pattern>
-    </servlet-mapping>
+
+
 
     <servlet>
         <servlet-name>GestorClasesProducto</servlet-name>
@@ -111,6 +106,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>clases</servlet-name>
+        <jsp-file>/clases.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clases</servlet-name>
+        <url-pattern>/clases</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <jsp-file>/dashboard.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>equipo</servlet-name>
         <jsp-file>/equipo.jsp</jsp-file>
     </servlet>
@@ -138,12 +151,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>MostrarClases</servlet-name>
-        <jsp-file>/mostrarclases.jsp</jsp-file>
+        <servlet-name>logacciones</servlet-name>
+        <jsp-file>/log-acciones.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MostrarClases</servlet-name>
-        <url-pattern>/MostrarClases</url-pattern>
+        <servlet-name>logacciones</servlet-name>
+        <url-pattern>/log-acciones</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -156,12 +169,30 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>mostrarclases</servlet-name>
+        <jsp-file>/mostrarclases.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mostrarclases</servlet-name>
+        <url-pattern>/mostrarclases</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>nosotros</servlet-name>
         <jsp-file>/nosotros.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>nosotros</servlet-name>
         <url-pattern>/nosotros</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>profesores</servlet-name>
+        <jsp-file>/profesores.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>profesores</servlet-name>
+        <url-pattern>/profesores</url-pattern>
     </servlet-mapping>
 
 
@@ -174,12 +205,5 @@
         <url-pattern>/registro</url-pattern>
     </servlet-mapping>
 
-    
-    <servlet>
-        <servlet-name>clases</servlet-name>
-        <jsp-file>/clases.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>clases</servlet-name>
-        <url-pattern>/clases</url-pattern>
-    </servlet-mapping>
+</web-app>
+

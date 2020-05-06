@@ -3,11 +3,9 @@ package servlets;
 import DAO.ClasesOfrecidasDAO;
 import Servicios.CarritoServicio;
 import dominio.ClaseProducto;
-import sun.nio.cs.ISO_8859_2;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,10 +43,13 @@ public class GestorClasesProducto extends HttpServlet {
                 rd.forward(request,response);
             }else{
                 ClasesOfrecidasDAO clasesDao = ClasesOfrecidasDAO.getInstance();
-                clases=clasesDao.obtenerClases(submit);
+                // Falla aquí, dice que es null. Es porque el submit está pensado para que le llegue la etapa
+                // y no es lo que le llega.
+                System.out.println(submit);
+                clases = clasesDao.obtenerClases(submit);
                 session.setAttribute("etapa",submit);
                 session.setAttribute("Clases",clases);
-                response.sendRedirect("MostrarClases");
+                response.sendRedirect("mostrarclases");
             }
 
         }catch (Exception e){

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import DAO.AccionDAO;
 import DAO.AlumnoDAO;
 import DAO.UsuarioDAO;
+import Util.Constantes;
+import dominio.Accion;
 import dominio.Alumno;
 import dominio.Usuario;
 
@@ -47,9 +50,10 @@ public class Registro extends HttpServlet{
                 UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
                 if(usuarioDAO.anadirUsuario(usuario)){
                     System.out.println("Usuario anadido");
-                    Alumno alumno = new Alumno(user, contrasena, nombre, apellidos, Integer.parseInt(codigo), email, telefono, etapa, Integer.parseInt(curso));
+                    Alumno alumno = new Alumno(user, contrasena, nombre, apellidos, Integer.parseInt(codigo), email, telefono, etapa, Integer.parseInt(curso), null);
                     if(anadirAlumno(alumno)){
                         System.out.println("Alumno anadido");
+                        logAccion(Constantes.ALUMNO,"Nuevo alumno registrado. Usuario: " + alumno.getUsuario());
                         resolverRegistro(true, request, response);
                     }
                     else{
@@ -109,15 +113,19 @@ public class Registro extends HttpServlet{
 
 
     private void resolverRegistro(boolean booleanExitoso, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
         if (booleanExitoso){
-            sesion.setAttribute("mensajeacceso", "Registrado correctamente");
+            request.setAttribute("mensajeacceso", "Registrado correctamente");
             request.getRequestDispatcher("/acceso").forward(request, response);
         }
         else{
-            sesion.setAttribute("mensajeacceso", "Nombre de usuario ya existe");
+            request.setAttribute("mensajeacceso", "Nombre de usuario ya existe");
             request.getRequestDispatcher("/registro").forward(request, response);
         }
+    }
+
+    private void logAccion(int usertype, String descripcion) throws SQLException, ClassNotFoundException {
+        AccionDAO accionDAO = AccionDAO.getInstance();
+        accionDAO.anadirAccion(new Accion(usertype, descripcion));
     }
 
 }

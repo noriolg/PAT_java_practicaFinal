@@ -14,6 +14,10 @@
         Hola<br>
 
         ${usertype}
+        <br>Profesor
+        ${objetoProfesor}
+        <br>Alumno
+        ${objetoAlumno}
     </div>
 
     <div class="footer">

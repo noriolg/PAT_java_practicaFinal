@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import DAO.AlumnoDAO;
+import DAO.ProfesorDAO;
 import DAO.UsuarioDAO;
 import dominio.Alumno;
 import dominio.Usuario;
@@ -39,9 +40,19 @@ public class Autenticacion extends HttpServlet{
 
                 sesion.setAttribute("usertype", tipoUsuario);
                 sesion.setAttribute("acceso", true);
+                sesion.setAttribute("username", usuario.getUsuario());
+
+                // Dependiendo del tipo de usuario creamos un objeto u otro
+                if (tipoUsuario == Constantes.ALUMNO){
+                    AlumnoDAO alumnoDAO = AlumnoDAO.getInstance();
+                    sesion.setAttribute("objetoAlumno", alumnoDAO.obtenerAlumno(usuario));
+                }else{
+                    ProfesorDAO profesorDAO = ProfesorDAO.getInstance();
+                    sesion.setAttribute("objetoProfesor", profesorDAO.obtenerProfesor(usuario));
+                }
                 request.setAttribute("mensajeacceso", "");
                 //response.sendRedirect("GestorClases");
-                request.getRequestDispatcher("/zona-clases").forward(request, response);
+                request.getRequestDispatcher("/dashboard").forward(request, response);
             }
             else
             {
@@ -74,7 +85,6 @@ public class Autenticacion extends HttpServlet{
 
     private int determinarTipoUsuario(Usuario user) throws Exception {
         UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
-        AlumnoDAO alumnoDAO = AlumnoDAO.getInstance();
         // Por defecto asumimos que es alumno
         int tipoUsuario;
 
@@ -82,7 +92,7 @@ public class Autenticacion extends HttpServlet{
             tipoUsuario = Constantes.ALUMNO;
         }
         else{
-            if(alumnoDAO.esProfesor(new Alumno(user.getUsuario(), user.getContrasena()))){
+            if(usuarioDAO.esProfesor(user)){
                 tipoUsuario = Constantes.PROFESOR;
             }
             else{

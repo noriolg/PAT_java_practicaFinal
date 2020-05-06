@@ -11,7 +11,7 @@ public class ClasesOfrecidasDAO {
     private static ClasesOfrecidasDAO clasesOfrecidasDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private ClasesOfrecidasDAO() throws ClassNotFoundException, SQLException
@@ -56,7 +56,7 @@ public class ClasesOfrecidasDAO {
             while(rs.next())
             {
                 ClaseProducto clase;
-                clase = new ClaseProducto(Integer.parseInt(rs.getString(1)), rs.getString(3), rs.getString(4));
+                clase = new ClaseProducto(Integer.parseInt(rs.getString("curso")), rs.getString("etapa"), rs.getString("asignatura"));
                 coleccion.add(clase);
             }
             return coleccion;

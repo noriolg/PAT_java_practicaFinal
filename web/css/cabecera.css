@@ -14,7 +14,7 @@ body{
 }
 .barra-menu ul{
     display: inline-flex;
-    width: 90%;
+    width: 95%;
     list-style: none;
     color: white;
 }
@@ -23,8 +23,8 @@ body{
     /*width: 120px;*/
     margin-top: 10px;
     margin-bottom: 5px;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 1%;
+    margin-right: 1%;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 1px;
@@ -89,7 +89,7 @@ body{
 .barra-menu ul li:hover .cesta{
     display: block;
     position: absolute;
-    width: 200px;
+    width: 180px;
     background: gray;
     margin-top: 5px;
     margin-left: 1px;

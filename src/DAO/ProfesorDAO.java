@@ -7,32 +7,33 @@ import java.sql.PreparedStatement;
 
 import Util.Constantes;
 import dominio.Alumno;
+import dominio.Profesor;
 import dominio.Usuario;
 
-public class AlumnoDAO {
+public class ProfesorDAO {
 
-    private static AlumnoDAO alumnoDAO;
+    private static ProfesorDAO profesorDAO;
     private Connection con;
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
-    private AlumnoDAO() throws ClassNotFoundException, SQLException
+    private ProfesorDAO() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
     }
 
-    public static AlumnoDAO getInstance() throws SQLException, ClassNotFoundException
+    public static ProfesorDAO getInstance() throws SQLException, ClassNotFoundException
     {
-        if(alumnoDAO!=null)
+        if(profesorDAO!=null)
         {
-            if(!alumnoDAO.isActiva())
-                alumnoDAO = new AlumnoDAO();
+            if(!profesorDAO.isActiva())
+                profesorDAO = new ProfesorDAO();
         }
         else
-            alumnoDAO = new AlumnoDAO();
-        return alumnoDAO;
+            profesorDAO = new ProfesorDAO();
+        return profesorDAO;
     }
 
     private boolean isActiva() throws SQLException
@@ -41,22 +42,21 @@ public class AlumnoDAO {
     }
 
     // Método para hacer una consulta segura de matrícula
-    public boolean anadirAlumno(Alumno alumno)
+    public boolean anadirProfesor(Profesor profesor)
     {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
-            PreparedStatement ps = con.prepareStatement("INSERT INTO alumnos (usuario, contrasena, nombre, apellidos, codigo, email, telefono, etapa, curso)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            ps.setString(1, alumno.getUsuario());
-            ps.setString(2, alumno.getContrasena());
-            ps.setString(3, alumno.getNombre());
-            ps.setString(4, alumno.getApellidos());
-            ps.setInt(5, alumno.getCodigoPostal());
-            ps.setString(6, alumno.getEmail());
-            ps.setString(7, alumno.getTelefono());
-            ps.setString(8, alumno.getEtapa());
-            ps.setInt(9, alumno.getCurso());
+            PreparedStatement ps = con.prepareStatement("INSERT INTO profesores (usuario, contrasena, nombre, apellidos, codigo, email, telefono, descripcion)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, profesor.getUsuario());
+            ps.setString(2, profesor.getContrasena());
+            ps.setString(3, profesor.getNombre());
+            ps.setString(4, profesor.getApellidos());
+            ps.setInt(5, profesor.getCodigoPostal());
+            ps.setString(6, profesor.getEmail());
+            ps.setString(7, profesor.getTelefono());
+            ps.setString(8, profesor.getDescripcion());
 
             int i = ps.executeUpdate();
             con.close();
@@ -82,18 +82,18 @@ public class AlumnoDAO {
     }
 
     // Estos hay que repasarlos, para ver qué queremos conseguir cuando obtenemos un alumno.
-    public Alumno obtenerAlumno(Usuario usuario) throws SQLException, ClassNotFoundException, Exception {
+    public Profesor obtenerProfesor(Usuario usuario) throws SQLException, ClassNotFoundException, Exception {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM alumnos WHERE  usuario = ? AND contrasena = ? ");
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM profesores WHERE  usuario = ? AND contrasena = ? ");
         ps.setString(1, usuario.getUsuario());
         ps.setString(2, usuario.getContrasena());
         ResultSet rs = ps.executeQuery();
 
         int numeroResultados = 0;
-        Alumno alumnoObtenido  = null;
+        Profesor profesorObtenido  = null;
         while(rs.next()){
-            alumnoObtenido = new Alumno(rs.getString("usuario"),null, rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"), null );
+            profesorObtenido = new Profesor(rs.getString("usuario"),null,rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), null, rs.getString("descripcion"));
             numeroResultados ++;
         }
         rs.close();
@@ -101,19 +101,20 @@ public class AlumnoDAO {
         // Si se ha obtenido más de un resultado es que hay un error en la tabla
         if(numeroResultados != 1 ){
             con.close();
-            throw new Exception("Error de integridad de la base de datos. AlumnoDAO 103");
+            throw new Exception("Error de integridad de la base de datos. profesorDAO 104");
         }
-        return alumnoObtenido;
+        return profesorObtenido;
     }
 
-    // Recorre el resultset y devuelve una colección de Vehículos
+    // Recorre el resultset y devuelve una colección de Profesores
+    /*
     private Collection<Alumno> resultSetToCollection(ResultSet rs){
         Collection<Alumno> coleccion = new ArrayList<Alumno>();
         try {
             while(rs.next())
             {
                 Alumno alu;
-                alu = new Alumno(rs.getString("usuario"),null, rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"), null);
+                alu = new Alumno(rs.getString(1), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9));
                 coleccion.add(alu);
             }
             return coleccion;
@@ -122,6 +123,7 @@ public class AlumnoDAO {
             return coleccion;
         }
     }
+    */
 
     // Cierra la conexión iniciada por la instancia de VehiculoDAO
     public void close() throws SQLException, ClassNotFoundException

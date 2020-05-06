@@ -1,5 +1,6 @@
-/*package servlets;
+/*
 
+package servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -14,7 +15,7 @@ import static java.nio.charset.StandardCharsets.*;
 import negocio.OperacionClases;
 
 
-// Todas las llamadas desde y hacia zona-clases.jsp son gestionadas por este controlador y repartidas
+// Todas las llamadas desde y hacia dashboard.jsp son gestionadas por este controlador y repartidas
 // entre distintas clases ejecutoras
 public class GestorClases extends HttpServlet {
 
@@ -22,7 +23,7 @@ public class GestorClases extends HttpServlet {
             throws ServletException, IOException
     {
         // Esta es la siguiente vista por defencto
-        String jspDestino = "/zona-clases.jsp"; // vista por defecto
+        String jspDestino = "/dashboard.jsp"; // vista por defecto
 
         // Objeto encargado de la lógica de las distintas acciones
         OperacionClases operacionClases = new OperacionClases();
@@ -37,11 +38,11 @@ public class GestorClases extends HttpServlet {
             {
                 if(opcionEscogida.equals("anadir")){
                     gestionarCompra(request, operacionClases);
-                    jspDestino = "/zona-clases.jsp";
+                    jspDestino = "/dashboard.jsp";
                 }
                 else if(opcionEscogida.equals("vaciar")){
                     gestionarVaciado(request, operacionClases);
-                    jspDestino = "/zona-clases.jsp";
+                    jspDestino = "/dashboard.jsp";
                 }
                 else if(opcionEscogida.equals("finalizar")){
                     //gestionarFinCompra(request, operacionComercial);
@@ -50,7 +51,7 @@ public class GestorClases extends HttpServlet {
             }else
             {
                 // Si la opción es null, significa que viene de index. Se crea un atributo de sesion llamado carrito
-                // request.getSession().setAttribute("carrito", new Carrito( new HashMap<String,Integer>() ) );
+                request.getSession().setAttribute("carrito", new Carrito( new HashMap<String,Integer>() ) );
             }
 
 
@@ -65,7 +66,7 @@ public class GestorClases extends HttpServlet {
     }
 
 
-    /*private void gestionarCompra(HttpServletRequest request, OperacionComercial operacionComercial){
+    private void gestionarCompra(HttpServletRequest request, OperacionComercial operacionComercial){
 
         // Por ahora este, se quieren añadir simplemente en un hasmap. Cuando se quieran añadir en un
         // objeto carrito, se usará la opción de obtener el id

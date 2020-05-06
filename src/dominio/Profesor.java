@@ -1,6 +1,6 @@
 package dominio;
 
-public class Alumno {
+public class Profesor {
     private String usuario;
     private String contrasena;
     private String nombre;
@@ -8,13 +8,12 @@ public class Alumno {
     private int codigoPostal;
     private String email;
     private String telefono;
-    private String etapa;
-    private int curso;
     private String clase;
+    private String descripcion;
 
 
     // Constructor general
-    public Alumno(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String etapa, int curso, String clase ){
+    public Profesor(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String clase, String descripcion ){
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombre = nombre;
@@ -22,12 +21,12 @@ public class Alumno {
         this.codigoPostal = codigoPostal;
         this.email = email;
         this.telefono = telefono;
-        this.etapa = etapa;
-        this.curso = curso;
         this.clase = clase;
+        this.descripcion = descripcion;
     }
 
-    public Alumno(String usuario, String contrasena){
+
+    public Profesor(String usuario, String contrasena){
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
@@ -60,18 +59,13 @@ public class Alumno {
         return telefono;
     }
 
-    public String getEtapa() {
-        return etapa;
-    }
-
-    public int getCurso() {
-        return curso;
-    }
-
     public String getClase() {
         return clase;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
@@ -101,19 +95,15 @@ public class Alumno {
         this.telefono = telefono;
     }
 
-    public void setEtapa(String etapa) {
-        this.etapa = etapa;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-
-    public void setCurso(int curso) {
-        this.curso = curso;
-    }
-
     public void setClase(String clase) {
         this.clase = clase;
     }
 
     public String toString(){
-        return "Alumno: " + nombre + " " + apellidos + " Usuario: " + usuario;
+        return "Profesor: " + nombre + " " + apellidos + " Usuario: " + usuario;
     }
+
 }
