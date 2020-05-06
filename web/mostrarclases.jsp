@@ -21,7 +21,13 @@
         <img src="images/Clases.svg">
     </div>
     <div class="contenido">
-        <div id="mensaje"></div>
+        <div id="mensaje">
+            <c:if test="${not empty requestScope.mensajeCesta}">
+                <div id="mensajeCesta" class="mensajeCesta">
+                    ${mensajeCesta}
+                </div>
+            </c:if>
+        </div>
         <input type="text" id="myInput" onkeyup="Filtro()" placeholder="Busque sus clases.." >
         <div class="contenedor">
             <ul class="lista" id="lista">

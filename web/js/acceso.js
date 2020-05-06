@@ -3,6 +3,7 @@ var usuario=document.getElementById("usuario");
 var contrasena=document.getElementById("contrasena");
 var contador=0;
 var flag=0;
+var tiempofundido=null;
 var mensaje=document.getElementById("mensaje");
 var mensajeacceso = document.getElementById("mensaje-notificacion-acceso");
 

@@ -3,9 +3,11 @@ package servlets;
 import DAO.ClasesOfrecidasDAO;
 import Servicios.CarritoServicio;
 import dominio.ClaseProducto;
+import sun.nio.cs.ISO_8859_2;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,18 +40,19 @@ public class GestorClasesProducto extends HttpServlet {
                 String curso=Character.toString((request.getParameter("valor").charAt(0)));
                 String etapa=request.getParameter("etapa");
                 new CarritoServicio(request).comprar(new ClaseProducto(Integer.parseInt(curso),etapa,asignatura));
-                RequestDispatcher rd=request.getRequestDispatcher("clases");
-                request.setAttribute("mensaje","Se ha agregado la clase correctamente a la cesta");
+                RequestDispatcher rd=request.getRequestDispatcher("mostrarclases");
+                request.setAttribute("mensajeCesta","Se ha agregado la clase correctamente a la cesta");
                 rd.forward(request,response);
+            }else if(submit.equals("Vaciar"))
+            {
+                new CarritoServicio(request).vaciar();
+                response.sendRedirect("clases");
             }else{
-                ClasesOfrecidasDAO clasesDao = ClasesOfrecidasDAO.getInstance();
-                // Falla aquí, dice que es null. Es porque el submit está pensado para que le llegue la etapa
-                // y no es lo que le llega.
-                System.out.println(submit);
-                clases = clasesDao.obtenerClases(submit);
-                session.setAttribute("etapa",submit);
-                session.setAttribute("Clases",clases);
-                response.sendRedirect("mostrarclases");
+                    ClasesOfrecidasDAO clasesDao = ClasesOfrecidasDAO.getInstance();
+                    clases=clasesDao.obtenerClases(submit);
+                    session.setAttribute("etapa",submit);
+                    session.setAttribute("Clases",clases);
+                    response.sendRedirect("mostrarclases");
             }
 
         }catch (Exception e){

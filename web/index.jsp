@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,7 +14,11 @@
 </div>
 
 <div class = "contenido">
-
+    <c:if test="${not empty requestScope.mensajeCompra}">
+        <div class="mensajeCompra">
+            ${requestScope.mensajeCompra}
+        </div>
+    </c:if>
 </div>
 
 <div class = "footer">

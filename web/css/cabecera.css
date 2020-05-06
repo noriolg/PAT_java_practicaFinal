@@ -109,8 +109,36 @@ body{
     border-radius: 0;
     text-align: left;
 }
-.submit{
-    float: right;
+.submitVacio{
+    float: left;
     margin-top:1%;
     margin-bottom: 1%;
+    margin-left: 30%;
+    font-size: 15px;
+    padding: 2% 2%;
+    color: white;
+    border: none;
+    background: #CCCCCC;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+.submitVacio:hover{
+    background: #2980b9;
+}
+.submitFin{
+    float: left;
+    margin-top:1%;
+    margin-bottom: 1%;
+    font-size: 15px;
+    padding: 2% 2%;
+    color: white;
+    border: none;
+    background: #CCCCCC;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+.submitFin:hover{
+    background: #2980b9;
 }

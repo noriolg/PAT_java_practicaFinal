@@ -20,7 +20,7 @@
     <div class="contenido">
         <sql:setDataSource var = "db" driver = "com.mysql.jdbc.Driver"
                            url = "jdbc:mysql://localhost/icarus"
-                           user = "root"  password = "root"/>
+                           user = "root"  password = "icai"/>
         <sql:query dataSource = "${db}" var = "result">
             SELECT nombre, apellidos, descripcion FROM profesores WHERE ADMIN = 1 ORDER BY apellidos;
         </sql:query>

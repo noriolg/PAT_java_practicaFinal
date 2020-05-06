@@ -6,6 +6,7 @@ var flag=0;
 var mensaje=document.getElementById("mensaje");
 var selectcurso=document.getElementById("cursos");
 var formulario=null;
+var tiempofundido=null;
 
 var mensaje_notificacion = document.getElementById("mensaje-notificacion-acceso");
 

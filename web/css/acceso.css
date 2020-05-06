@@ -65,14 +65,18 @@ form h2{
     border-bottom: 3px solid gray;
     margin-bottom: 3%;
     height: 20%;
-    font-size: 70%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 15px;
 }
 .usuario{
     margin-bottom: 3%;
     border: none;
     border-bottom: 3px solid gray;
     height: 20%;
-    font-size: 70%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 15px;
 
 }
 #submitacceso{
@@ -86,7 +90,7 @@ form h2{
     border-radius: 30px;
 }
 #submitacceso:hover{
-    background: #CCCCCC;
+    background: #2980b9;
 }
 #mensaje{
     color: red;

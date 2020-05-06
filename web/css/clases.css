@@ -53,3 +53,13 @@
     margin-right: 15%;
     margin-left: 8%;
 }
+input[type=submit]
+{
+    color: white;
+    background: #757575;
+    cursor: pointer;
+    border: #757575;
+}
+input[type=submit]:hover{
+    background-color: #2980b9;
+}

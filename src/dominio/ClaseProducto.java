@@ -41,6 +41,6 @@ public class ClaseProducto {
         return this.curso+"º " + this.asignatura;
     }
     public String mostrarClaseCesta(){
-        return this.asignatura+ " "+ this.curso+"º "+this.etapa;
+        return this.asignatura+ " "+ this.curso+"º de "+this.etapa+"\n";
     }
 }

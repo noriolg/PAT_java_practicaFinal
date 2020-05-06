@@ -34,7 +34,7 @@
             <input type="email" class="form-contacto" id="mail" name="mail" placeholder="ejemplo@ejemplo.com">
             <input type="text" class="form-contacto" id="telefono" name="telefono" placeholder="Teléfono">
             <textarea class="form-contacto" name="mensaje" id="mensaje" placeholder="Mensaje"></textarea>
-            <input type="submit" class="form-submit" id="enviar" name="enviar" value="Enviar">
+            <input type="submit" class="form-submit" id="enviar" name="submit" value="Enviar">
         </form>
     </div>
 

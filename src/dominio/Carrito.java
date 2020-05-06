@@ -27,5 +27,15 @@ public class Carrito {
     {
         this.carrito.clear();
     }
+
+    @Override
+    public String toString() {
+        String devolucion="";
+        for (ClaseProducto c:this.carrito)
+        {
+           devolucion=devolucion+c.mostrarClaseCesta();
+        }
+        return devolucion;
+    }
 }
 

@@ -116,4 +116,9 @@ public class Alumno {
     public String toString(){
         return "Alumno: " + nombre + " " + apellidos + " Usuario: " + usuario;
     }
+    public String mostrarInfo(){
+        return "Alumno: " + nombre + " " + apellidos + "\nUsuario: " + usuario +
+                "\nTeléfono: " + this.telefono + "\nEtapa: " + this.etapa+ "\nCurso: "+ this.curso
+                + "\nCódigo Postal: " + "\nE-mail: " + this.email;
+    }
 }

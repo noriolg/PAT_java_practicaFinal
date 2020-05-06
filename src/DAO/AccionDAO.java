@@ -15,7 +15,7 @@ public class AccionDAO {
     private static AccionDAO accionDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "icai";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private AccionDAO() throws ClassNotFoundException, SQLException

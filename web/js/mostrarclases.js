@@ -3,8 +3,10 @@ var oculto=document.getElementById("oculto");
 var oculto3=document.getElementById("oculto3");
 var oculto2=document.getElementById("oculto2");
 var lista=document.querySelectorAll('.clase');
+var mensajeCesta=document.getElementById("mensajeCesta");
 var contador=0;
 var flag=0;
+var tiempofundido=null;
 var mensaje=document.getElementById("mensaje");
 function Filtro() {
         var input, filter, ul, li, a, i, txtValue;
@@ -34,22 +36,22 @@ submit.addEventListener('click',function (e) {
         mensaje.textContent="Debe acceder con su usuario";
         mensaje.style.opacity=1;
         if(flag==0) {
-            tiempofundido = setInterval(Opacidad, 50);
+            tiempofundido = setInterval(Opacidad(mensaje), 50);
         }
 
-    }else if(oculto.value.length=0){
+    }else if(oculto.value.length==0){
         e.preventDefault()
         mensaje.textContent="Debe seleccionar una clase";
         mensaje.style.opacity=1;
         if(flag==0) {
-            tiempofundido = setInterval(Opacidad, 50);
+            tiempofundido = setInterval(Opacidad(mensaje), 50);
         }
     }else {
 
     }
 
 });
-function Opacidad() {
+function Opacidad(mensaje) {
     flag=1;
     if (contador < 100) {
         mensaje.style.opacity = mensaje.style.opacity - 0.01;
@@ -60,3 +62,9 @@ function Opacidad() {
         contador = 0;
     }
 }
+window.addEventListener('load',function () {
+    mensajeCesta.style.opacity=1;
+    if(flag==0) {
+        tiempofundido = setInterval(Opacidad(mensajeCesta), 50);
+    }
+})

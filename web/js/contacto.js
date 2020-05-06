@@ -5,6 +5,7 @@ var mensaje=document.getElementById("mensaje");
 var telefono=document.getElementById("telefono");
 var mensaje=document.getElementById("mensaje-error");
 var contador=0;
+var tiempofundido=null;
 var flag=0;
 
 boton.addEventListener('click',function (e) {
