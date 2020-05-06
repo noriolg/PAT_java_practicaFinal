@@ -21,7 +21,7 @@
     </div>
     <div class="contenido">
         <br>
-        <br><h4 style="color:#757575;">Registro de acciones</h4>
+        <br><h4 style="color:#757575;">Registro de acciones (15 más recientes)</h4>
         <div class = "container-tabla">
             <table class="tabla-profesores">
                 <div class = tabla-profesores-header>

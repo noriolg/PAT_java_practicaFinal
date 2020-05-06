@@ -14,7 +14,7 @@ public class UsuarioDAO {
     private static UsuarioDAO usuarioDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private UsuarioDAO() throws ClassNotFoundException, SQLException
@@ -40,16 +40,17 @@ public class UsuarioDAO {
         return con.isValid(0);
     }
 
-    // Método para hacer una consulta segura de matrícula
-    public boolean anadirUsuario(Usuario usuario)
+    // Devuelve false siya existía
+    public boolean anadirUsuario(Usuario usuario, int tipoUsuario)
     {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
-            PreparedStatement ps = con.prepareStatement("INSERT INTO usuarios (usuario, contrasena)  VALUES (?, ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO usuarios (usuario, contrasena, usertype )  VALUES (?, ?, ?)");
             ps.setString(1, usuario.getUsuario());
             ps.setString(2, usuario.getContrasena());
+            ps.setInt(3, tipoUsuario);
             int i = ps.executeUpdate();
 
             con.close();
@@ -139,7 +140,7 @@ public class UsuarioDAO {
         int userType = -1;
         int numeroResultados = 0;
         while(rs.next()){
-            userType = Integer.parseInt(rs.getString(10));
+            userType = Integer.parseInt(rs.getString("usertype"));
             numeroResultados ++;
         }
         rs.close();

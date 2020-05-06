@@ -8,12 +8,11 @@ public class Profesor {
     private int codigoPostal;
     private String email;
     private String telefono;
-    private String clase;
     private String descripcion;
 
 
     // Constructor general
-    public Profesor(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String clase, String descripcion ){
+    public Profesor(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String descripcion ){
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombre = nombre;
@@ -21,7 +20,6 @@ public class Profesor {
         this.codigoPostal = codigoPostal;
         this.email = email;
         this.telefono = telefono;
-        this.clase = clase;
         this.descripcion = descripcion;
     }
 
@@ -59,9 +57,6 @@ public class Profesor {
         return telefono;
     }
 
-    public String getClase() {
-        return clase;
-    }
 
     public String getDescripcion() {
         return descripcion;
@@ -97,9 +92,6 @@ public class Profesor {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-    public void setClase(String clase) {
-        this.clase = clase;
     }
 
     public String toString(){

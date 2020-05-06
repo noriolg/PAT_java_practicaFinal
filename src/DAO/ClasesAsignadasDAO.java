@@ -14,7 +14,7 @@ public class ClasesAsignadasDAO {
     private static ClasesAsignadasDAO clasesAsignadasDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private ClasesAsignadasDAO() throws ClassNotFoundException, SQLException

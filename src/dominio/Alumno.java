@@ -10,11 +10,10 @@ public class Alumno {
     private String telefono;
     private String etapa;
     private int curso;
-    private String clase;
 
 
     // Constructor general
-    public Alumno(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String etapa, int curso, String clase ){
+    public Alumno(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String etapa, int curso ){
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombre = nombre;
@@ -24,7 +23,6 @@ public class Alumno {
         this.telefono = telefono;
         this.etapa = etapa;
         this.curso = curso;
-        this.clase = clase;
     }
 
     public Alumno(String usuario, String contrasena){
@@ -68,9 +66,6 @@ public class Alumno {
         return curso;
     }
 
-    public String getClase() {
-        return clase;
-    }
 
 
     public void setUsuario(String usuario) {
@@ -109,14 +104,11 @@ public class Alumno {
         this.curso = curso;
     }
 
-    public void setClase(String clase) {
-        this.clase = clase;
-    }
-
     public String toString(){
         return "Alumno: " + nombre + " " + apellidos + " Usuario: " + usuario;
     }
-    public String mostrarInfo(){
+
+     public String mostrarInfo(){
         return "Alumno: " + nombre + " " + apellidos + "\nUsuario: " + usuario +
                 "\nTeléfono: " + this.telefono + "\nEtapa: " + this.etapa+ "\nCurso: "+ this.curso
                 + "\nCódigo Postal: " + "\nE-mail: " + this.email;

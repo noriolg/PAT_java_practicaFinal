@@ -14,7 +14,7 @@ public class AlumnoDAO {
     private static AlumnoDAO alumnoDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private AlumnoDAO() throws ClassNotFoundException, SQLException
@@ -40,7 +40,7 @@ public class AlumnoDAO {
         return con.isValid(0);
     }
 
-    // Método para hacer una consulta segura de matrícula
+    // Devuelve true o false según sea exitosa o no la insercion en la base de datos
     public boolean anadirAlumno(Alumno alumno)
     {
         boolean insercionOk;
@@ -62,13 +62,13 @@ public class AlumnoDAO {
             con.close();
             insercionOk = true;
         }catch(SQLIntegrityConstraintViolationException e){
-            System.out.println("Fallo en AlumnoDAO linea 57");
+            System.out.println("Fallo en AlumnoDAO linea 65");
             System.out.println(e);
             insercionOk = false;
 
 
         } catch (SQLException e) {
-            System.out.println("Fallo en UsuarioDAO linea 61");
+            System.out.println("Fallo en AlumnoDAO linea 71");
             e.printStackTrace();
             insercionOk = false;
             //System.err.format("Mensaje SQL:  \n", e.getSQLState(),e.getMessage());
@@ -93,7 +93,7 @@ public class AlumnoDAO {
         int numeroResultados = 0;
         Alumno alumnoObtenido  = null;
         while(rs.next()){
-            alumnoObtenido = new Alumno(rs.getString("usuario"),null, rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"), null );
+            alumnoObtenido = new Alumno(rs.getString("usuario"),null, rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"));
             numeroResultados ++;
         }
         rs.close();
@@ -113,7 +113,7 @@ public class AlumnoDAO {
             while(rs.next())
             {
                 Alumno alu;
-                alu = new Alumno(rs.getString("usuario"),null, rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"), null);
+                alu = new Alumno(rs.getString("usuario"),null, rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"));
                 coleccion.add(alu);
             }
             return coleccion;

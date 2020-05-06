@@ -14,6 +14,7 @@ import DAO.AccionDAO;
 import DAO.AlumnoDAO;
 import DAO.UsuarioDAO;
 import Util.Constantes;
+import Util.StringFormatter;
 import dominio.Accion;
 import dominio.Alumno;
 import dominio.Usuario;
@@ -40,6 +41,12 @@ public class Registro extends HttpServlet{
             String etapa =request.getParameter("etapa");
             String curso =request.getParameter("cursos");
 
+            // Cuidamos que no haya caracteres raros
+            nombre = StringFormatter.formatString(nombre);
+            apellidos = StringFormatter.formatString(apellidos);
+            user = StringFormatter.formatString(user);
+            email = StringFormatter.formatString(email);
+
             // Validación en servidor
             if (algunoVacio(nombre, apellidos, codigo, user, contrasena, telefono, email, etapa, curso)){
                 response.sendError(401, "Acceso no autorizado");
@@ -48,9 +55,9 @@ public class Registro extends HttpServlet{
                 // Primero se registra en la tabla usuarios.
                 Usuario usuario = new Usuario(user, contrasena);
                 UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
-                if(usuarioDAO.anadirUsuario(usuario)){
+                if(usuarioDAO.anadirUsuario(usuario, Constantes.ALUMNO)){
                     System.out.println("Usuario anadido");
-                    Alumno alumno = new Alumno(user, contrasena, nombre, apellidos, Integer.parseInt(codigo), email, telefono, etapa, Integer.parseInt(curso), null);
+                    Alumno alumno = new Alumno(user, contrasena, nombre, apellidos, Integer.parseInt(codigo), email, telefono, etapa, Integer.parseInt(curso));
                     if(anadirAlumno(alumno)){
                         System.out.println("Alumno anadido");
                         logAccion(Constantes.ALUMNO,"Nuevo alumno registrado. Usuario: " + alumno.getUsuario());

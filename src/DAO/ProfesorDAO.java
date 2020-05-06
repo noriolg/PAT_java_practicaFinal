@@ -15,7 +15,7 @@ public class ProfesorDAO {
     private static ProfesorDAO profesorDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = "root";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private ProfesorDAO() throws ClassNotFoundException, SQLException
@@ -41,46 +41,6 @@ public class ProfesorDAO {
         return con.isValid(0);
     }
 
-    // Método para hacer una consulta segura de matrícula
-    public boolean anadirProfesor(Profesor profesor)
-    {
-        boolean insercionOk;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
-            PreparedStatement ps = con.prepareStatement("INSERT INTO profesores (usuario, contrasena, nombre, apellidos, codigo, email, telefono, descripcion)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            ps.setString(1, profesor.getUsuario());
-            ps.setString(2, profesor.getContrasena());
-            ps.setString(3, profesor.getNombre());
-            ps.setString(4, profesor.getApellidos());
-            ps.setInt(5, profesor.getCodigoPostal());
-            ps.setString(6, profesor.getEmail());
-            ps.setString(7, profesor.getTelefono());
-            ps.setString(8, profesor.getDescripcion());
-
-            int i = ps.executeUpdate();
-            con.close();
-            insercionOk = true;
-        }catch(SQLIntegrityConstraintViolationException e){
-            System.out.println("Fallo en AlumnoDAO linea 57");
-            System.out.println(e);
-            insercionOk = false;
-
-
-        } catch (SQLException e) {
-            System.out.println("Fallo en UsuarioDAO linea 61");
-            e.printStackTrace();
-            insercionOk = false;
-            //System.err.format("Mensaje SQL:  \n", e.getSQLState(),e.getMessage());
-            //response.sendError(500, "Error en el acceso a la base de datos");
-        } catch (ClassNotFoundException e) {
-            //response.sendError(500, e.toString() );
-            insercionOk = false;
-            e.printStackTrace();
-        }
-        return insercionOk;
-    }
-
     // Estos hay que repasarlos, para ver qué queremos conseguir cuando obtenemos un alumno.
     public Profesor obtenerProfesor(Usuario usuario) throws SQLException, ClassNotFoundException, Exception {
         Class.forName("com.mysql.jdbc.Driver");
@@ -93,7 +53,7 @@ public class ProfesorDAO {
         int numeroResultados = 0;
         Profesor profesorObtenido  = null;
         while(rs.next()){
-            profesorObtenido = new Profesor(rs.getString("usuario"),null,rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), null, rs.getString("descripcion"));
+            profesorObtenido = new Profesor(rs.getString("usuario"),null,rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("descripcion"));
             numeroResultados ++;
         }
         rs.close();
@@ -101,7 +61,7 @@ public class ProfesorDAO {
         // Si se ha obtenido más de un resultado es que hay un error en la tabla
         if(numeroResultados != 1 ){
             con.close();
-            throw new Exception("Error de integridad de la base de datos. profesorDAO 104");
+            throw new Exception("Error de integridad de la base de datos. ProfesorDAO 64");
         }
         return profesorObtenido;
     }
@@ -124,6 +84,48 @@ public class ProfesorDAO {
         }
     }
     */
+
+    // Devuelve true o false según sea exitosa o no la insercion en la base de datos
+    public boolean anadirProfesor(Profesor profesor)
+    {
+        boolean insercionOk;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO profesores (usuario, contrasena, nombre, apellidos, codigo, email, telefono, usertype)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, profesor.getUsuario());
+            ps.setString(2, profesor.getContrasena());
+            ps.setString(3, profesor.getNombre());
+            ps.setString(4, profesor.getApellidos());
+            ps.setInt(5, profesor.getCodigoPostal());
+            ps.setString(6, profesor.getEmail());
+            ps.setString(7, profesor.getTelefono());
+            ps.setInt(8, 1);
+
+            int i = ps.executeUpdate();
+            con.close();
+            insercionOk = true;
+        }catch(SQLIntegrityConstraintViolationException e){
+            System.out.println("Fallo en ProfesorDAO linea 109");
+            System.out.println(e);
+            insercionOk = false;
+
+
+        } catch (SQLException e) {
+            System.out.println("Fallo en ProfesorDAO linea 115");
+            e.printStackTrace();
+            insercionOk = false;
+            //System.err.format("Mensaje SQL:  \n", e.getSQLState(),e.getMessage());
+            //response.sendError(500, "Error en el acceso a la base de datos");
+
+        } catch (ClassNotFoundException e) {
+            //response.sendError(500, e.toString() );
+            insercionOk = false;
+            e.printStackTrace();
+        }
+        return insercionOk;
+    }
+
 
     // Cierra la conexión iniciada por la instancia de VehiculoDAO
     public void close() throws SQLException, ClassNotFoundException

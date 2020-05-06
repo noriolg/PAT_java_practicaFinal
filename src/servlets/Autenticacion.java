@@ -1,7 +1,6 @@
 package servlets;
 
 import javax.servlet.ServletException;
-import javax.servlet.RequestDispatcher;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,7 @@ import java.io.IOException;
 import DAO.AlumnoDAO;
 import DAO.ProfesorDAO;
 import DAO.UsuarioDAO;
-import dominio.Alumno;
+import Util.StringFormatter;
 import dominio.Usuario;
 import Util.Constantes;
 
@@ -24,6 +23,9 @@ public class Autenticacion extends HttpServlet{
     {
         String user =request.getParameter("usuario"); //name
         String password =request.getParameter("contrasena");
+
+        // Cuidamos que no haya caracteres raros
+        user = StringFormatter.formatString(user);
 
         Usuario usuario = new Usuario(user, password);
 

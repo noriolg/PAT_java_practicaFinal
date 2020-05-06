@@ -1,0 +1,112 @@
+body{
+    background-image: url("../images/anadir.svg");
+    background-size:contain;
+    align-items: center;
+    background-repeat:no-repeat ;
+    background-size: 10%, auto;
+    background-origin: content-box;
+    background-position-x: 80%;
+    background-position-y: 80%;
+    font-family: Arial;
+}
+
+.contenido{
+    height: fit-content;
+    width: 100%;
+}
+
+.formulario{
+    margin-left: 5%;
+    margin-right: 5%;
+    max-width: 40%;
+    min-width: 40%;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    padding: 1%;
+    color: white;
+    margin-top:15px ;
+    margin-bottom: 5px;
+    float: left;
+}
+
+h4{
+    text-align: center;
+    font-width: bold;
+}
+
+/*
+form{
+    width: 100% !important;
+    background-color: cornflowerblue;
+}
+
+.row{
+    width: 100% !important;
+    background-color: azure;
+}
+
+.col-xs-12{
+    width: available;
+    background-color: darkcyan;
+}
+
+.form-group{
+    width: available;
+    background-color: yellow;
+}
+*/
+
+input[type=text], input[type=password], input[type=email], input[type=number] {
+    width: 97%;
+    box-sizing: border-box;
+    padding: 10px 4px;
+    background: rgba(0,0,0,0.10);
+    outline: none;
+    border: none;
+    border-bottom: 1px dotted gray;
+    color: white;
+    border-radius: 5px;
+    margin: 5px 15px 5px 5px;
+    font-weight: bold;
+}
+input[type=submit]{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    box-sizing: border-box;
+    padding: 5px 0;
+    margin-top: 15px;
+    outline: none;
+    border:none;
+    background:ghostwhite;
+    opacity: 0.7;
+    border-radius: 20px;
+    font-size: 18px;
+    color: black;
+}
+#cursos{
+    font-family: Arial;
+    margin-right: 10%;
+    margin-left: 5%;
+    width: 35%;
+    font-size: 15px;
+    border: 1px solid #CCC;
+    height: 7.5%;
+    background: gainsboro;
+}
+
+
+#mensaje{
+    text-align: center;
+    font-size: 19px;
+}
+
+.mensaje-notificacion{
+    text-align: center;
+    font-size: 19px;
+}
+
+::placeholder{
+    color: white;!important;
+}
