@@ -85,15 +85,6 @@ public class Registro extends HttpServlet{
 
     private boolean algunoVacio(String nombre, String apellidos, String codigo, String user, String contrasena, String telefono, String email, String etapa, String curso){
        try{
-           /*System.out.println(nombre);
-           System.out.println(apellidos);
-           System.out.println(codigo);
-           System.out.println(user);
-           System.out.println(contrasena);
-           System.out.println(telefono);
-           System.out.println(email);
-           System.out.println(etapa);
-           System.out.println(curso);*/
 
            boolean algunoVacio =  nombre.isEmpty() || apellidos.isEmpty() || codigo.isEmpty() || user.isEmpty() || contrasena.isEmpty() || telefono.isEmpty() || email.isEmpty() || etapa.isEmpty() || curso.isEmpty();
            System.out.println(algunoVacio);
@@ -103,13 +94,6 @@ public class Registro extends HttpServlet{
            return true; // Hay alguno vacio
        }
 
-        /*boolean algunoVacio = false;
-        for(String arg: args){
-            algunoVacio = algunoVacio || arg.isEmpty();
-            // Con que alguno esté vacío, la variable se vuelve true.
-        }
-        // Devuelvo true si alguno está vacío
-        return algunoVacio;*/
     }
 
     // Devuelve true si se ha añadido correctamente

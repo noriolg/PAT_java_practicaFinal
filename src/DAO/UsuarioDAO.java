@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 
 import Util.Constantes;
 import dominio.Alumno;
+import dominio.Profesor;
 import dominio.Usuario;
 
 public class UsuarioDAO {
@@ -55,22 +56,9 @@ public class UsuarioDAO {
 
             con.close();
             insercionOk = true;
-        }catch(SQLIntegrityConstraintViolationException e){
-            System.out.println("Fallo en UsuarioDAO linea 55");
-            System.out.println(e);
+        }catch(SQLException | ClassNotFoundException e) {
+            System.out.println("Excepción controlada: " +  e);
             insercionOk = false;
-
-
-        } catch (SQLException e) {
-            System.out.println("Fallo en UsuarioDAO linea 61");
-            e.printStackTrace();
-            insercionOk = false;
-            //System.err.format("Mensaje SQL:  \n", e.getSQLState(),e.getMessage());
-            //response.sendError(500, "Error en el acceso a la base de datos");
-        } catch (ClassNotFoundException e) {
-            //response.sendError(500, e.toString() );
-            insercionOk = false;
-            e.printStackTrace();
         }
         return insercionOk;
     }
@@ -163,6 +151,28 @@ public class UsuarioDAO {
             }
         }
     }
+
+
+    public boolean actualizarUsuario(Usuario usuario){
+        boolean actualizacionOk;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("UPDATE usuarios SET contrasena = ? where usuario = ?");
+            ps.setString(1, usuario.getContrasena());
+            ps.setString(2, usuario.getUsuario());
+
+            int i = ps.executeUpdate();
+            con.close();
+            actualizacionOk = true;
+        }catch(SQLException | ClassNotFoundException e){
+            System.out.println("Fallo en UsuarioDAO linea 182");
+            System.out.println(e);
+            actualizacionOk = false;
+        }
+        return actualizacionOk;
+    }
+
 
 
     // Cierra la conexión iniciada por la instancia de UsuarioDAO

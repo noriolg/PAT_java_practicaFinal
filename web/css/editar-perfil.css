@@ -1,12 +1,13 @@
 body{
-    background-image: url("../images/anadir.svg");
+    background-image: url("../images/editar-perfil.svg");
     background-size:contain;
     align-items: center;
     background-repeat:no-repeat ;
-    background-size: 10%, auto;
+    background-size: 15%, auto;
     background-origin: content-box;
-    background-position-x: 80%;
-    background-position-y: 80%;
+    background-position: center;
+    background-position-x: 45%;
+    /*background-position-y: 80%;*/
     font-family: Arial;
 }
 
@@ -14,6 +15,68 @@ body{
     height: fit-content;
     width: 100%;
 }
+
+h4{
+    text-align: center;
+    font-width: bold;
+}
+
+.aclaracion{
+    margin-top: -15px;
+    text-align: center;
+}
+
+.display-info{
+    margin-left: 5%;
+    margin-right: 5%;
+    max-width: 40%;
+    min-width: 40%;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    padding: 1%;
+    color: white;
+    margin-top:15px ;
+    margin-bottom: 5px;
+    float:left;
+}
+
+
+.datos-display{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.info-piece{
+    width: 80%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+.indicador{
+    float:left;
+    padding-top: 11px;
+    font-weight: bold;
+    width: 30%;
+}
+
+label{
+    width: 55% !important;
+    float: left !important;
+    box-sizing: border-box;
+    padding: 10px 4px;
+    background: rgba(0,0,0,0.10);
+    outline: none;
+    border: none;
+    border-bottom: 1px dotted gray;
+    color: black;
+    border-radius: 5px;
+    margin: 5px 15px 5px 15px;
+    font-weight: bold;
+}
+
 
 .formulario{
     margin-left: 5%;
@@ -29,33 +92,6 @@ body{
     margin-bottom: 5px;
     float: left;
 }
-
-h4{
-    text-align: center;
-    font-width: bold;
-}
-
-/*
-form{
-    width: 100% !important;
-    background-color: cornflowerblue;
-}
-
-.row{
-    width: 100% !important;
-    background-color: azure;
-}
-
-.col-xs-12{
-    width: available;
-    background-color: darkcyan;
-}
-
-.form-group{
-    width: available;
-    background-color: yellow;
-}
-*/
 
 input[type=text], input[type=password], input[type=email], input[type=number] {
     width: 97%;
@@ -107,11 +143,20 @@ input[type=submit]{
     font-size: 19px;
 }
 
-.mensaje-actualizacion{
-    text-align: center;
+::placeholder{
+    color: white;!important;
+}
+
+#etapa_label{
+    float:left;
+    display: inline;
+    height: fit-content;
     font-size: 12px;
 }
 
-::placeholder{
-    color: white;!important;
+.mensaje-registro{
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    font-size: 12px;
 }

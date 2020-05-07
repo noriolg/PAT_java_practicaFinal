@@ -16,7 +16,7 @@
     <div class = "contenido">
         <div class="formulario">
             <h4>Nuevo profesor</h4>
-            <form method="post" action="InsercionAdmin" >
+            <form method="post" action="InsercionAdmin" onsubmit="return validarFormularioNuevoProfesor();">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
@@ -30,12 +30,18 @@
                         </div>
                     </div>
                 </div>
+                <div class = "mensaje-actualizacion">
+                    <c:if test="${not empty mensajeActualizacionProfesor}">
+                        ${mensajeActualizacionProfesor}
+                    </c:if>
+                </div>
+                <div class = "mensaje-actualizacion" id="mensaje-validacion-profesor"></div>
                 <input id="submitProfesor" name = "submitProfesor" class="submit btn btn-primary" type="submit" value = "Añadir profesor">
             </form>
         </div>
         <div class="formulario">
             <h4>Nueva asignatura</h4>
-            <form method="post" action="InsercionAdmin" >
+            <form method="post" action="InsercionAdmin" onsubmit="return validarFormularioNuevaAsignatura();">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
@@ -45,6 +51,12 @@
                         </div>
                     </div>
                 </div>
+                <div class = "mensaje-actualizacion">
+                    <c:if test="${not empty mensajeActualizacionAsignatura}">
+                        ${mensajeActualizacionAsignatura}
+                    </c:if>
+                </div>
+                <div class = "mensaje-actualizacion" id="mensaje-validacion-asignatura"></div>
                 <input id="submitAsignatura" name = "submitAsignatura" class="submit btn btn-primary" type="submit" value = "Añadir Asignatura">
             </form>
         </div>
@@ -54,4 +66,5 @@
         <jsp:include page="/footer" />
     </div>
 </body>
+<script src="js/anadir.js" type="text/javascript"></script>
 </html>

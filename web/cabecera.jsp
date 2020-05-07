@@ -60,8 +60,8 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Alumno</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="#">Mis clases</a></li>
-                      <li><a href="#">Mi perfil</a></li>
+                      <li><a href="#">Zona alumno</a></li>
+                      <li><a href="EditarPerfil">Mi perfil</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
                   </div>
@@ -72,8 +72,8 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Profesor</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="#">Mis clases</a></li>
-                      <li><a href="#">Mi perfil</a></li>
+                      <li><a href="#">Zona profesor</a></li>
+                      <li><a href="EditarPerfil">Mi perfil</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
                   </div>
@@ -84,8 +84,9 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Administrador</a>
                   <div class="menu-inferior">
                     <ul>
+                      <li><a href="#">Dashboard</a></li>
                       <li><a href="log-acciones">Registro</a></li>
-                      <li><a href="#">Añadir</a></li>
+                      <li><a href="anadir">Añadir</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
                   </div>

@@ -14,7 +14,11 @@ array.forEach(function (elem) {
     })
 
 });
-numero.textContent=numeroelem.length;
+
+if(numero != null){
+    numero.textContent=numeroelem.length;
+}
+
 
 function Eliminar(){
     vaciarform.removeChild(document.getElementById("submitVaciar"));

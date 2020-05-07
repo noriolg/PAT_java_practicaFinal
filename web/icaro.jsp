@@ -33,12 +33,11 @@
 
         En <b>primavera de 2020</b> nos adaptamos al confinamiento mediante un método de clases online utilizando
         la plataforma Zoom y decidimos empezar a desarrollar un portal web algo más avanzado. Este es el resultado.
-        Tenemos amplia experiencia escogiendo los profesores que más se adapten a tu situación. Buscamos
 
         <br><br>
         El fundador y actual gerente es Nicolás Oriol Guerra. Antiguo alumno del colegio Nuestra Señora del Recuerdo.
         Estudia Ingeniería de Telecomunicaciones y Business Analytics en ICAI. Lleva impartiendo clases
-        desde 2016 y amplia experiencia con el temario de las distintas etapas escolares.
+        desde 2016 y conoce en detalle el temario de las distintas etapas escolares.
 
     </div>
 

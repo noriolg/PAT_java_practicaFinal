@@ -37,7 +37,7 @@
                 Tanto en sus tres años en Madrid, como en su etapa escolar en Granada, ha ayudado a niños de
                 todas las edades voluntaria y profesionalmente, disfrutando mucho de ello.
                 Además, le encanta hacer deporte y viajar.<br><br>
-                Se unió al equipo este año, ayudando en la gestión y selección del profesorado, motivada por las
+                Se unió al equipo en 2020, ayudando en la gestión y selección del profesorado, motivada por las
                 ganas de aprender sobre gestión de empresas y hacer cosas nuevas.
             </div>
 

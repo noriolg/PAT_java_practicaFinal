@@ -53,7 +53,8 @@ public class ProfesorDAO {
         int numeroResultados = 0;
         Profesor profesorObtenido  = null;
         while(rs.next()){
-            profesorObtenido = new Profesor(rs.getString("usuario"),null,rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("descripcion"));
+            // Ojo con guardar contrasena en la sesion, puede ser fallo de seguridad.
+            profesorObtenido = new Profesor(rs.getString("usuario"),rs.getString("contrasena"),rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("descripcion"));
             numeroResultados ++;
         }
         rs.close();
@@ -66,24 +67,32 @@ public class ProfesorDAO {
         return profesorObtenido;
     }
 
-    // Recorre el resultset y devuelve una colección de Profesores
-    /*
-    private Collection<Alumno> resultSetToCollection(ResultSet rs){
-        Collection<Alumno> coleccion = new ArrayList<Alumno>();
+    public boolean actualizarProfesor(Profesor profesor){
+        boolean actualizacionOk;
         try {
-            while(rs.next())
-            {
-                Alumno alu;
-                alu = new Alumno(rs.getString(1), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9));
-                coleccion.add(alu);
-            }
-            return coleccion;
-        }catch(SQLException e) {
-            //En el caso de que rs esté vacío se devuelve una colección vacía. Esto se comprobará en recepción
-            return coleccion;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("UPDATE profesores SET contrasena = ?, nombre = ?, apellidos = ?, codigo = ?, email = ?, telefono = ?, descripcion = ?  where usuario = ?");
+            ps.setString(1, profesor.getContrasena());
+            ps.setString(2, profesor.getNombre());
+            ps.setString(3, profesor.getApellidos());
+            ps.setInt(4, profesor.getCodigoPostal());
+            ps.setString(5, profesor.getEmail());
+            ps.setString(6, profesor.getTelefono());
+            ps.setString(7, profesor.getDescripcion());
+            ps.setString(8, profesor.getUsuario());
+
+            int i = ps.executeUpdate();
+            con.close();
+            actualizacionOk = true;
+        }catch(SQLException | ClassNotFoundException e){
+            System.out.println("Fallo en ProfesorDAO linea 88");
+            System.out.println(e);
+            actualizacionOk = false;
         }
+        return actualizacionOk;
     }
-    */
+
 
     // Devuelve true o false según sea exitosa o no la insercion en la base de datos
     public boolean anadirProfesor(Profesor profesor)
@@ -106,7 +115,7 @@ public class ProfesorDAO {
             con.close();
             insercionOk = true;
         }catch(SQLIntegrityConstraintViolationException e){
-            System.out.println("Fallo en ProfesorDAO linea 109");
+            System.out.println("Fallo en ProfesorDAO linea 117");
             System.out.println(e);
             insercionOk = false;
 

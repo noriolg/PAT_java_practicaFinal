@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 
 import Util.Constantes;
 import dominio.Alumno;
+import dominio.Profesor;
 import dominio.Usuario;
 
 public class AlumnoDAO {
@@ -93,7 +94,8 @@ public class AlumnoDAO {
         int numeroResultados = 0;
         Alumno alumnoObtenido  = null;
         while(rs.next()){
-            alumnoObtenido = new Alumno(rs.getString("usuario"),null, rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"));
+            // Ojo con guardar contrasena en la sesion, puede ser fallo de seguridad.
+            alumnoObtenido = new Alumno(rs.getString("usuario"),rs.getString("contrasena"), rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"));
             numeroResultados ++;
         }
         rs.close();
@@ -121,6 +123,34 @@ public class AlumnoDAO {
             //En el caso de que rs esté vacío se devuelve una colección vacía. Esto se comprobará en recepción
             return coleccion;
         }
+    }
+
+
+    public boolean actualizarAlumno(Alumno alumno){
+        boolean actualizacionOk;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("UPDATE alumnos SET contrasena = ?, nombre = ?, apellidos = ?, codigo = ?, email = ?, telefono = ?, etapa = ?, curso = ?  where usuario = ?");
+            ps.setString(1, alumno.getContrasena());
+            ps.setString(2, alumno.getNombre());
+            ps.setString(3, alumno.getApellidos());
+            ps.setInt(4, alumno.getCodigoPostal());
+            ps.setString(5, alumno.getEmail());
+            ps.setString(6, alumno.getTelefono());
+            ps.setString(7, alumno.getEtapa());
+            ps.setInt(8, alumno.getCurso());
+            ps.setString(9, alumno.getUsuario());
+
+            int i = ps.executeUpdate();
+            con.close();
+            actualizacionOk = true;
+        }catch(SQLException | ClassNotFoundException e){
+            System.out.println("Fallo en AlumnoDAO linea 148");
+            System.out.println(e);
+            actualizacionOk = false;
+        }
+        return actualizacionOk;
     }
 
     // Cierra la conexión iniciada por la instancia de VehiculoDAO
