@@ -28,7 +28,7 @@
         <li class="menu"><a href="javascript:void(0)"><i class="fas fa-chalkboard-teacher"></i>Equipo</a>
           <div class="menu-inferior">
             <ul>
-              <li><a href="profesores">Profesores</a></li>
+              <li><a href="GestorPeticionBDProfesores">Profesores</a></li>
               <li><a href="equipo">Equipo Directivo</a></li>
             </ul>
           </div>
@@ -84,8 +84,8 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Administrador</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="#">Dashboard</a></li>
-                      <li><a href="log-acciones">Registro</a></li>
+                      <li><a href="dashboard-admin.jsp">Dashboard</a></li>
+                      <li><a href="GestorPeticionBDAcciones">Registro</a></li>
                       <li><a href="anadir">Añadir</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>

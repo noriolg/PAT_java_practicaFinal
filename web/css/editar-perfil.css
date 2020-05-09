@@ -111,14 +111,14 @@ input[type=submit]{
     margin-left: 25%;
     margin-right: 25%;
     box-sizing: border-box;
-    padding: 5px 0;
+    padding: 4px 0;
     margin-top: 15px;
     outline: none;
     border:none;
     background:ghostwhite;
     opacity: 0.7;
     border-radius: 20px;
-    font-size: 18px;
+    font-size: 16px;
     color: black;
 }
 #cursos{
@@ -156,7 +156,7 @@ input[type=submit]{
 
 .mensaje-registro{
     text-align: center;
-    margin-top: -10px;
-    margin-bottom: -10px;
+    margin-top: -15px;
+    margin-bottom: -5px;
     font-size: 12px;
 }

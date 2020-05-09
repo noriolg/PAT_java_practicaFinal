@@ -55,11 +55,17 @@ function validarFormularioEdicionAlumno(){
     }
 
     if(etapa !== "") {
+        alert("Aqui");
         contadorCamposRellenos += 1;
         if(etapa === "Primaria" || etapa === "ESO" || etapa === "Bachillerato" || etapa === "Universidad"){
+            booleanCamposValidos = true;
+            alert("true");
+        }else{
             booleanCamposValidos = false;
+            alert("false");
             mensajeErrorRelleno = "Los valores válidos de etapa son: 'Primaria', 'ESO', 'Bachillerato' y 'Universidad'."
         }
+
     }
 
     if(curso !== "") {

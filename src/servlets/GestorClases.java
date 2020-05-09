@@ -15,7 +15,7 @@ import static java.nio.charset.StandardCharsets.*;
 import negocio.OperacionClases;
 
 
-// Todas las llamadas desde y hacia dashboard.jsp son gestionadas por este controlador y repartidas
+// Todas las llamadas desde y hacia dashboard-alumno.jsp son gestionadas por este controlador y repartidas
 // entre distintas clases ejecutoras
 public class GestorClases extends HttpServlet {
 
@@ -23,7 +23,7 @@ public class GestorClases extends HttpServlet {
             throws ServletException, IOException
     {
         // Esta es la siguiente vista por defencto
-        String jspDestino = "/dashboard.jsp"; // vista por defecto
+        String jspDestino = "/dashboard-alumno.jsp"; // vista por defecto
 
         // Objeto encargado de la lógica de las distintas acciones
         OperacionClases operacionClases = new OperacionClases();
@@ -38,11 +38,11 @@ public class GestorClases extends HttpServlet {
             {
                 if(opcionEscogida.equals("anadir")){
                     gestionarCompra(request, operacionClases);
-                    jspDestino = "/dashboard.jsp";
+                    jspDestino = "/dashboard-alumno.jsp";
                 }
                 else if(opcionEscogida.equals("vaciar")){
                     gestionarVaciado(request, operacionClases);
-                    jspDestino = "/dashboard.jsp";
+                    jspDestino = "/dashboard-alumno.jsp";
                 }
                 else if(opcionEscogida.equals("finalizar")){
                     //gestionarFinCompra(request, operacionComercial);

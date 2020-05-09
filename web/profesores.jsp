@@ -1,3 +1,6 @@
+<%@page import="dominio.Profesor"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Collection"%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,13 +21,14 @@
         <jsp:include page="/cabecera" />
     </div>
     <div class="contenido">
+        <%--
         <sql:setDataSource var = "db" driver = "com.mysql.jdbc.Driver"
                            url = "jdbc:mysql://localhost/icarus"
                            user = "root"  password = "root"/>
         <sql:query dataSource = "${db}" var = "result">
             SELECT nombre, apellidos, descripcion FROM profesores WHERE USERTYPE = 1 ORDER BY apellidos;
         </sql:query>
-
+        --%>
         <br><h4 style="color:#757575;">Estos son nuestros profesores...</h4>
         <div class = "container-tabla">
             <table class="tabla-profesores">
@@ -36,11 +40,11 @@
                     </tr>
                 </div>
                 <div class = "tabla-profesores-body">
-                    <c:forEach var = "row" items = "${result.rows}">
+                    <c:forEach var = "profe" items = "${requestScope.listaProfesores}">
                         <tr>
-                            <td class="columna1">${row.apellidos}</td>
-                            <td class="columna2">${row.nombre}</td>
-                            <td class="columna3">${row.descripcion}</td>
+                            <td class="columna1">${profe.apellidos}</td>
+                            <td class="columna2">${profe.nombre}</td>
+                            <td class="columna3">${profe.descripcion}</td>
                         </tr>
                     </c:forEach>
                 </div>

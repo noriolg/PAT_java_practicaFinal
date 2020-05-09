@@ -23,6 +23,7 @@ public class Autenticacion extends HttpServlet{
     {
         String user =request.getParameter("usuario"); //name
         String password =request.getParameter("contrasena");
+        String path;
 
         // Cuidamos que no haya caracteres raros
         user = StringFormatter.formatString(user);
@@ -48,13 +49,22 @@ public class Autenticacion extends HttpServlet{
                 if (tipoUsuario == Constantes.ALUMNO){
                     AlumnoDAO alumnoDAO = AlumnoDAO.getInstance();
                     sesion.setAttribute("objetoAlumno", alumnoDAO.obtenerAlumno(usuario));
+                    path = "dashboard-alumno";
                 }else{
                     ProfesorDAO profesorDAO = ProfesorDAO.getInstance();
                     sesion.setAttribute("objetoProfesor", profesorDAO.obtenerProfesor(usuario));
+
+                    // Si es true, es profrsor. Si es false, es admin
+                    if (usuarioDAO.esProfesor(usuario)){
+                        path = "dashboard-profesor";
+                    }
+                    else{
+                        path = "dashboard-admin";
+                    }
                 }
                 request.setAttribute("mensajeacceso", "");
                 //response.sendRedirect("GestorClases");
-                request.getRequestDispatcher("/dashboard").forward(request, response);
+                request.getRequestDispatcher(path).forward(request, response);
             }
             else
             {

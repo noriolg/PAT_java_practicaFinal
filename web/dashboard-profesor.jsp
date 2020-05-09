@@ -11,13 +11,8 @@
     </div>
 
     <div class="contenido">
-        Hola<br>
-
-        ${usertype}
-        <br>Profesor
-        ${objetoProfesor}
-        <br>Alumno
-        ${objetoAlumno}
+        Hola estas en dashboard profesor<br>
+        Eres un ${usertype}, ${objetoProfesor}
     </div>
 
     <div class="footer">

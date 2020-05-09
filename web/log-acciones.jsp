@@ -1,3 +1,7 @@
+<%@page import="dominio.Accion"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Collection"%>
+
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -32,21 +36,14 @@
                     </tr>
                 </div>
                 <div class = "tabla-profesores-body">
-                    <%
-                        AccionDAO accionDAO = AccionDAO.getInstance();
-                        ArrayList acciones = (ArrayList) accionDAO.obtenerListaAcciones();
+                    <c:forEach var = "accion" items = "${requestScope.listaAcciones}">
+                        <tr>
+                            <td class="columna1">${accion.timestamp}</td>
+                            <td class="columna2">${accion.userTypeString}</td>
+                            <td class="columna3">${accion.descripcion}</td>
+                        </tr>
+                    </c:forEach>
 
-                        java.util.Iterator it = acciones.iterator();
-                        if(acciones.isEmpty()){
-                            out.println("No hay acciones disponibles.");
-                        }
-                        else {
-                            while (it.hasNext()) {
-                                Accion accion = (Accion) it.next();
-                                out.println("<tr><td class = \"columna1\">" + accion.getTimestamp() + "</td><td class = \"columna2\">" + accion.getUserTypeString() + "</td> <td class = \"columna3\">" + accion.getDescripcion() + "</td></tr>");
-                            }
-                        }
-                    %>
                 </div>
             </table>
         </div>

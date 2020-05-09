@@ -57,7 +57,7 @@
 
         <div class="formulario">
             <h4>Información a actualizar</h4><br>
-            <div class = "aclaracion" style = "font-size: 13px;">Introduce aquí solo los datos que quieras cambiar, lo demás lo puedes dejar en blanco.</div>
+            <div class = "aclaracion" style = "font-size: 13px;">Puedes rellenar únicamente los datos que desees cambiar.</div>
             <form method="post" action="EditarPerfil" onsubmit="return validarFormularioEdicionAlumno();" >
                 <div class="row">
                     <div class="col-xs-12">

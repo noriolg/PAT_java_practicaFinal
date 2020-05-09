@@ -135,8 +135,32 @@ public class ProfesorDAO {
         return insercionOk;
     }
 
+    public Collection obtenerCollectionProfesores() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT nombre, apellidos, descripcion FROM profesores WHERE USERTYPE = 1 ORDER BY apellidos;");
+        ResultSet rs_st = ps.executeQuery();
+        Collection<Profesor> profesores = resultSetToCollection(rs_st);
+        rs_st.close();
+        con.close();
+        return profesores;
+    }
 
-    // Cierra la conexión iniciada por la instancia de VehiculoDAO
+    private Collection<Profesor> resultSetToCollection(ResultSet rs) {
+        Collection<Profesor> coleccion = new ArrayList<Profesor>();
+        try {
+            while (rs.next()) {
+                Profesor prof = new Profesor(null, null, rs.getString("nombre"), rs.getString("apellidos"), 1, null, null, rs.getString("descripcion"));
+                coleccion.add(prof);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return coleccion;
+    }
+
+
+        // Cierra la conexión iniciada por la instancia de VehiculoDAO
     public void close() throws SQLException, ClassNotFoundException
     {
         con.close();

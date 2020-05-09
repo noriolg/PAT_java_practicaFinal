@@ -76,13 +76,14 @@ public class AccionDAO {
         return insercionOk;
     }
 
-    public Collection<Accion> obtenerListaAcciones() throws SQLException, ClassNotFoundException {
+    public Collection<Accion> obtenerCollectionAcciones() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
         PreparedStatement ps = con.prepareStatement("SELECT * FROM log ORDER BY timestamp DESC LIMIT 15");
         ResultSet rs = ps.executeQuery();
         Collection<Accion> acciones = resultSetToCollection(rs);
         rs.close();
+        con.close();
         return acciones;
     }
 
