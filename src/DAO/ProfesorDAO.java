@@ -15,7 +15,7 @@ public class ProfesorDAO {
     private static ProfesorDAO profesorDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "icai";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private ProfesorDAO() throws ClassNotFoundException, SQLException
@@ -63,6 +63,29 @@ public class ProfesorDAO {
         if(numeroResultados != 1 ){
             con.close();
             throw new Exception("Error de integridad de la base de datos. ProfesorDAO 64");
+        }
+        return profesorObtenido;
+    }
+    public Profesor obtenerProfesor(String usuario) throws SQLException, ClassNotFoundException, Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM profesores WHERE  usuario = ? ");
+        ps.setString(1, usuario);;
+        ResultSet rs = ps.executeQuery();
+
+        int numeroResultados = 0;
+        Profesor profesorObtenido  = null;
+        while(rs.next()){
+            // Ojo con guardar contrasena en la sesion, puede ser fallo de seguridad.
+            profesorObtenido = new Profesor(rs.getString("usuario"),rs.getString("contrasena"),rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("descripcion"));
+            numeroResultados ++;
+        }
+        rs.close();
+
+        // Si se ha obtenido más de un resultado es que hay un error en la tabla
+        if(numeroResultados != 1 ){
+            con.close();
+            throw new Exception("Error de integridad de la base de datos. ProfesorDAO 88");
         }
         return profesorObtenido;
     }

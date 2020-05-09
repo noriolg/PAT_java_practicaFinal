@@ -13,7 +13,7 @@
     <jsp:include page="/cabecera" />
 </div>
 
-<div class = "contenido">
+<div id="contenido" class = "contenido">
     <c:if test="${not empty requestScope.mensajeCompra}">
         <div class="mensajeCompra">
             ${requestScope.mensajeCompra}

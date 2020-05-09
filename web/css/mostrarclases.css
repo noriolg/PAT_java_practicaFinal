@@ -60,6 +60,7 @@
     border-radius: 20px;
     border: none;
     color: white;
+    float: left;
     font-size: 18px;
     padding: 2.5% 4%;
     text-decoration: none;
@@ -71,10 +72,75 @@
     background: #2980b9;
 }
 #mensaje{
-    text-align: center;
+    float: left;
+    display: inline-flex;
+    margin-left: 2%;
     color: red;
 }
 .mensajeCesta{
-    text-align: center;
+    float: left;
+    display: inline-flex;
     color: green;
+    font-size: 12px;
+}
+
+
+.border{
+    align-items: center;
+    margin-top: 20%;
+}
+.contact-form{
+    max-width: 60%;
+    margin: auto;
+}
+.form-contacto{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin:2.2% 0;
+    border: 0;
+    background:gray;
+    padding: 8% 11%;
+    outline: none;
+    color: white;
+    transition: 0.5s;
+}
+.form-contacto:focus{
+    box-shadow: 0 0 10px 4px #34495e;
+}
+textarea.form-contacto{
+    resize: none;
+    height: 13%;
+    margin-right: 0.5%;
+}
+.form-submit{
+    float: right;
+    border: 0;
+    background: #34495e;
+    color: white;
+    padding: 2% 5%;
+    margin-bottom: 5%;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.form-submit:hover{
+    background: #2980b9;
+}
+.form-contacto::placeholder{
+    color: white;
+}
+.border h1{
+    color: #757575;
+    text-align: center;
+    margin-bottom: 15%;
+}
+#asignatura{
+    padding: 2% 5%;
+}
+.contenido h1{
+    color: #757575;
+}
+#universidadEnviar{
+    float: left;
 }

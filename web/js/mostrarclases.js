@@ -1,12 +1,12 @@
 var submit=document.getElementById("submitClase");
 var oculto=document.getElementById("oculto");
 var oculto3=document.getElementById("oculto3");
-var oculto2=document.getElementById("oculto2");
 var lista=document.querySelectorAll('.clase');
 var mensajeCesta=document.getElementById("mensajeCesta");
-var contador=0;
-var flag=0;
-var tiempofundido=null;
+var submituni=document.getElementById("universidadEnviar");
+var ocultouni=document.getElementById("ocultouni");
+var mensajetext=document.getElementById("mensajeasig");
+var asignatura=document.getElementById("asignatura")
 var mensaje=document.getElementById("mensaje");
 function Filtro() {
         var input, filter, ul, li, a, i, txtValue;
@@ -34,37 +34,39 @@ submit.addEventListener('click',function (e) {
     {
         e.preventDefault()
         mensaje.textContent="Debe acceder con su usuario";
-        mensaje.style.opacity=1;
-        if(flag==0) {
-            tiempofundido = setInterval(Opacidad(mensaje), 50);
-        }
+        $(mensaje).fadeIn(0);
+        $(mensaje).fadeOut(5000);
 
     }else if(oculto.value.length==0){
         e.preventDefault()
         mensaje.textContent="Debe seleccionar una clase";
-        mensaje.style.opacity=1;
-        if(flag==0) {
-            tiempofundido = setInterval(Opacidad(mensaje), 50);
-        }
+        $(mensaje).fadeIn(0);
+        $(mensaje).fadeOut(5000);
     }else {
 
     }
 
 });
-function Opacidad(mensaje) {
-    flag=1;
-    if (contador < 100) {
-        mensaje.style.opacity = mensaje.style.opacity - 0.01;
-        contador++;
-    } else {
-        flag=0;
-        clearInterval(tiempofundido);
-        contador = 0;
-    }
-}
-window.addEventListener('load',function () {
-    mensajeCesta.style.opacity=1;
-    if(flag==0) {
-        tiempofundido = setInterval(Opacidad(mensajeCesta), 50);
+submituni.addEventListener('click',function (e) {
+    if(ocultouni.value!="true")
+    {
+        e.preventDefault()
+        mensaje.textContent="Debe acceder con su usuario";
+        $(mensaje).fadeIn(0);
+        $(mensaje).fadeOut(5000);
+    }else if(asignatura.value.length==0 || mensajetext.value.length==0){
+        e.preventDefault()
+        mensaje.textContent="Debe rellenar ambos campos";
+        $(mensaje).fadeIn(0);
+        $(mensaje).fadeOut(5000);
+
     }
 })
+window.addEventListener('load',function () {
+
+    if(mensajeCesta!=null){
+        mensajeCesta.textContent="Se ha añadido correctamente a la cesta";
+        $(mensajeCesta).fadeIn(0);
+        $(mensajeCesta).fadeOut(5000);
+    }
+});

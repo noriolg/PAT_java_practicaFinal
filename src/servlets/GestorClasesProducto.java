@@ -2,7 +2,9 @@ package servlets;
 
 import DAO.ClasesOfrecidasDAO;
 import Servicios.CarritoServicio;
+import Util.StringFormatter;
 import dominio.ClaseProducto;
+import dominio.ClaseProductoUniversitaria;
 import sun.nio.cs.ISO_8859_2;
 
 import javax.servlet.RequestDispatcher;
@@ -28,17 +30,23 @@ public class GestorClasesProducto extends HttpServlet {
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String submit=request.getParameter("submit");
-        System.out.println(submit);
         HttpSession session=request.getSession();
         ArrayList <ClaseProducto> clases=new ArrayList<ClaseProducto>();
         try{
-            if(submit.equals("Agregar a la cesta"))
-            {
-                String asignatura=request.getParameter("valor").substring(3);
-                byte[] asignaturabytes=asignatura.getBytes(ISO_8859_1);
-                asignatura=new String(asignaturabytes,UTF_8);
+            if(submit.equals("Agregar a la cesta") && ((String)session.getAttribute("etapa")).equals("Universidad") ){
+                String asignatura= StringFormatter.formatString(request.getParameter("asignatura")) ;
+                String mensaje=request.getParameter("mensajesasig");
+                System.out.println(mensaje);
+                ClaseProductoUniversitaria cu=new ClaseProductoUniversitaria(asignatura,mensaje);
+                new CarritoServicio(request).comprar((ClaseProducto) cu);
+                RequestDispatcher rd=request.getRequestDispatcher("mostrarclases");
+                request.setAttribute("mensajeCesta","Se ha agregado la clase correctamente a la cesta");
+                rd.forward(request,response);
+            }
+            else if(submit.equals("Agregar a la cesta")){
+                String asignatura=StringFormatter.formatString((request.getParameter("valor").substring(3)));
                 String curso=Character.toString((request.getParameter("valor").charAt(0)));
-                String etapa=request.getParameter("etapa");
+                String etapa=(String) session.getAttribute("etapa");
                 new CarritoServicio(request).comprar(new ClaseProducto(Integer.parseInt(curso),etapa,asignatura));
                 RequestDispatcher rd=request.getRequestDispatcher("mostrarclases");
                 request.setAttribute("mensajeCesta","Se ha agregado la clase correctamente a la cesta");
@@ -47,7 +55,11 @@ public class GestorClasesProducto extends HttpServlet {
             {
                 new CarritoServicio(request).vaciar();
                 response.sendRedirect("clases");
-            }else{
+            }else if(submit.equals("Universidad")){
+                session.setAttribute("etapa","Universidad");
+                response.sendRedirect("mostrarclases");
+            }
+            else{
                     ClasesOfrecidasDAO clasesDao = ClasesOfrecidasDAO.getInstance();
                     clases=clasesDao.obtenerClases(submit);
                     session.setAttribute("etapa",submit);

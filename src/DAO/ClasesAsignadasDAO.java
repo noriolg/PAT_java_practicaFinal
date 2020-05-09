@@ -1,10 +1,7 @@
 package DAO;
 
 
-import dominio.Alumno;
-import dominio.Carrito;
-import dominio.ClaseProducto;
-import dominio.Usuario;
+import dominio.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +11,7 @@ public class ClasesAsignadasDAO {
     private static ClasesAsignadasDAO clasesAsignadasDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "icai";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private ClasesAsignadasDAO() throws ClassNotFoundException, SQLException
@@ -81,6 +78,94 @@ public class ClasesAsignadasDAO {
             e.printStackTrace();
         }
         return insercionOk;
+    }
+    public ArrayList<Clase> obtenerClasesAsignadas(Alumno alumno){
+        ArrayList<Clase> clases=new ArrayList<Clase>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM  clasesasignadas WHERE alumno= ?");
+            ps.setString(1, alumno.getUsuario());
+            ResultSet rs=ps.executeQuery();
+            ProfesorDAO profesorDAO=ProfesorDAO.getInstance();
+            Profesor p;
+            while(rs.next()){
+                Clase c=null;
+                if(rs.getString("profesor").equals("null")){
+                    c= new Clase(null,rs.getString("asignatura"),"Solicitud pendiente de asignación",rs.getString("etapa"),Integer.parseInt(rs.getString("curso")));
+
+                }else{
+                    try {
+                        p=profesorDAO.obtenerProfesor(rs.getString("profesor"));
+                        c= new Clase(p,rs.getString("asignatura"),rs.getString("descripcion"),rs.getString("etapa"),Integer.parseInt(rs.getString("curso")));
+
+                    }catch (Exception e){
+                        e.printStackTrace();;
+                    }
+                }
+                clases.add(c);
+            }
+            rs.close();
+            con.close();
+            return  clases;
+        }catch(SQLIntegrityConstraintViolationException e){
+            System.out.println("Fallo en ClasesAsignadasDAO linea 98");
+            System.out.println(e);
+
+
+        } catch (SQLException e) {
+            System.out.println("Fallo en ClasesAsignadasDAO linea 103");
+            e.printStackTrace();
+            //System.err.format("Mensaje SQL:  \n", e.getSQLState(),e.getMessage());
+            //response.sendError(500, "Error en el acceso a la base de datos");
+        } catch (ClassNotFoundException e) {
+            //respons;
+            //
+            //   e.sendError(500, e.toString() );
+            e.printStackTrace();
+        }
+        return clases;
+    }
+    public ArrayList<Clase> obtenerClasesAsignadas(Profesor profesor){
+        ArrayList<Clase> clases=new ArrayList<Clase>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM  clasesasignadas WHERE profesor= ?");
+            ps.setString(1, profesor.getUsuario());
+            ResultSet rs=ps.executeQuery();
+            AlumnoDAO alumnoDAO= AlumnoDAO.getInstance();
+            Alumno alu;
+            while(rs.next()){
+                try{
+                    alu=alumnoDAO.obtenerAlumno(rs.getString("alumno"));
+                    Clase c= new Clase(alu,rs.getString("asignatura"),rs.getString("descripcion"),Integer.parseInt(rs.getString("curso")),rs.getString("etapa"));
+                    clases.add(c);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            rs.close();
+            con.close();
+            return  clases;
+        }catch(SQLIntegrityConstraintViolationException e){
+            System.out.println("Fallo en ClasesAsignadasDAO linea 131");
+            System.out.println(e);
+
+
+        } catch (SQLException e) {
+            System.out.println("Fallo en ClasesAsignadasDAO linea 136");
+            e.printStackTrace();
+            //System.err.format("Mensaje SQL:  \n", e.getSQLState(),e.getMessage());
+            //response.sendError(500, "Error en el acceso a la base de datos");
+        } catch (ClassNotFoundException e) {
+            //respons;
+            //
+            //   e.sendError(500, e.toString() );
+            e.printStackTrace();
+        }
+        return clases;
     }
 
     public void close() throws SQLException, ClassNotFoundException

@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -10,12 +10,21 @@ body, html {
 }
 
 h4{
-    padding-left: 35px;
-}
 
-.container-tabla{
+    float: left;
+}
+.imagen{
+    width:30% ;
+    height: 30%;
+}
+.imagen img{
+    width: 100%;
+
+}
+.contenido{
     width: 100%;
     min-height: 30vh;
+
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -24,7 +33,6 @@ h4{
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-
     padding-top: 5px;
     padding-right: 30px;
     padding-left: 30px;
@@ -45,7 +53,7 @@ tr:nth-child(even) {
     background-color: #e0e0e0;
 }
 
-.tabla-profesores {
+.tabla-clases {
     position: relative;
     margin-top: 5px;
     padding-top: 10px;
@@ -64,37 +72,16 @@ tr:nth-child(even) {
 
 }
 
-.hcolumna1{
+.hcolumna{
     color: #757575;
     font-weight: bold;
 
 }
 
-.hcolumna2{
-    color: #757575;
-    font-weight: bold;
-}
 
-.hcolumna3{
-    color: #757575;
-    font-weight: bold;
-
-}
-
-.columna1 {
+.columna{
     width: 20%;
     padding-left: 5px;
-    text-align: center;
 }
 
-.columna2 {
-    width: 20%;
-    padding-left: 5px;
-    text-align: center;
-}
 
-.columna3 {
-    width: 60%;
-    padding-left: 40px;
-
-}

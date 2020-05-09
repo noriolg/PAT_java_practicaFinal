@@ -40,7 +40,7 @@ public class Mail extends javax.servlet.http.HttpServlet {
         String nombre = request.getParameter("nombre");
         String telefono=request.getParameter("telefono");
         String submit=request.getParameter("submit");
-        String mensaje_autogenerado="Se ha recibido su mensaje. Nos pondremos en contacto lo antes posible\n Atentamente,\n El equipo de Ícaro";
+        String mensaje_autogenerado="Se ha recibido su mensaje. Nos pondremos en contacto lo antes posible\nAtentamente,\nEl equipo de Ícaro";
         try {
             if(submit.equals("Enviar")){
                 EmailUtility.sendEmailAutogenerado(host, port, user, pass,destinatario, asunto,
@@ -51,6 +51,7 @@ public class Mail extends javax.servlet.http.HttpServlet {
                 RequestDispatcher rd= request.getRequestDispatcher("contacto");
                 rd.forward(request,response);
             }else{
+                mensaje_autogenerado="Se ha recibido su solicitud. Nos pondremos en contacto lo antes posible\nAtentamente,\nEl equipo de Ícaro";
                 HttpSession session=request.getSession();
                 Alumno usuario=(Alumno) session.getAttribute("objetoAlumno");
                 Carrito carrito=(Carrito) session.getAttribute("carrito");
@@ -58,7 +59,7 @@ public class Mail extends javax.servlet.http.HttpServlet {
                 EmailUtility.sendEmailClases(host,port,user,pass,asunto,mensajeClase);
                 EmailUtility.sendEmailAutogenerado(host, port, user, pass,usuario.getEmail(), asunto,
                         mensaje_autogenerado);
-                response.sendRedirect("finalizarcompra");
+                response.sendRedirect("FinalizarCompra");
 
             }
         } catch (Exception ex) {

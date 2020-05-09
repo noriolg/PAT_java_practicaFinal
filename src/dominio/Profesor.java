@@ -1,8 +1,6 @@
 package dominio;
 
-public class Profesor {
-    private String usuario;
-    private String contrasena;
+public class Profesor extends Usuario { ;
     private String nombre;
     private String apellidos;
     private int codigoPostal;
@@ -13,8 +11,7 @@ public class Profesor {
 
     // Constructor general
     public Profesor(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String descripcion ){
-        this.usuario = usuario;
-        this.contrasena = contrasena;
+        super(usuario,contrasena);
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.codigoPostal = codigoPostal;
@@ -25,17 +22,9 @@ public class Profesor {
 
 
     public Profesor(String usuario, String contrasena){
-        this.usuario = usuario;
-        this.contrasena = contrasena;
+       super(usuario,contrasena);
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
 
     public String getNombre() {
         return nombre;
@@ -62,13 +51,6 @@ public class Profesor {
         return descripcion;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -95,7 +77,7 @@ public class Profesor {
     }
 
     public String toString(){
-        return "Profesor: " + nombre + " " + apellidos + " Usuario: " + usuario;
+        return "Profesor: " + nombre + " " + apellidos + " Usuario: " +super.getUsuario();
     }
 
 }

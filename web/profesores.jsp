@@ -34,17 +34,17 @@
             <table class="tabla-profesores">
                 <div class = tabla-profesores-header>
                     <tr>
-                        <th class="hcolumna1">Apellidos</th>
-                        <th class="hcolumna2">Nombre</th>
-                        <th class="hcolumna3">Descripción</th>
+                        <th class="hcolumna">Apellidos</th>
+                        <th class="hcolumna">Nombre</th>
+                        <th class="hcolumna">Descripción</th>
                     </tr>
                 </div>
                 <div class = "tabla-profesores-body">
                     <c:forEach var = "profe" items = "${requestScope.listaProfesores}">
                         <tr>
-                            <td class="columna1">${profe.apellidos}</td>
-                            <td class="columna2">${profe.nombre}</td>
-                            <td class="columna3">${profe.descripcion}</td>
+                            <td class="columna">${profe.apellidos}</td>
+                            <td class="columna">${profe.nombre}</td>
+                            <td class="columna">${profe.descripcion}</td>
                         </tr>
                     </c:forEach>
                 </div>

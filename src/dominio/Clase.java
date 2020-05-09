@@ -1,30 +1,23 @@
 package dominio;
 
 public class Clase {
-    private String profesorUser;
-    private String alumnoUser;
+    private Profesor profesorUser;
+    private Alumno alumnoUser;
     private String asignatura;
     private String descripcion;
     private int curso;
     private String etapa;
 
 
-    public Clase(String profesorUser, String alumnoUser, String asignatura, String descripcion){
-        this.profesorUser = profesorUser;
+    public Clase(Alumno alumnoUser, String asignatura, String descripcion, int curso, String etapa) {
         this.alumnoUser = alumnoUser;
         this.asignatura = asignatura;
         this.descripcion = descripcion;
+        this.curso = curso;
+        this.etapa = etapa;
     }
-
-    public Clase(String profesorUser, String alumnoUser, String asignatura){
+    public Clase( Profesor profesorUser, String asignatura, String descripcion,String etapa, int curso) {
         this.profesorUser = profesorUser;
-        this.alumnoUser = alumnoUser;
-        this.asignatura = asignatura;
-    }
-
-    public Clase( String profesorUser, String alumnoUser, String asignatura, String descripcion, int curso, String etapa) {
-        this.profesorUser = profesorUser;
-        this.alumnoUser = alumnoUser;
         this.asignatura = asignatura;
         this.descripcion = descripcion;
         this.curso = curso;
@@ -47,28 +40,29 @@ public class Clase {
         this.etapa = etapa;
     }
 
-    public String getProfesorUser() {
-        return profesorUser;
+    public Profesor getProfesorUser() {
+        return this.profesorUser;
     }
 
-    public String getAlumnoUser() {
-        return alumnoUser;
+
+    public Alumno getAlumnoUser() {
+        return this.alumnoUser;
     }
 
     public String getAsignatura() {
-        return asignatura;
+        return this.asignatura;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
 
-    public void setProfesorUser(String profesorUser) {
+    public void setProfesorUser(Profesor profesorUser) {
         this.profesorUser = profesorUser;
     }
 
-    public void setAlumnoUser(String alumnoUser) {
+    public void setAlumnoUser(Alumno alumnoUser) {
         this.alumnoUser = alumnoUser;
     }
 

@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >
+
 </head>
 <body>
     <div class="header">
@@ -47,10 +48,10 @@
                 <option disabled selected>Seleccione una etapa</option>
                 <option value="Primaria">Primaria</option>
                 <option value="ESO">ESO</option>
-                <option VALUE="Bachillerato">Bachillerato</option>
+                <option value="Bachillerato">Bachillerato</option>
                 <option value="Universidad">Universidad</option>
             </select>
-            <select id="cursos" name="cursos" class="formulario" </select>
+            <select id="cursos" name="cursos" class="formulario"></select>
             <input id="submit" class="submit btn btn-primary" type="submit">
         </form>
     </div>

@@ -11,8 +11,13 @@
     </div>
 
     <div class="contenido">
-        Hola estas en dashboard profesor<br>
-        Eres un ${usertype}, ${objetoProfesor}
+        Hola<br>
+
+        ${usertype}
+        <br>Profesor
+        ${objetoProfesor}
+        <br>Alumno
+        ${objetoAlumno}
     </div>
 
     <div class="footer">

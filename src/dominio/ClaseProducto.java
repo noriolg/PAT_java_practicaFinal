@@ -1,9 +1,9 @@
 package dominio;
 
 public class ClaseProducto {
-    private int curso;
-    private String etapa;
-    private String asignatura;
+    protected int curso;
+    protected String etapa;
+    protected String asignatura;
 
     public ClaseProducto(int curso, String etapa, String asignatura) {
         this.curso = curso;
@@ -36,11 +36,11 @@ public class ClaseProducto {
         this.asignatura = asignatura;
     }
 
-    @Override
-    public String toString() {
+    public String mostrarClaseCesta() {
         return this.curso+"º " + this.asignatura;
     }
-    public String mostrarClaseCesta(){
-        return this.asignatura+ " "+ this.curso+"º de "+this.etapa;
+    @Override
+    public String toString(){ ;
+            return  "\nClase: "+ this.asignatura+ " "+ this.curso+"º de "+this.etapa;
     }
 }

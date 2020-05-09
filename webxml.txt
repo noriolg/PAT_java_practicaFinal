@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-         version="4.0">
-
-    <welcome-file-list>
+<welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
@@ -21,12 +15,12 @@
 
     <context-param>
         <param-name>user</param-name>
-        <param-value></param-value>
+        <param-value>carlosdelossantos78@gmail.com</param-value>
     </context-param>
 
     <context-param>
         <param-name>pass</param-name>
-        <param-value></param-value>
+        <param-value>Espliego40</param-value>
     </context-param>
 
     <!--  Servlets -->
@@ -80,6 +74,15 @@
         <url-pattern>/GestorClasesProducto</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GestorDashBoardAlumnoProfesor</servlet-name>
+        <servlet-class>servlets.GestionDashBoardAlumnoProfesor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GestorDashBoardAlumnoProfesor</servlet-name>
+        <url-pattern>/GestorDashBoardAlumnoProfesor</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>GestorPeticionBDAcciones</servlet-name>
         <servlet-class>servlets.GestorPeticionBDAcciones</servlet-class>
@@ -176,15 +179,7 @@
         <servlet-name>contacto</servlet-name>
         <url-pattern>/contacto</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>dashboard</servlet-name>
-        <jsp-file>/dashboard.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>dashboard</servlet-name>
-        <url-pattern>/dashboard</url-pattern>
-    </servlet-mapping>
+    
 
     <servlet>
         <servlet-name>dashboard-admin</servlet-name>
@@ -196,22 +191,14 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>dashboard-alumno</servlet-name>
-        <jsp-file>/dashboard-alumno.jsp</jsp-file>
+        <servlet-name>dashboard-alumno-profesor</servlet-name>
+        <jsp-file>/dashboard-alumno-profesor.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>dashboard-alumno</servlet-name>
-        <url-pattern>/dashboard-alumno</url-pattern>
+        <servlet-name>dashboard-alumno-profesor</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>dashboard-profesor</servlet-name>
-        <jsp-file>/dashboard-profesor.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>dashboard-profesor</servlet-name>
-        <url-pattern>/dashboard-profesor</url-pattern>
-    </servlet-mapping>
 
 
     <servlet>
@@ -322,6 +309,3 @@
         <servlet-name>registro</servlet-name>
         <url-pattern>/registro</url-pattern>
     </servlet-mapping>
-
-</web-app>
-

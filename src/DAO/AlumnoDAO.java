@@ -15,13 +15,13 @@ public class AlumnoDAO {
     private static AlumnoDAO alumnoDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "icai";
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private AlumnoDAO() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus?useSSL=false", USER, PASSWORD);
     }
 
     public static AlumnoDAO getInstance() throws SQLException, ClassNotFoundException
@@ -107,7 +107,29 @@ public class AlumnoDAO {
         }
         return alumnoObtenido;
     }
+    public Alumno obtenerAlumno(String usuario) throws SQLException, ClassNotFoundException, Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM alumnos WHERE  usuario = ? ");
+        ps.setString(1, usuario);
+        ResultSet rs = ps.executeQuery();
 
+        int numeroResultados = 0;
+        Alumno alumnoObtenido  = null;
+        while(rs.next()){
+            // Ojo con guardar contrasena en la sesion, puede ser fallo de seguridad.
+            alumnoObtenido = new Alumno(rs.getString("usuario"),rs.getString("contrasena"), rs.getString("nombre"), rs.getString("apellidos"), rs.getInt("codigo"), rs.getString("email"), rs.getString("telefono"), rs.getString("etapa"), rs.getInt("curso"));
+            numeroResultados ++;
+        }
+        rs.close();
+
+        // Si se ha obtenido más de un resultado es que hay un error en la tabla
+        if(numeroResultados != 1 ){
+            con.close();
+            throw new Exception("Error de integridad de la base de datos. AlumnoDAO 129");
+        }
+        return alumnoObtenido;
+    }
     // Recorre el resultset y devuelve una colección de Vehículos
     private Collection<Alumno> resultSetToCollection(ResultSet rs){
         Collection<Alumno> coleccion = new ArrayList<Alumno>();

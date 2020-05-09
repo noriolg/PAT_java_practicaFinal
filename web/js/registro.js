@@ -1,13 +1,8 @@
 var etapa=document.getElementById("etapa");
-var selectcurso=document.getElementById("cursos");
 var submit=document.getElementById("submit");
-var contador=0;
-var flag=0;
 var mensaje=document.getElementById("mensaje");
 var selectcurso=document.getElementById("cursos");
 var formulario=null;
-var tiempofundido=null;
-
 var mensaje_notificacion = document.getElementById("mensaje-notificacion-acceso");
 
 selectcurso.addEventListener('click', function () {
@@ -20,19 +15,16 @@ submit.addEventListener('click', function (e) {
         // Se muestra el mensaje de aviso de rellenado erróneo
         e.preventDefault();
         mensaje.textContent="Debe rellenar todos los campos";
-        mensaje.style.opacity=1;
-        if(flag==0) {
-            tiempofundido = setInterval(Opacidad, 50);
-        }
+        $(mensaje).fadeIn(0);
+        $(mensaje).fadeOut(5000);
     }else{
+
         formulario.forEach(function (elem) {
             if(elem.value.length==0 ){
                 e.preventDefault();
                 mensaje.textContent="Debe rellenar todos los campos";
-                mensaje.style.opacity=1;
-                if(flag==0) {
-                    tiempofundido = setInterval(Opacidad, 50);
-                }
+                $(mensaje).fadeIn(0);
+                $(mensaje).fadeOut(5000);
                 // Se elimina un posible mensaje anterior que hubiera
                 mensaje_notificacion.innerHTML = "";
 
@@ -52,12 +44,12 @@ etapa.addEventListener('change',function (e) {
     }else if(etapa.value=="Universidad"){
         var option = document.createElement("option");
         option.text="No aplica";
-    }else {
+        option.classList.add('curso');
+        selectcurso.add(option);
+    }else{}
+ });
 
-    }
 
-
-})
 
 function VaciarLista() {
     var cursos=document.querySelectorAll('.curso');
@@ -84,14 +76,4 @@ function GenerarOpciones(n) {
         selectcurso.add(option);
     }
 }
-function Opacidad() {
-    flag=1;
-    if (contador < 1000) {
-        mensaje.style.opacity = mensaje.style.opacity - 0.001;
-        contador++;
-    } else {
-        flag=0;
-        clearInterval(tiempofundido);
-        contador = 0;
-    }
-}
+

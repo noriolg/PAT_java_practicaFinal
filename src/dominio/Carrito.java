@@ -33,7 +33,12 @@ public class Carrito {
         String devolucion="";
         for (ClaseProducto c:this.carrito)
         {
-           devolucion=devolucion+c.mostrarClaseCesta();
+            if( c instanceof ClaseProductoUniversitaria)
+            {
+                devolucion=devolucion+c.mostrarClaseCesta();
+            }else{
+                devolucion=devolucion+c.toString();
+            }
         }
         return devolucion;
     }

@@ -1,8 +1,6 @@
 package dominio;
 
-public class Alumno {
-    private String usuario;
-    private String contrasena;
+public class Alumno extends Usuario {
     private String nombre;
     private String apellidos;
     private int codigoPostal;
@@ -14,8 +12,7 @@ public class Alumno {
 
     // Constructor general
     public Alumno(String usuario, String contrasena, String nombre, String apellidos, int codigoPostal, String email, String telefono, String etapa, int curso ){
-        this.usuario = usuario;
-        this.contrasena = contrasena;
+        super(usuario,contrasena);
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.codigoPostal = codigoPostal;
@@ -26,17 +23,9 @@ public class Alumno {
     }
 
     public Alumno(String usuario, String contrasena){
-        this.usuario = usuario;
-        this.contrasena = contrasena;
+        super(usuario,contrasena);
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
 
     public String getNombre() {
         return nombre;
@@ -64,16 +53,6 @@ public class Alumno {
 
     public int getCurso() {
         return curso;
-    }
-
-
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
     }
 
     public void setNombre(String nombre) {
@@ -105,12 +84,12 @@ public class Alumno {
     }
 
     public String toString(){
-        return "Alumno: " + nombre + " " + apellidos + " Usuario: " + usuario;
+        return "Alumno: " + nombre + " " + apellidos + " Usuario: " + super.getUsuario();
     }
 
      public String mostrarInfo(){
-        return "Alumno: " + nombre + " " + apellidos + "\nUsuario: " + usuario +
+        return "Alumno: " + nombre + " " + apellidos + "\nUsuario: " + super.getUsuario()+
                 "\nTeléfono: " + this.telefono + "\nEtapa: " + this.etapa+ "\nCurso: "+ this.curso
-                + "\nCódigo Postal: " + "\nE-mail: " + this.email;
+                + "\nCódigo Postal: " +this.codigoPostal+ "\nE-mail: " + this.email;
     }
 }

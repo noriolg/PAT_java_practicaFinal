@@ -71,11 +71,13 @@ input[type=submit]{
 #mensaje{
     text-align: center;
     font-size: 19px;
+    color: red;
 }
 
 .mensaje-notificacion{
     text-align: center;
     font-size: 19px;
+    color: red;
 }
 
 ::placeholder{

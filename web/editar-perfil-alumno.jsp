@@ -16,7 +16,7 @@
     <div class = "contenido">
         <sql:setDataSource var = "db" driver = "com.mysql.jdbc.Driver"
                            url = "jdbc:mysql://localhost/icarus"
-                           user = "root"  password = "root"/>
+                           user = "root"  password = "icai"/>
         <sql:query dataSource = "${db}" var = "result">
             SELECT * FROM alumnos WHERE usuario = '${username}' LIMIT 1 ;
         </sql:query>

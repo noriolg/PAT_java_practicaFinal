@@ -34,14 +34,19 @@
           </div>
         </li>
         <c:choose >
-          <c:when test="${empty usertype}">
-            <li class="menu"><a href="clases"><i class="fas fa-language"></i>Clases</a></li>
-          </c:when>
-          <c:when test="${usertype == 0}">
+          <c:when test="${empty usertype ||usertype == 0 }">
             <li class="menu"><a href="clases"><i class="fas fa-language"></i>Clases</a></li>
           </c:when>
           <c:otherwise></c:otherwise>
         </c:choose>
+
+        <li class="menu"><a href="contacto"><i class="fas fa-phone"></i>Contacto</a></li>
+        <c:if test="${usertype==1}">
+            <li class="menu">Bienvenido de nuevo, ${objetoProfesor.usuario}</li>
+        </c:if>
+        <c:if test="${usertype==2}">
+            <li class="menu">Bienvenido de nuevo, administrador</li>
+        </c:if>
         <c:choose>
           <c:when test="${usertype == null}">
             <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Acceso</a>
@@ -60,7 +65,7 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Alumno</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="#">Zona alumno</a></li>
+                      <li><a href="GestorDashBoardAlumnoProfesor">Zona alumno</a></li>
                       <li><a href="EditarPerfil">Mi perfil</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
@@ -72,7 +77,7 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Profesor</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="#">Zona profesor</a></li>
+                      <li><a href="dashboard">Zona profesor</a></li>
                       <li><a href="EditarPerfil">Mi perfil</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
@@ -84,8 +89,8 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Administrador</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="dashboard-admin.jsp">Dashboard</a></li>
-                      <li><a href="GestorPeticionBDAcciones">Registro</a></li>
+                      <li><a href="#">Dashboard</a></li>
+                      <li><a href="log-acciones">Registro</a></li>
                       <li><a href="anadir">Añadir</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
@@ -95,12 +100,17 @@
             </c:choose>
           </c:otherwise>
         </c:choose>
-
-        <li class="menu"><a href="contacto"><i class="fas fa-phone"></i>Contacto</a></li>
-
         <c:choose >
-          <c:when test="${empty usertype}">
-            <li class="menu"><a href="javascript:void(0)"><i class="fas fa-shopping-basket"></i><p id="numero">0</p></a>
+          <c:when test="${usertype == 0 || empty usertype}">
+            <li class="menu"><a href="javascript:void(0)"><i class="fas fa-shopping-basket"></i><p id="numero">
+              <c:choose>
+                <c:when test="${not empty sessionScope.carrito}">
+                  <p id="numero"><c:out value="${sessionScope.carrito.carrito.size()}"></c:out></p></a>
+                </c:when>
+              <c:otherwise>
+                <p id="numero">0</p></a>
+              </c:otherwise>
+              </c:choose>
               <div id="cesta" class="menu-inferior cesta">
                 <c:choose>
                   <c:when test="${empty sessionScope.carrito.carrito}">
@@ -109,33 +119,7 @@
                   <c:otherwise>
                     <ul>
                       <c:forEach var="entry" items="${sessionScope.carrito.carrito}" >
-                        <li class="numero-elem"><c:out value="${entry.asignatura}"/>&nbsp;<c:out value="${entry.curso}"/>º
-                          &nbsp; de &nbsp; <c:out value="${entry.etapa}"/></li>
-                      </c:forEach>
-                      <form id="comprar" method="post" action="Mail">
-                        <input name="submit" id="submitFin" class="submitFin" type="submit" value="Solicitar">
-                      </form>
-                      <form id="vaciar" method="post" action="GestorClasesProducto">
-                        <input name="submit" id="submitVaciar" class="submitVacio " type="submit" value="Vaciar">
-                      </form>
-                    </ul>
-                  </c:otherwise>
-                </c:choose>
-              </div>
-            </li>
-          </c:when>
-          <c:when test="${usertype == 0}">
-            <li class="menu"><a href="javascript:void(0)"><i class="fas fa-shopping-basket"></i><p id="numero">0</p></a>
-              <div id="cesta" class="menu-inferior cesta">
-                <c:choose>
-                  <c:when test="${empty sessionScope.carrito.carrito}">
-                    <ul></ul>
-                  </c:when>
-                  <c:otherwise>
-                    <ul>
-                      <c:forEach var="entry" items="${sessionScope.carrito.carrito}" >
-                        <li class="numero-elem"><c:out value="${entry.asignatura}"/>&nbsp;<c:out value="${entry.curso}"/>º
-                          &nbsp; de &nbsp; <c:out value="${entry.etapa}"/></li>
+                        <li class="numero-elem"><c:out value="${entry.toString()}"/></li>
                       </c:forEach>
                       <form id="comprar" method="post" action="Mail">
                         <input name="submit" id="submitFin" class="submitFin" type="submit" value="Solicitar">
@@ -151,7 +135,6 @@
           </c:when>
           <c:otherwise></c:otherwise>
         </c:choose>
-
     </ul>
   </div>
 </body>
