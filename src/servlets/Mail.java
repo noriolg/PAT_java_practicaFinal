@@ -1,5 +1,6 @@
 package servlets;
 
+import Servicios.CarritoServicio;
 import Util.EmailUtility;
 import dominio.Alumno;
 import dominio.Carrito;
@@ -40,6 +41,7 @@ public class Mail extends javax.servlet.http.HttpServlet {
         String nombre = request.getParameter("nombre");
         String telefono=request.getParameter("telefono");
         String submit=request.getParameter("submit");
+        System.out.println(submit);
         String mensaje_autogenerado="Se ha recibido su mensaje. Nos pondremos en contacto lo antes posible\nAtentamente,\nEl equipo de Ícaro";
         try {
             if(submit.equals("Enviar")){
@@ -59,13 +61,16 @@ public class Mail extends javax.servlet.http.HttpServlet {
                 EmailUtility.sendEmailClases(host,port,user,pass,asunto,mensajeClase);
                 EmailUtility.sendEmailAutogenerado(host, port, user, pass,usuario.getEmail(), asunto,
                         mensaje_autogenerado);
-                response.sendRedirect("FinalizarCompra");
+                request.setAttribute("mensajeCompra","Se ha realizado la compra correctamente");
+                new CarritoServicio(request).vaciar();
+                RequestDispatcher rd =request.getRequestDispatcher("index");
+                rd.forward(request,response);
                 System.out.println("Llego al final");
 
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            request.setAttribute("mensajeError","Se ha producido un error");
+            request.setAttribute("mensajeError","Lo sentimos, se ha producido un error");
             RequestDispatcher rd= request.getRequestDispatcher("contacto");
             rd.forward(request,response);
 

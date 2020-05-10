@@ -2,11 +2,14 @@ package DAO;
 
 
 import Util.Constantes;
+import Util.Fecha;
 import dominio.*;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 public class ClasesAsignadasDAO {
     private static ClasesAsignadasDAO clasesAsignadasDAO;
@@ -40,13 +43,14 @@ public class ClasesAsignadasDAO {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
             for (ClaseProducto c : carrito.getCarrito()) {
-                PreparedStatement ps = con.prepareStatement("INSERT INTO clasesasignadas (profesor,alumno,asignatura,descripcion ,curso,etapa)  VALUES (?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("INSERT INTO clasesasignadas (profesor,alumno,asignatura,descripcion ,curso,etapa,fechacompra)  VALUES (?,?,?,?,?,?,?)");
                 ps.setString(1, "null");
                 ps.setString(2, alumno.getUsuario());
                 ps.setString(3, c.getAsignatura());
                 ps.setString(4, "null");
                 ps.setString(5, Integer.toString(c.getCurso()));
                 ps.setString(6, c.getEtapa());
+                ps.setDate(7, Fecha.obtenerFecha());
 
                 int i = ps.executeUpdate();
             }
@@ -233,10 +237,14 @@ public class ClasesAsignadasDAO {
     }
 
 
-    public Collection obtenerProductosMasComprados() throws Exception {
+    public Collection obtenerProductosMasComprados(Date fechainicio, Date fechafin) throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso, COUNT(asignatura) as cantidad FROM icarus.clasesasignadas GROUP BY asignatura ORDER BY cantidad DESC LIMIT 15");
+        java.sql.Date inicio=Fecha.formatoFecha(fechainicio);
+        java.sql.Date fin=Fecha.formatoFecha(fechafin);
+        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso, COUNT(*) as cantidad FROM icarus.clasesasignadas WHERE fechacompra between ? and ? GROUP BY asignatura ORDER BY cantidad DESC LIMIT 15");
+        ps.setDate(1,inicio);
+        ps.setDate(2,fin);
         ResultSet rs_st = ps.executeQuery();
         Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
         rs_st.close();
@@ -247,7 +255,7 @@ public class ClasesAsignadasDAO {
     public Collection obtenerDiasMasCompras() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM icarus.clasesasignadas WHERE profesor != \"null\";");
+        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso,fechacompra COUNT(*) as cantidad FROM icarus.clasesasignadas GROUP BY asignatura ORDER BY cantidad DESC LIMIT 15");
         ResultSet rs_st = ps.executeQuery();
         Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
         rs_st.close();

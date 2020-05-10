@@ -39,9 +39,7 @@ public class FinalizarCompra extends HttpServlet {
             boolean insercion=clasesAsignadasDAO.anadirClasesSinAsignar(usuario,carrito);
             if(insercion)
             {
-                request.setAttribute("mensajeCompra","Se ha realizado la compra correctamente");
-                RequestDispatcher rd=request.getRequestDispatcher("index");
-                new CarritoServicio(request).vaciar();
+                RequestDispatcher rd=request.getRequestDispatcher("Mail");
                 rd.forward(request,response);
             }
         }

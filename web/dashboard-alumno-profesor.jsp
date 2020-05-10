@@ -14,7 +14,7 @@
 
     <div class="contenido">
         <c:choose>
-            <c:when test="${usertype==0 && sessionScope.misclases!=null}">
+            <c:when test="${usertype==0 && sessionScope.misclases!=null && not empty sessionScope.misclases}">
             <br><h4 style="color:#757575;">Estas son tus clases...</h4>
             <table class="tabla-clases">
                 <div class = tabla-clases-header>
@@ -29,8 +29,8 @@
                 <div class = "tabla-clases-body">
                     <c:forEach var = "clase" items = "${sessionScope.misclases}">
                         <tr>
-                            <td class="columna"><c:if test="${clase.profesorUser==null}">Sin asignar</c:if>
-                                    ${clase.profesorUser.nombre}&nbsp;${clase.profesorUser.apellidos}</td>
+                            <td class="columna"><c:if test="${clase.profesor==null}">Sin asignar</c:if>
+                                    ${clase.profesor.nombre}&nbsp;${clase.profesor.apellidos}</td>
                             <td class="columna">${clase.asignatura}</td>
                             <td class="columna">${clase.curso}º</td>
                             <td class="columna">${clase.etapa}</td>
@@ -39,7 +39,7 @@
                     </c:forEach>
                 </div>
             </c:when>
-            <c:when test="${usertype==1 && sessionScope.misclases!=null}">
+            <c:when test="${usertype==1 && sessionScope.misclases!=null && not empty sessionScope.misclases}">
                 <br><h4 style="color:#757575;">Estas son tus clases...</h4>
                 <table class="tabla-clases">
                     <div class = tabla-clases-header>
@@ -54,7 +54,7 @@
                     <div class = "tabla-clases-body">
                         <c:forEach var = "clase" items = "${sessionScope.misclases}">
                             <tr>
-                                <td class="columna">${clase.alumnoUser.nombre}&nbsp;${clase.alumnoUser.apellidos}</td>
+                                <td class="columna">${clase.alumno.nombre}&nbsp;${clase.alumno.apellidos}</td>
                                 <td class="columna">${clase.asignatura}</td>
                                 <td class="columna">${clase.curso}º</td>
                                 <td class="columna">${clase.etapa}</td>
