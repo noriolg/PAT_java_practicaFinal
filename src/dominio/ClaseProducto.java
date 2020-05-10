@@ -39,8 +39,9 @@ public class ClaseProducto {
     public String mostrarClaseCesta() {
         return this.curso+"º " + this.asignatura;
     }
-    @Override
+
     public String toString(){ ;
-            return  "\nClase: "+ this.asignatura+ " "+ this.curso+"º de "+this.etapa;
+        return  "\nClase: "+ this.asignatura+ " "+ this.curso+"º de "+this.etapa;
     }
+
 }

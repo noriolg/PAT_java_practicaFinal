@@ -79,9 +79,16 @@ tr:nth-child(even) {
 }
 
 
-.columna{
+.columna-left{
     width: 20%;
     padding-left: 5px;
+    text-align: left;
+}
+
+.columna-center{
+    width: 20%;
+    padding-left: 5px;
+    text-align: center;
 }
 
 

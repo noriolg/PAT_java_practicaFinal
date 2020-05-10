@@ -18,8 +18,17 @@ public class GestorPeticionBDClasesAsignadas extends HttpServlet{
     {
         try
         {
+            String fechaInicio = (String)request.getParameter("fechainicio");
+            String fechaFin = (String)request.getParameter("fechafin");
+
+            // Solo es null si ambas son null
+            if (fechaInicio == null){
+                fechaInicio = "2020-01-01";
+                fechaFin = "2020-12-31";
+            }
+
             ClasesAsignadasDAO clasesDAO = ClasesAsignadasDAO.getInstance();
-            ArrayList productosMasComprados = (ArrayList) clasesDAO.obtenerProductosMasComprados();
+            ArrayList productosMasComprados = (ArrayList) clasesDAO.obtenerProductosMasComprados(fechaInicio, fechaFin);
             request.setAttribute("productosMasComprados", productosMasComprados);
 
             ArrayList diasMasCompras = (ArrayList) clasesDAO.obtenerDiasMasCompras();
@@ -30,7 +39,7 @@ public class GestorPeticionBDClasesAsignadas extends HttpServlet{
 
         catch(Exception e)
         {
-            System.out.println("Error en GestorPeticionClasesAsignadas 28");
+            System.out.println("Error en GestorPeticionClasesAsignadas 33");
             e.printStackTrace();;
         }
     }

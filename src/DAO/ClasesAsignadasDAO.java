@@ -96,7 +96,7 @@ public class ClasesAsignadasDAO {
                 } else {
                     try {
                         p = profesorDAO.obtenerProfesor(rs.getString("profesor"));
-                        c = new Clase(p, rs.getString("asignatura"), rs.getString("descripcion"), rs.getString("etapa"), Integer.parseInt(rs.getString("curso")));
+                        c = new Clase(p, rs.getString("asignatura"), "Asignada", rs.getString("etapa"), Integer.parseInt(rs.getString("curso")));
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -140,7 +140,7 @@ public class ClasesAsignadasDAO {
             while (rs.next()) {
                 try {
                     alu = alumnoDAO.obtenerAlumno(rs.getString("alumno"));
-                    Clase c = new Clase(alu, rs.getString("asignatura"), rs.getString("descripcion"), Integer.parseInt(rs.getString("curso")), rs.getString("etapa"));
+                    Clase c = new Clase(alu, rs.getString("asignatura"), "Asignada", Integer.parseInt(rs.getString("curso")), rs.getString("etapa"));
                     clases.add(c);
 
                 } catch (Exception e) {
@@ -237,16 +237,16 @@ public class ClasesAsignadasDAO {
     }
 
 
-    public Collection obtenerProductosMasComprados(Date fechainicio, Date fechafin) throws Exception {
+    public Collection obtenerProductosMasComprados(String fechainicio, String fechafin) throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
         java.sql.Date inicio=Fecha.formatoFecha(fechainicio);
         java.sql.Date fin=Fecha.formatoFecha(fechafin);
-        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso, COUNT(*) as cantidad FROM icarus.clasesasignadas WHERE fechacompra between ? and ? GROUP BY asignatura ORDER BY cantidad DESC LIMIT 15");
+        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso, fechacompra, COUNT(*) as cantidad FROM icarus.clasesasignadas WHERE fechacompra between ? and ? GROUP BY asignatura ORDER BY cantidad DESC, etapa, curso DESC LIMIT 15");
         ps.setDate(1,inicio);
         ps.setDate(2,fin);
         ResultSet rs_st = ps.executeQuery();
-        Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
+        Collection<Clase> clases = resultSetToCollectionProductosAgregados(rs_st);
         rs_st.close();
         con.close();
         return clases;
@@ -255,15 +255,48 @@ public class ClasesAsignadasDAO {
     public Collection obtenerDiasMasCompras() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso,fechacompra COUNT(*) as cantidad FROM icarus.clasesasignadas GROUP BY asignatura ORDER BY cantidad DESC LIMIT 15");
+        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso,fechacompra, COUNT(*) as cantidad FROM icarus.clasesasignadas GROUP BY fechacompra ORDER BY cantidad DESC, fechacompra DESC, etapa LIMIT 15");
         ResultSet rs_st = ps.executeQuery();
-        Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
+        Collection<Clase> clases = resultSetToCollectionFechasAgregadas(rs_st);
         rs_st.close();
         con.close();
         return clases;
     }
 
-        public void close() throws SQLException, ClassNotFoundException
+
+    private Collection<Clase> resultSetToCollectionProductosAgregados(ResultSet rs) throws Exception {
+        Collection<Clase> coleccion = new ArrayList<Clase>();
+        try {
+            ProfesorDAO profesorDAO = ProfesorDAO.getInstance();
+            while (rs.next()) {
+                Clase clase = new Clase(null, rs.getString("asignatura"), null, rs.getString("etapa"), rs.getInt("curso"));
+                clase.setFecha(rs.getString("fechacompra"));
+                clase.setCantidad(rs.getInt("cantidad"));
+                coleccion.add(clase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return coleccion;
+    }
+
+
+
+    private Collection<Clase> resultSetToCollectionFechasAgregadas(ResultSet rs) throws Exception {
+        Collection<Clase> coleccion = new ArrayList<Clase>();
+        try {
+            ProfesorDAO profesorDAO = ProfesorDAO.getInstance();
+            while (rs.next()) {
+                Clase clase = new Clase(rs.getString("fechacompra"), rs.getInt("cantidad"));
+                coleccion.add(clase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return coleccion;
+    }
+
+    public void close() throws SQLException, ClassNotFoundException
     {
         con.close();
     }

@@ -91,7 +91,7 @@ tr:nth-child(even) {
 
 .tabla-superior {
     width: 100%;
-    height: 200px;
+    height: 180px;
     overflow-y:scroll;
     position: relative;
     margin-top: 5px;
@@ -116,7 +116,7 @@ tr:nth-child(even) {
 
 .tabla-inferior {
     width: 100%;
-    height: 180px;
+    height: 170px;
     overflow-y:scroll;
     position: relative;
     margin-top: 5px;
@@ -208,4 +208,19 @@ button{
 
 .valor-seleccionado{
     display: none;
+}
+
+.boton{
+    margin-top:20px;
+    margin-bottom:10px;
+    background-color: dimgrey;
+    border: none;
+    color: white;
+    padding: 1% 2%;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
 }

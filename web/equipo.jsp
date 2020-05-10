@@ -47,13 +47,12 @@
             <img src="./images/miriam.jpg" alt="imagen_miriam" width="auto" height="35%" >
             <div class = "texto">
                 <h3 style="color:#757575; text-align: center;">Pablo de la Cueva García-H.</h3><br>
-                Estudiante de Universidad Pontificia Comillas (Ingeniería de Telecomunicaciones y Business Analytics) y
+                Estudiante de Universidad Politécnica de Madrid (Ingeniería Industrial) y
                 antiguo alumno del Colegio Nuestra Señora del Recuerdo. <br><br>
-                Tiene varios años de experiencia dando clases de apoyo en las distintas etapas educativas tanto
-                particulares como grupales.<br><br>
-                Es el mayor de cinco hermanos, le encanta el baloncesto, la vela y la programación.
-                Montó este proyecto en noviembre de 2018 con la idea de tener la experiencia de montar una
-                pequeña empresa y gestionar un equipo.<br><br>
+                Cuenta con experiencia previa de clases particulares en cursos de secundaria y bachillerato.
+                <br><br>
+                Se unió al equipo en 2020 para ayudar con la gestión del profesorado y el contacto exterior con
+                los clientes.<br><br>
             </div>
         </div>
     </div>

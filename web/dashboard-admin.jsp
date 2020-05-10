@@ -123,7 +123,10 @@
                     </div>
                 </form>
             </div>
-            <div class = "test" id="teest">test</div>
+            <div class = "test" id="teest"></div>
+            <form method="post"  action="GestorPeticionBDClasesAsignadas">
+                <input class = "boton" type = "submit" value = "Ir a Dashboard Secundario">
+            </form>
         </div>
 
 

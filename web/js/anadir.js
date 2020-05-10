@@ -4,6 +4,7 @@ var mensajeActualizacionAsignatura = document.getElementById("mensaje-validacion
 function validarFormularioNuevoProfesor(){
     var nombre = document.getElementById("nombre").value;
     var apellidos = document.getElementById("apellidos").value;
+    var usuario = document.getElementById("usuario").value;
     var codigo = document.getElementById("CP").value;
     var contrasena = document.getElementById("contrasena").value;
     var telefono = document.getElementById("telefono").value;
@@ -30,6 +31,11 @@ function validarFormularioNuevoProfesor(){
             mensajeErrorRelleno = "Introduzca un código postal válido."
         }
     }
+
+    if(usuario !== "") {
+        contadorCamposRellenos += 1;
+    }
+
 
     if(contrasena !== "") {
         contadorCamposRellenos += 1;

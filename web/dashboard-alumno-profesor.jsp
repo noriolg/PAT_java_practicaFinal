@@ -29,12 +29,12 @@
                 <div class = "tabla-clases-body">
                     <c:forEach var = "clase" items = "${sessionScope.misclases}">
                         <tr>
-                            <td class="columna"><c:if test="${clase.profesor==null}">Sin asignar</c:if>
+                            <td class="columna-left"><c:if test="${clase.profesor==null}">Sin asignar</c:if>
                                     ${clase.profesor.nombre}&nbsp;${clase.profesor.apellidos}</td>
-                            <td class="columna">${clase.asignatura}</td>
-                            <td class="columna">${clase.curso}º</td>
-                            <td class="columna">${clase.etapa}</td>
-                            <td class="columna">${clase.descripcion}</td>
+                            <td class="columna-left">${clase.asignatura}</td>
+                            <td class="columna-center">${clase.curso}º</td>
+                            <td class="columna-left">${clase.etapa}</td>
+                            <td class="columna-center">${clase.descripcion}</td>
                         </tr>
                     </c:forEach>
                 </div>
@@ -54,11 +54,11 @@
                     <div class = "tabla-clases-body">
                         <c:forEach var = "clase" items = "${sessionScope.misclases}">
                             <tr>
-                                <td class="columna">${clase.alumno.nombre}&nbsp;${clase.alumno.apellidos}</td>
-                                <td class="columna">${clase.asignatura}</td>
-                                <td class="columna">${clase.curso}º</td>
-                                <td class="columna">${clase.etapa}</td>
-                                <td class="columna">${clase.descripcion}</td>
+                                <td class="columna-left">${clase.alumno.nombre}&nbsp;${clase.alumno.apellidos}</td>
+                                <td class="columna-left">${clase.asignatura}</td>
+                                <td class="columna-center">${clase.curso}º</td>
+                                <td class="columna-left">${clase.etapa}</td>
+                                <td class="columna-center">${clase.descripcion}</td>
                             </tr>
                         </c:forEach>
                     </div>

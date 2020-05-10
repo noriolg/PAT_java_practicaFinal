@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.Date;
+
 public class Clase {
     private String profesorUser;
     private String alumnoUser;
@@ -13,6 +15,10 @@ public class Clase {
     private String etapa;
 
     private int idClase;
+    private String fecha;
+    private int cantidad;
+    private String infoAdmin;
+
 
 
     public Clase(Alumno alumno, String asignatura, String descripcion, int curso, String etapa) {
@@ -34,6 +40,11 @@ public class Clase {
         }else{
             this.setProfesorUser("null");
         }
+    }
+
+    public Clase(String fecha, int cantidad){
+        this.fecha = fecha;
+        this.cantidad = cantidad;
     }
 
     public int getCurso() {
@@ -76,6 +87,18 @@ public class Clase {
         return this.descripcion;
     }
 
+    public String getFecha() {
+        return fecha;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public String getInfoAdmin() {
+        return  this.asignatura+ " "+ this.curso+"º de "+this.etapa;
+    }
+
     public int getIdClase() {
         return idClase;
     }
@@ -107,4 +130,14 @@ public class Clase {
     public void setIdClase(int idClase) {
         this.idClase = idClase;
     }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 }
+
+

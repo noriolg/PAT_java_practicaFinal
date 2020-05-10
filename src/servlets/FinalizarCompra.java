@@ -27,7 +27,7 @@ public class FinalizarCompra extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
     }
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response){
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session=request.getSession();
         Alumno usuario=(Alumno) session.getAttribute("objetoAlumno");
@@ -46,6 +46,8 @@ public class FinalizarCompra extends HttpServlet {
         catch(Exception e)
         {
             System.out.println("Error en FinalizarCompra 56");
+            RequestDispatcher rd=request.getRequestDispatcher("index");
+            rd.forward(request,response);
             e.printStackTrace();;
         }
 
