@@ -1,6 +1,7 @@
 package DAO;
 
 
+import Util.Constantes;
 import dominio.*;
 
 import java.sql.*;
@@ -11,41 +12,34 @@ public class ClasesAsignadasDAO {
     private static ClasesAsignadasDAO clasesAsignadasDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = Constantes.BDPASS;
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
-    private ClasesAsignadasDAO() throws ClassNotFoundException, SQLException
-    {
+    private ClasesAsignadasDAO() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
     }
 
-    public static ClasesAsignadasDAO getInstance() throws SQLException, ClassNotFoundException
-    {
-        if(clasesAsignadasDAO!=null)
-        {
-            if(!clasesAsignadasDAO.isActiva())
+    public static ClasesAsignadasDAO getInstance() throws SQLException, ClassNotFoundException {
+        if (clasesAsignadasDAO != null) {
+            if (!clasesAsignadasDAO.isActiva())
                 clasesAsignadasDAO = new ClasesAsignadasDAO();
-        }
-        else
+        } else
             clasesAsignadasDAO = new ClasesAsignadasDAO();
         return clasesAsignadasDAO;
     }
 
-    private boolean isActiva() throws SQLException
-    {
+    private boolean isActiva() throws SQLException {
         return con.isValid(0);
     }
 
     // Método para hacer una consulta segura de matrícula
-    public boolean anadirClasesSinAsignar(Alumno alumno, Carrito carrito)
-    {
+    public boolean anadirClasesSinAsignar(Alumno alumno, Carrito carrito) {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
-            for (ClaseProducto c:carrito.getCarrito())
-            {
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+            for (ClaseProducto c : carrito.getCarrito()) {
                 PreparedStatement ps = con.prepareStatement("INSERT INTO clasesasignadas (profesor,alumno,asignatura,descripcion ,curso,etapa)  VALUES (?,?,?,?,?,?)");
                 ps.setString(1, "null");
                 ps.setString(2, alumno.getUsuario());
@@ -58,7 +52,7 @@ public class ClasesAsignadasDAO {
             }
             con.close();
             insercionOk = true;
-        }catch(SQLIntegrityConstraintViolationException e){
+        } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Fallo en ClasesAsignadasDAO linea 57");
             System.out.println(e);
             insercionOk = false;
@@ -79,36 +73,38 @@ public class ClasesAsignadasDAO {
         }
         return insercionOk;
     }
-    public ArrayList<Clase> obtenerClasesAsignadas(Alumno alumno){
-        ArrayList<Clase> clases=new ArrayList<Clase>();
-        try{
+
+    public ArrayList<Clase> obtenerClasesAsignadasDeAlumno(Alumno alumno) {
+        ArrayList<Clase> clases = new ArrayList<Clase>();
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
             PreparedStatement ps = con.prepareStatement("SELECT * FROM  clasesasignadas WHERE alumno= ?");
             ps.setString(1, alumno.getUsuario());
-            ResultSet rs=ps.executeQuery();
-            ProfesorDAO profesorDAO=ProfesorDAO.getInstance();
+            ResultSet rs = ps.executeQuery();
+            ProfesorDAO profesorDAO = ProfesorDAO.getInstance();
             Profesor p;
-            while(rs.next()){
-                Clase c=null;
-                if(rs.getString("profesor").equals("null")){
-                    c= new Clase(null,rs.getString("asignatura"),"Solicitud pendiente de asignación",rs.getString("etapa"),Integer.parseInt(rs.getString("curso")));
+            while (rs.next()) {
+                Clase c = null;
+                if (rs.getString("profesor").equals("null")) {
+                    c = new Clase(null, rs.getString("asignatura"), "Solicitud pendiente de asignación", rs.getString("etapa"), Integer.parseInt(rs.getString("curso")));
 
-                }else{
+                } else {
                     try {
-                        p=profesorDAO.obtenerProfesor(rs.getString("profesor"));
-                        c= new Clase(p,rs.getString("asignatura"),rs.getString("descripcion"),rs.getString("etapa"),Integer.parseInt(rs.getString("curso")));
+                        p = profesorDAO.obtenerProfesor(rs.getString("profesor"));
+                        c = new Clase(p, rs.getString("asignatura"), rs.getString("descripcion"), rs.getString("etapa"), Integer.parseInt(rs.getString("curso")));
 
-                    }catch (Exception e){
-                        e.printStackTrace();;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        ;
                     }
                 }
                 clases.add(c);
             }
             rs.close();
             con.close();
-            return  clases;
-        }catch(SQLIntegrityConstraintViolationException e){
+            return clases;
+        } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Fallo en ClasesAsignadasDAO linea 98");
             System.out.println(e);
 
@@ -126,30 +122,31 @@ public class ClasesAsignadasDAO {
         }
         return clases;
     }
-    public ArrayList<Clase> obtenerClasesAsignadas(Profesor profesor){
-        ArrayList<Clase> clases=new ArrayList<Clase>();
-        try{
+
+    public ArrayList<Clase> obtenerClasesAsignadasDeProfesor(Profesor profesor) {
+        ArrayList<Clase> clases = new ArrayList<Clase>();
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
             PreparedStatement ps = con.prepareStatement("SELECT * FROM  clasesasignadas WHERE profesor= ?");
             ps.setString(1, profesor.getUsuario());
-            ResultSet rs=ps.executeQuery();
-            AlumnoDAO alumnoDAO= AlumnoDAO.getInstance();
+            ResultSet rs = ps.executeQuery();
+            AlumnoDAO alumnoDAO = AlumnoDAO.getInstance();
             Alumno alu;
-            while(rs.next()){
-                try{
-                    alu=alumnoDAO.obtenerAlumno(rs.getString("alumno"));
-                    Clase c= new Clase(alu,rs.getString("asignatura"),rs.getString("descripcion"),Integer.parseInt(rs.getString("curso")),rs.getString("etapa"));
+            while (rs.next()) {
+                try {
+                    alu = alumnoDAO.obtenerAlumno(rs.getString("alumno"));
+                    Clase c = new Clase(alu, rs.getString("asignatura"), rs.getString("descripcion"), Integer.parseInt(rs.getString("curso")), rs.getString("etapa"));
                     clases.add(c);
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             rs.close();
             con.close();
-            return  clases;
-        }catch(SQLIntegrityConstraintViolationException e){
+            return clases;
+        } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Fallo en ClasesAsignadasDAO linea 131");
             System.out.println(e);
 
@@ -168,9 +165,100 @@ public class ClasesAsignadasDAO {
         return clases;
     }
 
-    public void close() throws SQLException, ClassNotFoundException
+    public Collection obtenerTodasClasesSinAsignar() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM icarus.clasesasignadas WHERE profesor = \"null\";");
+        ResultSet rs_st = ps.executeQuery();
+        Collection<Clase> clases = resultSetToCollectionSinAsignar(rs_st);
+        rs_st.close();
+        con.close();
+        return clases;
+    }
+
+    private Collection<Clase> resultSetToCollectionSinAsignar(ResultSet rs) {
+        Collection<Clase> coleccion = new ArrayList<Clase>();
+        try {
+            while (rs.next()) {
+                Clase clase = new Clase(null, rs.getString("asignatura"), null, rs.getString("etapa"), rs.getInt("curso"));
+                clase.setAlumnoUser(rs.getString("alumno"));
+                clase.setIdClase(rs.getInt("idclase"));
+                coleccion.add(clase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return coleccion;
+    }
+
+
+    public Collection obtenerTodasAsignadas() throws Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM icarus.clasesasignadas WHERE profesor != \"null\";");
+        ResultSet rs_st = ps.executeQuery();
+        Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
+        rs_st.close();
+        con.close();
+        return clases;
+    }
+
+    private Collection<Clase> resultSetToCollectionTodasAsignadas(ResultSet rs) throws Exception {
+        Collection<Clase> coleccion = new ArrayList<Clase>();
+        try {
+            ProfesorDAO profesorDAO = ProfesorDAO.getInstance();
+            while (rs.next()) {
+                String usuarioProfesor = rs.getString("profesor");
+                Profesor profesor = profesorDAO.obtenerProfesor(usuarioProfesor);
+                Clase clase = new Clase(profesor, rs.getString("asignatura"), null, rs.getString("etapa"), rs.getInt("curso"));
+                clase.setAlumnoUser(rs.getString("alumno"));
+                clase.setIdClase(rs.getInt("idclase"));
+                coleccion.add(clase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return coleccion;
+    }
+
+    public void asignarProfesorAClase(String userProf, String idclase) throws SQLException, ClassNotFoundException {
+        int idClase = Integer.parseInt(idclase);
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("UPDATE clasesasignadas SET profesor = ? where idclase = ?");
+        ps.setString(1, userProf);
+        ps.setInt(2, idClase);
+        int i = ps.executeUpdate();
+        con.close();
+    }
+
+
+    public Collection obtenerProductosMasComprados() throws Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso, COUNT(asignatura) as cantidad FROM icarus.clasesasignadas GROUP BY asignatura ORDER BY cantidad DESC LIMIT 15");
+        ResultSet rs_st = ps.executeQuery();
+        Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
+        rs_st.close();
+        con.close();
+        return clases;
+    }
+
+    public Collection obtenerDiasMasCompras() throws Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM icarus.clasesasignadas WHERE profesor != \"null\";");
+        ResultSet rs_st = ps.executeQuery();
+        Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
+        rs_st.close();
+        con.close();
+        return clases;
+    }
+
+        public void close() throws SQLException, ClassNotFoundException
     {
         con.close();
     }
+
 
 }

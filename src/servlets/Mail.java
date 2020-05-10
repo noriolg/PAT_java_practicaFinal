@@ -60,6 +60,7 @@ public class Mail extends javax.servlet.http.HttpServlet {
                 EmailUtility.sendEmailAutogenerado(host, port, user, pass,usuario.getEmail(), asunto,
                         mensaje_autogenerado);
                 response.sendRedirect("FinalizarCompra");
+                System.out.println("Llego al final");
 
             }
         } catch (Exception ex) {

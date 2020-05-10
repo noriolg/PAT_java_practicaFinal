@@ -4,7 +4,7 @@
 <%@taglib prefix ="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <html>
 <head>
-    <title>Anadir</title>
+    <title>Perfil</title>
     <link rel="stylesheet" type="text/css" href="css/editar-perfil.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >

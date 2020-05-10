@@ -15,13 +15,13 @@ public class ProfesorDAO {
     private static ProfesorDAO profesorDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = Constantes.BDPASS;
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private ProfesorDAO() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
     }
 
     public static ProfesorDAO getInstance() throws SQLException, ClassNotFoundException
@@ -44,7 +44,7 @@ public class ProfesorDAO {
     // Estos hay que repasarlos, para ver qué queremos conseguir cuando obtenemos un alumno.
     public Profesor obtenerProfesor(Usuario usuario) throws SQLException, ClassNotFoundException, Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
         PreparedStatement ps = con.prepareStatement("SELECT * FROM profesores WHERE  usuario = ? AND contrasena = ? ");
         ps.setString(1, usuario.getUsuario());
         ps.setString(2, usuario.getContrasena());
@@ -68,7 +68,7 @@ public class ProfesorDAO {
     }
     public Profesor obtenerProfesor(String usuario) throws SQLException, ClassNotFoundException, Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
         PreparedStatement ps = con.prepareStatement("SELECT * FROM profesores WHERE  usuario = ? ");
         ps.setString(1, usuario);;
         ResultSet rs = ps.executeQuery();
@@ -81,7 +81,6 @@ public class ProfesorDAO {
             numeroResultados ++;
         }
         rs.close();
-
         // Si se ha obtenido más de un resultado es que hay un error en la tabla
         if(numeroResultados != 1 ){
             con.close();
@@ -94,7 +93,7 @@ public class ProfesorDAO {
         boolean actualizacionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
             PreparedStatement ps = con.prepareStatement("UPDATE profesores SET contrasena = ?, nombre = ?, apellidos = ?, codigo = ?, email = ?, telefono = ?, descripcion = ?  where usuario = ?");
             ps.setString(1, profesor.getContrasena());
             ps.setString(2, profesor.getNombre());
@@ -123,7 +122,7 @@ public class ProfesorDAO {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
             PreparedStatement ps = con.prepareStatement("INSERT INTO profesores (usuario, contrasena, nombre, apellidos, codigo, email, telefono, usertype)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, profesor.getUsuario());
             ps.setString(2, profesor.getContrasena());
@@ -160,8 +159,8 @@ public class ProfesorDAO {
 
     public Collection obtenerCollectionProfesores() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT nombre, apellidos, descripcion FROM profesores WHERE USERTYPE = 1 ORDER BY apellidos;");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement("SELECT nombre, apellidos, descripcion, usuario FROM profesores WHERE USERTYPE = 1 ORDER BY apellidos;");
         ResultSet rs_st = ps.executeQuery();
         Collection<Profesor> profesores = resultSetToCollection(rs_st);
         rs_st.close();
@@ -173,7 +172,7 @@ public class ProfesorDAO {
         Collection<Profesor> coleccion = new ArrayList<Profesor>();
         try {
             while (rs.next()) {
-                Profesor prof = new Profesor(null, null, rs.getString("nombre"), rs.getString("apellidos"), 1, null, null, rs.getString("descripcion"));
+                Profesor prof = new Profesor(rs.getString("usuario"), null, rs.getString("nombre"), rs.getString("apellidos"), 1, null, null, rs.getString("descripcion"));
                 coleccion.add(prof);
             }
         } catch (SQLException e) {

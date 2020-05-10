@@ -42,10 +42,10 @@
 
         <li class="menu"><a href="contacto"><i class="fas fa-phone"></i>Contacto</a></li>
         <c:if test="${usertype==1}">
-            <li class="menu">Bienvenido de nuevo, ${objetoProfesor.usuario}</li>
+            <li class="menu" style="font-size:12px;">Bienvenido de nuevo, ${objetoProfesor.usuario}</li>
         </c:if>
         <c:if test="${usertype==2}">
-            <li class="menu">Bienvenido de nuevo, administrador</li>
+            <li class="menu" style="font-size:12px;">Bienvenido de nuevo, administrador</li>
         </c:if>
         <c:choose>
           <c:when test="${usertype == null}">
@@ -65,7 +65,7 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Alumno</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="GestorDashBoardAlumnoProfesor">Zona alumno</a></li>
+                      <li><a href="GestionDashBoardAlumnoProfesor">Zona alumno</a></li>
                       <li><a href="EditarPerfil">Mi perfil</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
@@ -77,7 +77,7 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Profesor</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="dashboard">Zona profesor</a></li>
+                      <li><a href="GestionDashBoardAlumnoProfesor">Zona profesor</a></li>
                       <li><a href="EditarPerfil">Mi perfil</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
@@ -89,8 +89,8 @@
                 <li class="menu"><a href="javascript:void(0)"><i class="fas fa-sign-in-alt"></i>Administrador</a>
                   <div class="menu-inferior">
                     <ul>
-                      <li><a href="#">Dashboard</a></li>
-                      <li><a href="log-acciones">Registro</a></li>
+                      <li><a href="GestionDashboardAdmin">Dashboard</a></li>
+                      <li><a href="GestorPeticionBDAcciones">Registro</a></li>
                       <li><a href="anadir">Añadir</a></li>
                       <li><a href="CierreSesion">Cerrar sesión</a></li>
                     </ul>
@@ -121,7 +121,7 @@
                       <c:forEach var="entry" items="${sessionScope.carrito.carrito}" >
                         <li class="numero-elem"><c:out value="${entry.toString()}"/></li>
                       </c:forEach>
-                      <form id="comprar" method="post" action="Mail">
+                      <form id="comprar" method="post" action="FinalizarCompra">
                         <input name="submit" id="submitFin" class="submitFin" type="submit" value="Solicitar">
                       </form>
                       <form id="vaciar" method="post" action="GestorClasesProducto">

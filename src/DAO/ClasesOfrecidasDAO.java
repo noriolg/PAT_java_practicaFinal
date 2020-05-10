@@ -1,6 +1,7 @@
 package DAO;
 
 
+import Util.Constantes;
 import dominio.ClaseProducto;
 import dominio.Usuario;
 
@@ -12,13 +13,13 @@ public class ClasesOfrecidasDAO {
     private static ClasesOfrecidasDAO clasesOfrecidasDAO;
     private Connection con;
     private static final String USER = "root";
-    private static final String PASSWORD = "icai";
+    private static final String PASSWORD = Constantes.BDPASS;
     // Date en mysql es '0000-00-00' 'YYYY-MM-DD'
 
     private ClasesOfrecidasDAO() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
     }
 
     public static ClasesOfrecidasDAO getInstance() throws SQLException, ClassNotFoundException
@@ -40,7 +41,7 @@ public class ClasesOfrecidasDAO {
 
     public ArrayList<ClaseProducto> obtenerClases(String etapa) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
         PreparedStatement ps = con.prepareStatement("SELECT * FROM clasesofrecidas WHERE  etapa = ? order by curso, asignatura");
         ps.setString(1, etapa);
         ResultSet rs = ps.executeQuery();
@@ -74,7 +75,7 @@ public class ClasesOfrecidasDAO {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus", USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
             PreparedStatement ps = con.prepareStatement("INSERT INTO clasesofrecidas (asignatura, curso, etapa )  VALUES (?, ?, ?)");
             ps.setString(1, claseProducto.getAsignatura());
             ps.setInt(2, claseProducto.getCurso());

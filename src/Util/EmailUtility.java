@@ -104,9 +104,6 @@ public class EmailUtility {
         msg.setSubject(asunto);
         msg.setSentDate(new Date());
         msg.setText(message);
-
-
         Transport.send(msg);
-
     }
 }

@@ -1,27 +1,39 @@
 package dominio;
 
 public class Clase {
-    private Profesor profesorUser;
-    private Alumno alumnoUser;
+    private String profesorUser;
+    private String alumnoUser;
+
+    private Profesor profesor;
+    private Alumno alumno;
+
     private String asignatura;
     private String descripcion;
     private int curso;
     private String etapa;
 
+    private int idClase;
 
-    public Clase(Alumno alumnoUser, String asignatura, String descripcion, int curso, String etapa) {
-        this.alumnoUser = alumnoUser;
+
+    public Clase(Alumno alumno, String asignatura, String descripcion, int curso, String etapa) {
+        this.alumno = alumno;
         this.asignatura = asignatura;
         this.descripcion = descripcion;
         this.curso = curso;
         this.etapa = etapa;
+        this.setAlumnoUser(alumno.getUsuario());
     }
-    public Clase( Profesor profesorUser, String asignatura, String descripcion,String etapa, int curso) {
-        this.profesorUser = profesorUser;
+    public Clase( Profesor profesor, String asignatura, String descripcion,String etapa, int curso) {
+        this.profesor = profesor;
         this.asignatura = asignatura;
         this.descripcion = descripcion;
         this.curso = curso;
         this.etapa = etapa;
+        if (profesor != null){
+            this.setProfesorUser(profesor.getUsuario());
+        }else{
+            this.setProfesorUser("null");
+        }
     }
 
     public int getCurso() {
@@ -40,13 +52,20 @@ public class Clase {
         this.etapa = etapa;
     }
 
-    public Profesor getProfesorUser() {
-        return this.profesorUser;
+    public Profesor getProfesor() {
+        return this.profesor;
     }
 
+    public Alumno getAlumno() {
+        return this.alumno;
+    }
 
-    public Alumno getAlumnoUser() {
-        return this.alumnoUser;
+    public String getAlumnoUser() {
+        return alumnoUser;
+    }
+
+    public String getProfesorUser() {
+        return profesorUser;
     }
 
     public String getAsignatura() {
@@ -57,13 +76,24 @@ public class Clase {
         return this.descripcion;
     }
 
-
-    public void setProfesorUser(Profesor profesorUser) {
-        this.profesorUser = profesorUser;
+    public int getIdClase() {
+        return idClase;
     }
 
-    public void setAlumnoUser(Alumno alumnoUser) {
+    public void setProfesor(Profesor profesorUser) {
+        this.profesor = profesor;
+    }
+
+    public void setAlumno(Alumno alumnoUser) {
+        this.alumno = alumno;
+    }
+
+    public void setAlumnoUser(String alumnoUser) {
         this.alumnoUser = alumnoUser;
+    }
+
+    public void setProfesorUser(String profesorUser) {
+        this.profesorUser = profesorUser;
     }
 
     public void setAsignatura(String asignatura) {
@@ -72,5 +102,9 @@ public class Clase {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
     }
 }

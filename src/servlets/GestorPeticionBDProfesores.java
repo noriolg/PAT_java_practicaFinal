@@ -21,13 +21,11 @@ public class GestorPeticionBDProfesores extends HttpServlet{
             ProfesorDAO profesorDAO = ProfesorDAO.getInstance();
             ArrayList profesores = (ArrayList) profesorDAO.obtenerCollectionProfesores();
             request.setAttribute("listaProfesores", profesores);
-            System.out.println("Eo");
-            System.out.println(profesores);
         }
 
         catch(Exception e)
         {
-            System.out.println("Error en InsercionAdmin 46");
+            System.out.println("Error en GestionPeticionBDProfesores 28");
             e.printStackTrace();;
         }
         request.getRequestDispatcher("profesores").forward(request,response);

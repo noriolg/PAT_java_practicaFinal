@@ -28,6 +28,7 @@ public class FinalizarCompra extends HttpServlet {
         processRequest(request,response);
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response){
+
         HttpSession session=request.getSession();
         Alumno usuario=(Alumno) session.getAttribute("objetoAlumno");
         Carrito carrito=(Carrito) session.getAttribute("carrito");
@@ -46,7 +47,7 @@ public class FinalizarCompra extends HttpServlet {
         }
         catch(Exception e)
         {
-            System.out.println("Error en Autenticacion 51");
+            System.out.println("Error en FinalizarCompra 56");
             e.printStackTrace();;
         }
 

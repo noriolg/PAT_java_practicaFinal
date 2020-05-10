@@ -31,13 +31,13 @@ public class GestionDashBoardAlumnoProfesor extends HttpServlet {
             try{
                 Alumno alumno =(Alumno) session.getAttribute("objetoAlumno");
                 ClasesAsignadasDAO bdclases = ClasesAsignadasDAO.getInstance();
-                ArrayList<Clase> clases= bdclases.obtenerClasesAsignadas(alumno);
+                ArrayList<Clase> clases= bdclases.obtenerClasesAsignadasDeAlumno(alumno);
                 for (Clase c:clases) {
                     System.out.println(c.getDescripcion());
 
                 }
                 session.setAttribute("misclases",clases);
-                response.sendRedirect("dashboard");
+                response.sendRedirect("dashboard-alumno-profesor");
 
             }catch (Exception e){
                 System.out.println("Error en Dashboard alumno");
@@ -47,9 +47,9 @@ public class GestionDashBoardAlumnoProfesor extends HttpServlet {
             try{
                 Profesor profesor=(Profesor)session.getAttribute("objetoProfesor");
                 ClasesAsignadasDAO bdclases = ClasesAsignadasDAO.getInstance();
-                ArrayList<Clase> clases= bdclases.obtenerClasesAsignadas(profesor);
+                ArrayList<Clase> clases= bdclases.obtenerClasesAsignadasDeProfesor(profesor);
                 session.setAttribute("misclases",clases);
-                response.sendRedirect("dashboard");
+                response.sendRedirect("dashboard-alumno-profesor");
 
             }catch (Exception e){
                 System.out.println("Error Error en Dashboard profesor");

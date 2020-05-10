@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Anadir</title>
+    <title>Perfil</title>
     <link rel="stylesheet" type="text/css" href="css/editar-perfil.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel='shortcut icon' type='image/x-icon' href="images/favicon.ico" >
@@ -16,7 +16,7 @@
     <div class = "contenido">
         <sql:setDataSource var = "db" driver = "com.mysql.jdbc.Driver"
                            url = "jdbc:mysql://localhost/icarus"
-                           user = "root"  password = "icai"/>
+                           user = "root"  password = "root"/>
         <sql:query dataSource = "${db}" var = "result">
             SELECT * FROM alumnos WHERE usuario = '${username}' LIMIT 1 ;
         </sql:query>

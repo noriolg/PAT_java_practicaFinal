@@ -1,43 +1,38 @@
 package servlets;
 
 import DAO.AccionDAO;
-import DAO.ClasesOfrecidasDAO;
-import DAO.ProfesorDAO;
-import DAO.UsuarioDAO;
-import Util.Constantes;
-import Util.StringFormatter;
-import dominio.Accion;
-import dominio.ClaseProducto;
-import dominio.Profesor;
-import dominio.Usuario;
+import DAO.ClasesAsignadasDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-public class GestorPeticionBDAcciones extends HttpServlet{
+public class GestorPeticionBDClasesAsignadas extends HttpServlet{
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         try
         {
-            AccionDAO accionDAO = AccionDAO.getInstance();
-            ArrayList acciones = (ArrayList) accionDAO.obtenerCollectionAcciones();
-            request.setAttribute("listaAcciones", acciones);
+            ClasesAsignadasDAO clasesDAO = ClasesAsignadasDAO.getInstance();
+            ArrayList productosMasComprados = (ArrayList) clasesDAO.obtenerProductosMasComprados();
+            request.setAttribute("productosMasComprados", productosMasComprados);
+
+            ArrayList diasMasCompras = (ArrayList) clasesDAO.obtenerDiasMasCompras();
+            request.setAttribute("diasMascompras", diasMasCompras);
+
+            request.getRequestDispatcher("info-compras").forward(request,response);
         }
 
         catch(Exception e)
         {
-            System.out.println("Error en  GestorPeticionBDAcciones 37");
+            System.out.println("Error en GestorPeticionClasesAsignadas 28");
             e.printStackTrace();;
         }
-        request.getRequestDispatcher("log-acciones").forward(request,response);
     }
 
     @Override
