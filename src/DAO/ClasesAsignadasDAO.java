@@ -20,7 +20,7 @@ public class ClasesAsignadasDAO {
 
     private ClasesAsignadasDAO() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
     }
 
     public static ClasesAsignadasDAO getInstance() throws SQLException, ClassNotFoundException {
@@ -41,7 +41,7 @@ public class ClasesAsignadasDAO {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
             for (ClaseProducto c : carrito.getCarrito()) {
                 PreparedStatement ps = con.prepareStatement("INSERT INTO clasesasignadas (profesor,alumno,asignatura,descripcion ,curso,etapa,fechacompra)  VALUES (?,?,?,?,?,?,?)");
                 ps.setString(1, "null");
@@ -82,7 +82,7 @@ public class ClasesAsignadasDAO {
         ArrayList<Clase> clases = new ArrayList<Clase>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
             PreparedStatement ps = con.prepareStatement("SELECT * FROM  clasesasignadas WHERE alumno= ?");
             ps.setString(1, alumno.getUsuario());
             ResultSet rs = ps.executeQuery();
@@ -131,7 +131,7 @@ public class ClasesAsignadasDAO {
         ArrayList<Clase> clases = new ArrayList<Clase>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
             PreparedStatement ps = con.prepareStatement("SELECT * FROM  clasesasignadas WHERE profesor= ?");
             ps.setString(1, profesor.getUsuario());
             ResultSet rs = ps.executeQuery();
@@ -171,8 +171,8 @@ public class ClasesAsignadasDAO {
 
     public Collection obtenerTodasClasesSinAsignar() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM icarus.clasesasignadas WHERE profesor = \"null\";");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM clasesasignadas WHERE profesor = \"null\";");
         ResultSet rs_st = ps.executeQuery();
         Collection<Clase> clases = resultSetToCollectionSinAsignar(rs_st);
         rs_st.close();
@@ -198,8 +198,8 @@ public class ClasesAsignadasDAO {
 
     public Collection obtenerTodasAsignadas() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM icarus.clasesasignadas WHERE profesor != \"null\";");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM clasesasignadas WHERE profesor != \"null\";");
         ResultSet rs_st = ps.executeQuery();
         Collection<Clase> clases = resultSetToCollectionTodasAsignadas(rs_st);
         rs_st.close();
@@ -228,7 +228,7 @@ public class ClasesAsignadasDAO {
     public void asignarProfesorAClase(String userProf, String idclase) throws SQLException, ClassNotFoundException {
         int idClase = Integer.parseInt(idclase);
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
         PreparedStatement ps = con.prepareStatement("UPDATE clasesasignadas SET profesor = ? where idclase = ?");
         ps.setString(1, userProf);
         ps.setInt(2, idClase);
@@ -239,10 +239,10 @@ public class ClasesAsignadasDAO {
 
     public Collection obtenerProductosMasComprados(String fechainicio, String fechafin) throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
         java.sql.Date inicio=Fecha.formatoFecha(fechainicio);
         java.sql.Date fin=Fecha.formatoFecha(fechafin);
-        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso, fechacompra, COUNT(*) as cantidad FROM icarus.clasesasignadas WHERE fechacompra between ? and ? GROUP BY asignatura ORDER BY cantidad DESC, etapa, curso DESC LIMIT 15");
+        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso, fechacompra, COUNT(*) as cantidad FROM clasesasignadas WHERE fechacompra between ? and ? GROUP BY asignatura ORDER BY cantidad DESC, etapa, curso DESC LIMIT 15");
         ps.setDate(1,inicio);
         ps.setDate(2,fin);
         ResultSet rs_st = ps.executeQuery();
@@ -254,8 +254,8 @@ public class ClasesAsignadasDAO {
 
     public Collection obtenerDiasMasCompras() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
-        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso,fechacompra, COUNT(*) as cantidad FROM icarus.clasesasignadas GROUP BY fechacompra ORDER BY cantidad DESC, fechacompra DESC, etapa LIMIT 15");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
+        PreparedStatement ps = con.prepareStatement("SELECT asignatura, etapa, curso,fechacompra, COUNT(*) as cantidad FROM clasesasignadas GROUP BY fechacompra ORDER BY cantidad DESC, fechacompra DESC, etapa LIMIT 15");
         ResultSet rs_st = ps.executeQuery();
         Collection<Clase> clases = resultSetToCollectionFechasAgregadas(rs_st);
         rs_st.close();

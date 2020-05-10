@@ -1,8 +1,7 @@
 package Util;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-
+import java.util.Date;
 public class Fecha {
     public static java.sql.Date obtenerFecha()
     {
@@ -11,7 +10,7 @@ public class Fecha {
         return fechasql;
     }
     public static  java.sql.Date formatoFecha(String fecha){
-        java.sql.Date fechasql = java.sql.Date.valueOf(fecha);
+        java.sql.Date fechasql=java.sql.Date.valueOf(fecha);
         return fechasql;
     }
 }

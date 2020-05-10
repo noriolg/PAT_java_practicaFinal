@@ -145,3 +145,6 @@ form{
     cursor: pointer;
     border-radius: 10px;
 }
+.boton:hover{
+    background: #34495e;
+}

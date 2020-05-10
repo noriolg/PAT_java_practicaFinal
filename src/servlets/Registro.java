@@ -105,11 +105,11 @@ public class Registro extends HttpServlet{
 
     private void resolverRegistro(boolean booleanExitoso, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (booleanExitoso){
-            request.setAttribute("mensajeacceso", "Registrado correctamente");
+            request.setAttribute("mensajeregistro", "Registrado correctamente");
             request.getRequestDispatcher("/acceso").forward(request, response);
         }
         else{
-            request.setAttribute("mensajeacceso", "Nombre de usuario ya existe");
+            request.setAttribute("mensajeregistro", "Nombre de usuario ya existe");
             request.getRequestDispatcher("/registro").forward(request, response);
         }
     }

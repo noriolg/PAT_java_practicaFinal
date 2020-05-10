@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMessage;
 public class EmailUtility {
     public static void sendEmailContacto(String host, String port,
                                  final String origen, final String password, String destinatario,
-                                  final String asunto, String message, String telefono, String nombre) throws AddressException,
+                                  final String asunto, String message, String telefono, String nombre,String cliente) throws AddressException,
             MessagingException {
 
         Properties properties = new Properties();
@@ -39,7 +39,7 @@ public class EmailUtility {
         msg.setRecipients(Message.RecipientType.TO, destinatarios);
         msg.setSubject(asunto);
         msg.setSentDate(new Date());
-        msg.setText(nombre+" ha escrito: "+message+"\nEl teléfono del cliente es: "+telefono+"\nEl correo del cliente es: "+destinatario);
+        msg.setText(nombre+" ha escrito: "+message+"\nEl teléfono del cliente es: "+telefono+"\nEl correo del cliente es: "+cliente);
 
 
         Transport.send(msg);

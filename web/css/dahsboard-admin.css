@@ -224,3 +224,9 @@ button{
     margin-left: 25%;
     margin-right: 25%;
 }
+.asignar:hover{
+    background: #34495e;
+}
+.boton:hover{
+    background: #34495e;
+}

@@ -6,6 +6,7 @@ import DAO.ProfesorDAO;
 import DAO.UsuarioDAO;
 import Servicios.CarritoServicio;
 import Util.Constantes;
+import Util.SecurityFilter;
 import dominio.Alumno;
 import dominio.Carrito;
 import dominio.Usuario;
@@ -27,29 +28,32 @@ public class FinalizarCompra extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
     }
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        if(!SecurityFilter.CheckUserType(0,request)){
 
-        HttpSession session=request.getSession();
-        Alumno usuario=(Alumno) session.getAttribute("objetoAlumno");
-        Carrito carrito=(Carrito) session.getAttribute("carrito");
+        }else{
+            HttpSession session=request.getSession();
+            Alumno usuario=(Alumno) session.getAttribute("objetoAlumno");
+            Carrito carrito=(Carrito) session.getAttribute("carrito");
 
-        try
-        {
-            ClasesAsignadasDAO clasesAsignadasDAO = ClasesAsignadasDAO.getInstance();
-            boolean insercion=clasesAsignadasDAO.anadirClasesSinAsignar(usuario,carrito);
-            if(insercion)
+            try
             {
-                RequestDispatcher rd=request.getRequestDispatcher("Mail");
+                ClasesAsignadasDAO clasesAsignadasDAO = ClasesAsignadasDAO.getInstance();
+                boolean insercion=clasesAsignadasDAO.anadirClasesSinAsignar(usuario,carrito);
+                if(insercion)
+                {
+                    RequestDispatcher rd=request.getRequestDispatcher("Mail");
+                    rd.forward(request,response);
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error en FinalizarCompra 56");
+                RequestDispatcher rd=request.getRequestDispatcher("index");
                 rd.forward(request,response);
             }
         }
-        catch(Exception e)
-        {
-            System.out.println("Error en FinalizarCompra 56");
-            RequestDispatcher rd=request.getRequestDispatcher("index");
-            rd.forward(request,response);
-            e.printStackTrace();;
-        }
+
 
     }
 }

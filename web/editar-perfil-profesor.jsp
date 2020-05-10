@@ -15,8 +15,8 @@
 </div>
 <div class = "contenido">
     <sql:setDataSource var = "db" driver = "com.mysql.jdbc.Driver"
-                       url = "jdbc:mysql://localhost/icarus"
-                       user = "root"  password = "root"/>
+                       url = "jdbc:mysql://localhost/pat_9"
+                       user = "pat"  password = "pat"/>
     <sql:query dataSource = "${db}" var = "result">
         SELECT * FROM profesores WHERE usuario = '${username}' LIMIT 1 ;
     </sql:query>

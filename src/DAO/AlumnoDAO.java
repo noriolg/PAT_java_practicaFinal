@@ -21,7 +21,7 @@ public class AlumnoDAO {
     private AlumnoDAO() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/icarus?useSSL=false", USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/"+Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
     }
 
     public static AlumnoDAO getInstance() throws SQLException, ClassNotFoundException
@@ -47,7 +47,7 @@ public class AlumnoDAO {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
             PreparedStatement ps = con.prepareStatement("INSERT INTO alumnos (usuario, contrasena, nombre, apellidos, codigo, email, telefono, etapa, curso)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, alumno.getUsuario());
             ps.setString(2, alumno.getContrasena());
@@ -85,7 +85,7 @@ public class AlumnoDAO {
     // Estos hay que repasarlos, para ver qué queremos conseguir cuando obtenemos un alumno.
     public Alumno obtenerAlumno(Usuario usuario) throws SQLException, ClassNotFoundException, Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
         PreparedStatement ps = con.prepareStatement("SELECT * FROM alumnos WHERE  usuario = ? AND contrasena = ? ");
         ps.setString(1, usuario.getUsuario());
         ps.setString(2, usuario.getContrasena());
@@ -109,7 +109,7 @@ public class AlumnoDAO {
     }
     public Alumno obtenerAlumno(String usuario) throws SQLException, ClassNotFoundException, Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
         PreparedStatement ps = con.prepareStatement("SELECT * FROM alumnos WHERE  usuario = ? ");
         ps.setString(1, usuario);
         ResultSet rs = ps.executeQuery();
@@ -152,7 +152,7 @@ public class AlumnoDAO {
         boolean actualizacionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
             PreparedStatement ps = con.prepareStatement("UPDATE alumnos SET contrasena = ?, nombre = ?, apellidos = ?, codigo = ?, email = ?, telefono = ?, etapa = ?, curso = ?  where usuario = ?");
             ps.setString(1, alumno.getContrasena());
             ps.setString(2, alumno.getNombre());

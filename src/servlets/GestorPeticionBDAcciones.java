@@ -5,6 +5,7 @@ import DAO.ClasesOfrecidasDAO;
 import DAO.ProfesorDAO;
 import DAO.UsuarioDAO;
 import Util.Constantes;
+import Util.SecurityFilter;
 import Util.StringFormatter;
 import dominio.Accion;
 import dominio.ClaseProducto;
@@ -25,19 +26,23 @@ public class GestorPeticionBDAcciones extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        try
-        {
-            AccionDAO accionDAO = AccionDAO.getInstance();
-            ArrayList acciones = (ArrayList) accionDAO.obtenerCollectionAcciones();
-            request.setAttribute("listaAcciones", acciones);
-        }
+        if(!SecurityFilter.CheckUserType(2,request) ){
+            response.sendRedirect("index");
+        }else{
+            try
+            {
+                AccionDAO accionDAO = AccionDAO.getInstance();
+                ArrayList acciones = (ArrayList) accionDAO.obtenerCollectionAcciones();
+                request.setAttribute("listaAcciones", acciones);
+            }
 
-        catch(Exception e)
-        {
-            System.out.println("Error en  GestorPeticionBDAcciones 37");
-            e.printStackTrace();;
+            catch(Exception e)
+            {
+                System.out.println("Error en  GestorPeticionBDAcciones 37");
+                e.printStackTrace();;
+            }
+            request.getRequestDispatcher("log-acciones").forward(request,response);
         }
-        request.getRequestDispatcher("log-acciones").forward(request,response);
     }
 
     @Override

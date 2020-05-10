@@ -5,7 +5,9 @@ import DAO.AlumnoDAO;
 import DAO.ProfesorDAO;
 import DAO.UsuarioDAO;
 import Util.Constantes;
+import Util.SecurityFilter;
 import Util.StringFormatter;
+import Util.Xor;
 import dominio.Accion;
 import dominio.Alumno;
 import dominio.Profesor;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Security;
 import java.sql.SQLException;
 
 
@@ -25,67 +28,69 @@ public class EditarPerfil extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        if(!Xor.logicalXOR(SecurityFilter.CheckUserType(0,request),SecurityFilter.CheckUserType(1,request))){
+            response.sendRedirect("index");
+        }else{
+            String perfilProfesor = request.getParameter("submitActualizacionProfesor");
+            String perfilAlumno = request.getParameter("submitActualizacionAlumno");
+            String pathRetorno = "index"; // Por defecto por si hay algún error
+            cambiarContrasena = false; // Indica si se ha realizado un cambio de contrasena
 
-        // Se obtiene el boton que se ha pulsado. El que no se haya pulsado devolvera null
-        // Si se viene aquí desde cabecera, ambos serán null. Esto se hace para eliminar posibles mensajes en la sesion.
-        String perfilProfesor = request.getParameter("submitActualizacionProfesor");
-        String perfilAlumno = request.getParameter("submitActualizacionAlumno");
-        String pathRetorno = "index"; // Por defecto por si hay algún error
-        cambiarContrasena = false; // Indica si se ha realizado un cambio de contrasena
-
-        try
-        {
-            if(perfilProfesor != null)
+            try
             {
-                // Se está editando un perfil de profesor, se crea el objeto profesor a introducir,
-                Profesor profesor = crearProfesor(request);
+                if(perfilProfesor != null)
+                {
+                    // Se está editando un perfil de profesor, se crea el objeto profesor a introducir,
+                    Profesor profesor = crearProfesor(request);
 
-                // Se inserta y se comprueba si se ha hecho correctamente
-                if(actualizarProfesor(profesor)){
-                    logAccion(Constantes.PROFESOR,"Se ha editado un perfil. Usuario: " + profesor.getUsuario());
-                    pathRetorno = "editar-perfil-profesor";
-                    request.setAttribute("mensajeActualizacion", "Actualización ejecutada correctamente");
-                    System.out.println(request.getAttribute("mensajeActualizacion"));
+                    // Se inserta y se comprueba si se ha hecho correctamente
+                    if(actualizarProfesor(profesor)){
+                        logAccion(Constantes.PROFESOR,"Se ha editado un perfil. Usuario: " + profesor.getUsuario());
+                        pathRetorno = "editar-perfil-profesor";
+                        request.setAttribute("mensajeActualizacion", "Actualización ejecutada correctamente");
+                        System.out.println(request.getAttribute("mensajeActualizacion"));
+                    }
+                    else{
+                        System.out.println("Actualizacion ko 44");
+                    }
+                }
+                else if(perfilAlumno != null)
+                {
+                    // Se está editando un perfil de un alumno, se crea el objeto alumno a introducir.
+                    Alumno alumno = crearAlumno(request);
+                    // Se inserta y se comprueba si se ha hecho correctamente
+                    if(actualizarAlumno(alumno)){
+                        logAccion(Constantes.ALUMNO,"Se ha editado un perfil. Usuario: " + alumno.getUsuario());
+                        pathRetorno = "editar-perfil-alumno";
+                        request.setAttribute("mensajeActualizacion", "Actualizacion ejecutada correctamente");
+                    }
+                    else{
+                        System.out.println("Actualización ko 57");
+                    }
                 }
                 else{
-                    System.out.println("Actualizacion ko 44");
-                }
-            }
-            else if(perfilAlumno != null)
-            {
-                // Se está editando un perfil de un alumno, se crea el objeto alumno a introducir.
-                Alumno alumno = crearAlumno(request);
-                // Se inserta y se comprueba si se ha hecho correctamente
-                if(actualizarAlumno(alumno)){
-                    logAccion(Constantes.ALUMNO,"Se ha editado un perfil. Usuario: " + alumno.getUsuario());
-                    pathRetorno = "editar-perfil-alumno";
-                    request.setAttribute("mensajeActualizacion", "Actualizacion ejecutada correctamente");
-                }
-                else{
-                    System.out.println("Actualización ko 57");
-                }
-            }
-            else{
-                // A la entrada de cualquier actualizacion se pasa por aquí para borrar
-                // un posible mensaje que haya en la sesión de alguna actualización pasada.
-                if(request.getAttribute("mensajeActualizacion") != null){
-                    request.removeAttribute("mensajeActualizacion");
-                }
+                    // A la entrada de cualquier actualizacion se pasa por aquí para borrar
+                    // un posible mensaje que haya en la sesión de alguna actualización pasada.
+                    if(request.getAttribute("mensajeActualizacion") != null){
+                        request.removeAttribute("mensajeActualizacion");
+                    }
 
-                if(Integer.valueOf(0) == request.getSession().getAttribute("usertype")){
-                    pathRetorno = "editar-perfil-alumno";
-                }else{
-                    pathRetorno = "editar-perfil-profesor";
+                    if(Integer.valueOf(0) == request.getSession().getAttribute("usertype")){
+                        pathRetorno = "editar-perfil-alumno";
+                    }else{
+                        pathRetorno = "editar-perfil-profesor";
+                    }
                 }
+                // Depende del camino que se haya seguido
+                request.getRequestDispatcher(pathRetorno).forward(request, response);
             }
-            // Depende del camino que se haya seguido
-            request.getRequestDispatcher(pathRetorno).forward(request, response);
+            catch(Exception e)
+            {
+                System.out.println("Error en EditarPerfil 67");
+                e.printStackTrace();;
+            }
         }
-        catch(Exception e)
-        {
-            System.out.println("Error en EditarPerfil 67");
-            e.printStackTrace();;
-        }
+
     }
 
     private Profesor crearProfesor(HttpServletRequest request){

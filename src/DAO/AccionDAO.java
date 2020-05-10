@@ -47,7 +47,7 @@ public class AccionDAO {
         boolean insercionOk;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
             PreparedStatement ps = con.prepareStatement("INSERT INTO log (timestamp , usertype, descripcion)  VALUES (?, ?, ?)");
             ps.setString(1, accion.getTimestamp().toString());
             ps.setInt(2, accion.getUserType());
@@ -78,7 +78,7 @@ public class AccionDAO {
 
     public Collection<Accion> obtenerCollectionAcciones() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, USER, PASSWORD);
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + Constantes.BDNAME, Constantes.BDUSER,Constantes.BDPASS);
         PreparedStatement ps = con.prepareStatement("SELECT * FROM log ORDER BY timestamp DESC LIMIT 15");
         ResultSet rs = ps.executeQuery();
         Collection<Accion> acciones = resultSetToCollection(rs);

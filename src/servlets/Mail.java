@@ -52,7 +52,7 @@ public class Mail extends javax.servlet.http.HttpServlet {
                 EmailUtility.sendEmailAutogenerado(host, port, user, pass,destinatario, asunto,
                         mensaje_autogenerado);
                 EmailUtility.sendEmailContacto(host, port, user, pass,user, asunto,
-                        mensaje,telefono,nombre);
+                        mensaje,telefono,nombre,destinatario);
                 request.setAttribute("mensajeSatisfactorio","El e-mail se envió correctamente");
                 RequestDispatcher rd= request.getRequestDispatcher("contacto");
                 rd.forward(request,response);
@@ -67,10 +67,8 @@ public class Mail extends javax.servlet.http.HttpServlet {
                         mensaje_autogenerado);
                 request.setAttribute("mensajeCompra","Se ha realizado la compra correctamente");
                 new CarritoServicio(request).vaciar();
-                RequestDispatcher rd =request.getRequestDispatcher("index");
-
                 logAccion(Constantes.ALUMNO,"Producto solicitado. Usuario: " + usuario.getUsuario());
-
+                RequestDispatcher rd =request.getRequestDispatcher("index");
                 rd.forward(request,response);
                 System.out.println("Llego al final");
 
@@ -83,9 +81,10 @@ public class Mail extends javax.servlet.http.HttpServlet {
 
         }
     }
-
     private void logAccion(int usertype, String descripcion) throws SQLException, ClassNotFoundException {
         AccionDAO accionDAO = AccionDAO.getInstance();
         accionDAO.anadirAccion(new Accion(usertype, descripcion));
     }
 }
+
+

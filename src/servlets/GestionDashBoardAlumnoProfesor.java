@@ -2,6 +2,8 @@ package servlets;
 
 import DAO.ClasesAsignadasDAO;
 import DAO.UsuarioDAO;
+import Util.SecurityFilter;
+import Util.Xor;
 import dominio.Alumno;
 import dominio.Clase;
 import dominio.Profesor;
@@ -25,36 +27,38 @@ public class GestionDashBoardAlumnoProfesor extends HttpServlet {
         processRequest(request,response);
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
-        int tipo= (int)session.getAttribute("usertype");
-        if(tipo==0){
-            try{
-                Alumno alumno =(Alumno) session.getAttribute("objetoAlumno");
-                ClasesAsignadasDAO bdclases = ClasesAsignadasDAO.getInstance();
-                ArrayList<Clase> clases= bdclases.obtenerClasesAsignadasDeAlumno(alumno);
-                for (Clase c:clases) {
-                    System.out.println(c.getDescripcion());
 
-                }
-                session.setAttribute("misclases",clases);
-                response.sendRedirect("dashboard-alumno-profesor");
-
-            }catch (Exception e){
-                System.out.println("Error en Dashboard alumno");
-                e.printStackTrace();;
-            }
+        if(!Xor.logicalXOR(SecurityFilter.CheckUserType(0,request),SecurityFilter.CheckUserType(1,request))){
+            response.sendRedirect("index");
         }else{
-            try{
-                Profesor profesor=(Profesor)session.getAttribute("objetoProfesor");
-                ClasesAsignadasDAO bdclases = ClasesAsignadasDAO.getInstance();
-                ArrayList<Clase> clases= bdclases.obtenerClasesAsignadasDeProfesor(profesor);
-                session.setAttribute("misclases",clases);
-                response.sendRedirect("dashboard-alumno-profesor");
+            HttpSession session=request.getSession();
+            int tipo= (int)session.getAttribute("usertype");
+            if(tipo==0){
+                try{
+                    Alumno alumno =(Alumno) session.getAttribute("objetoAlumno");
+                    ClasesAsignadasDAO bdclases = ClasesAsignadasDAO.getInstance();
+                    ArrayList<Clase> clases= bdclases.obtenerClasesAsignadasDeAlumno(alumno);
+                    session.setAttribute("misclases",clases);
+                    response.sendRedirect("dashboard-alumno-profesor");
 
-            }catch (Exception e){
-                System.out.println("Error Error en Dashboard profesor");
-                e.printStackTrace();;
+                }catch (Exception e){
+                    System.out.println("Error en Dashboard alumno");
+                    e.printStackTrace();;
+                }
+            }else{
+                try{
+                    Profesor profesor=(Profesor)session.getAttribute("objetoProfesor");
+                    ClasesAsignadasDAO bdclases = ClasesAsignadasDAO.getInstance();
+                    ArrayList<Clase> clases= bdclases.obtenerClasesAsignadasDeProfesor(profesor);
+                    session.setAttribute("misclases",clases);
+                    response.sendRedirect("dashboard-alumno-profesor");
+
+                }catch (Exception e){
+                    System.out.println("Error Error en Dashboard profesor");
+                    e.printStackTrace();;
+                }
             }
         }
+
     }
 }

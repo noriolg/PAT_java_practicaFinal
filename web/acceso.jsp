@@ -33,9 +33,14 @@
                     <input class="contrasena" name="contrasena" id="contrasena" type="password" placeholder="Contraseña">
                     <br>
                 </div>
-                <div class = "mensaje-notificacion" id = mensaje-notificacion-acceso>
+                <div class = "mensaje-notificacion" id = "mensaje-notificacion-acceso">
                     <c:if test="${not empty mensajeacceso}">
                         ${mensajeacceso}
+                    </c:if>
+                </div>
+                <div  id = "mensaje-notificacion-registro">
+                    <c:if test="${not empty mensajeregistro}">
+                        ${mensajeregistro}
                     </c:if>
                 </div>
 
